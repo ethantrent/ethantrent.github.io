@@ -15,7 +15,6 @@ import { cn } from "@/lib/utils";
 const ROLES = [
   "Incoming PM Intern · Schwab Conversational AI",
   "AI Fellow · Cornell Tech × Break Through Tech",
-  "CS @ BYU–Idaho · Cloud, agents, and RAG at scale",
 ] as const;
 
 /**
