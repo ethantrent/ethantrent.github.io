@@ -49,7 +49,7 @@ export const siteConfig = {
     skills:
       "Skills across product delivery, cloud & engineering, and applied AI — roadmapping, AWS, TypeScript, Python, LangChain, RAG, and stakeholder alignment.",
     toolkit:
-      "Tools and workflows for shipping product: Azure DevOps, AWS, Cursor & Claude, GitHub, LangChain, OpenAI, and modern TypeScript stacks.",
+      "Tools and workflows for shipping product: Azure DevOps, AWS, Claude, GitHub, LangChain, OpenAI, and modern TypeScript stacks.",
     contact:
       "Contact Ethan Trent for recruiting, internships, and collaboration — portfolio inquiry form, email, LinkedIn, and downloadable resume.",
     privacy: "Privacy notice for Ethan Trent’s portfolio and how contact submissions are handled.",

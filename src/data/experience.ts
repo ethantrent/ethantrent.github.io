@@ -55,7 +55,7 @@ export const experience: ExperienceEntry[] = [
     bullets: [
       "Co-built U2, a Unified Property/Utility Billing SaaS targeting a $340M SOM; defined product requirements and prioritized features across three investor pillars using legacy benchmarking.",
       "Researched AI analytics and designed a roadmap for six ML capabilities (anomaly detection, usage forecasting, equity heatmaps, predictive collections), deployed on AWS.",
-      "Compressed PRD-to-prototype cycle from weeks to days using AI-assisted development (Claude Code, Cursor, Codex) for faster validation each sprint.",
+      "Compressed PRD-to-prototype cycle from weeks to days using AI-assisted development (Claude Code, Codex) for faster validation each sprint.",
     ],
     detail:
       "Combined builder and PM instincts: shipping features, owning discovery, and using modern AI dev workflows to move from spec to prototype quickly.",

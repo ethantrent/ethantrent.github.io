@@ -32,7 +32,6 @@ import {
   ListChecks,
   MapPinned,
   MessageSquare,
-  MousePointer2,
   Search,
   Server,
   Users,
@@ -80,7 +79,6 @@ export const TECH_ICON_MAP: Record<string, TechIconComponent> = {
   stakeholders: Users,
   promptengineering: MessageSquare,
   rag: Binary,
-  cursor: MousePointer2,
 };
 
 /** Shown on home tech marquee — every skill from `skills.ts` plus common delivery/infra tools (deduped). */

@@ -29,11 +29,11 @@ export const toolkitCards: ToolkitCard[] = [
   },
   {
     id: "code",
-    title: "Cursor + Claude + GitHub",
+    title: "Claude + GitHub + TypeScript",
     blurb:
-      "PRD-to-prototype in days, not weeks — the same AI-assisted workflow I used at KBXCOM (Claude Code, Cursor, Codex) to validate ideas every sprint.",
+      "PRD-to-prototype in days, not weeks — the same AI-assisted workflow I used at KBXCOM (Claude Code, Codex) to validate ideas every sprint.",
     panelClass: "from-violet-600/40 to-slate-900/70",
-    iconKeys: ["claude", "cursor", "github", "typescript"],
+    iconKeys: ["claude", "github", "typescript"],
   },
   {
     id: "ai",

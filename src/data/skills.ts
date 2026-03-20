@@ -25,7 +25,6 @@ export const skillCategories: SkillCategory[] = [
       { name: "SQL", iconKey: "sql", borderClass: "border-orange-500/50" },
       { name: "Git", iconKey: "git", borderClass: "border-red-500/40" },
       { name: "GitHub", iconKey: "github", borderClass: "border-fg/30" },
-      { name: "Cursor", iconKey: "cursor", borderClass: "border-violet-500/45" },
     ],
   },
   {
