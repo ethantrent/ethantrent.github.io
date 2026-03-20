@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, FileDown } from "lucide-react";
+import { FileDown } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { siteConfig } from "@/data/site";
@@ -15,7 +15,7 @@ const EXPLORE = [
 ] as const;
 
 /**
- * Four-column footer, colored tagline, circular socials, CTAs, oversized watermark.
+ * Footer: tagline, explore links, socials + resume, watermark.
  */
 export function Footer() {
   const year = new Date().getFullYear();
@@ -38,7 +38,7 @@ export function Footer() {
           {ft.after}
         </p>
 
-        <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-10 sm:grid-cols-2 sm:gap-x-16">
           <div>
             <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-muted">Explore</h2>
             <ul className="mt-4 space-y-2 text-sm">
@@ -84,30 +84,6 @@ export function Footer() {
               <FileDown className="h-4 w-4" aria-hidden />
               Download resume (PDF)
             </a>
-          </div>
-
-          <div className="rounded-2xl border border-fg/10 bg-bg/30 p-6 dark:bg-black/20">
-            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-muted">Contact me</h2>
-            <p className="mt-3 text-sm text-muted">Say hello — internships, PM roles, or AI product collabs.</p>
-            <Link
-              href="/contact"
-              className="mt-5 inline-flex h-12 w-12 items-center justify-center rounded-full border border-accent/40 bg-accent/15 text-accent transition hover:bg-accent/25"
-              aria-label="Go to contact"
-            >
-              <ArrowUpRight className="h-5 w-5" aria-hidden />
-            </Link>
-          </div>
-
-          <div className="rounded-2xl border border-fg/10 bg-bg/30 p-6 dark:bg-black/20">
-            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-muted">My projects</h2>
-            <p className="mt-3 text-sm text-muted">Explore case studies, stacks, and shipped work.</p>
-            <Link
-              href="/projects"
-              className="mt-5 inline-flex h-12 w-12 items-center justify-center rounded-full border border-accent/40 bg-accent/15 text-accent transition hover:bg-accent/25"
-              aria-label="View projects"
-            >
-              <ArrowUpRight className="h-5 w-5" aria-hidden />
-            </Link>
           </div>
         </div>
       </div>
