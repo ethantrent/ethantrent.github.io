@@ -34,12 +34,12 @@ export function ProjectTeaserCard({ project, className }: Props) {
         className="group flex h-full flex-col overflow-hidden rounded-2xl border border-fg/10 bg-surface/80 text-left shadow-sm backdrop-blur-sm transition hover:border-accent/35 hover:shadow-lg hover:shadow-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         aria-label={`View all projects — featuring ${project.name}`}
       >
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/20">
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface/60">
           <Image
             src={publicPath(project.imageSrc)}
             alt={project.imageAlt}
             fill
-            className="object-cover transition duration-500 group-hover:scale-[1.02]"
+            className="object-contain p-6 transition duration-500 group-hover:scale-[1.02] md:p-8"
             sizes="(max-width:768px) 100vw, 33vw"
           />
           {project.featured && (

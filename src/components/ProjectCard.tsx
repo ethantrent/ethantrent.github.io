@@ -33,12 +33,12 @@ export function ProjectCard({ project, className }: Props) {
         className,
       )}
     >
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/20">
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface/60">
         <Image
           src={publicPath(project.imageSrc)}
           alt={project.imageAlt}
           fill
-          className="object-cover transition duration-500 group-hover:scale-[1.02]"
+          className="object-contain p-6 transition duration-500 group-hover:scale-[1.02] md:p-8"
           sizes="(max-width:768px) 100vw, 50vw"
         />
         {project.featured && (
