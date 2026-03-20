@@ -13,8 +13,8 @@ export const experience: ExperienceEntry[] = [
       "Incoming Summer 2026 on the Conversational AI team (Westlake, TX).",
       "Preparing to contribute to product direction, stakeholder alignment, and shipping in a regulated fintech environment.",
     ],
-    logoSrc: "/experience/placeholder-schwab.svg",
-    logoAlt: "Charles Schwab",
+    logoSrc: "/charles-schwab-corporation-logo.svg.png",
+    logoAlt: "Charles Schwab logo",
     detail:
       "Focus will be conversational AI in a large enterprise context — details to update after the internship with projects, metrics, and outcomes.",
   },
