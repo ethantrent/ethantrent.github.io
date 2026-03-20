@@ -3,6 +3,16 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ProfileAvatar } from "@/components/ProfileAvatar";
+import { publicPath } from "@/lib/publicPath";
+import { cn } from "@/lib/utils";
+
+type EduEntry = {
+  mark: string;
+  dates: string;
+  org: string;
+  detail: string;
+  logoSrc?: string;
+};
 
 const PILLARS = [
   {
@@ -25,27 +35,30 @@ const PILLARS = [
   },
 ] as const;
 
-const EDU_ENTRIES = [
+const EDU_ENTRIES: EduEntry[] = [
   {
     mark: "BYU–I",
     dates: "Sep 2023 – Jul 2026",
     org: "Brigham Young University–Idaho",
-    detail: "B.S. Computer Science · Full Stack Web & App Development certificate",
+    detail: "B.S. Computer Science · Full Stack Web Development",
+    logoSrc: "/byui-logo.jpg",
   },
   {
     mark: "CU",
     dates: "May – Aug 2026",
     org: "Cornell University",
-    detail: "Machine Learning certificate (remote)",
+    detail: "Machine Learning Certificate",
+    logoSrc: "/Cornell_University_seal.svg.png",
   },
   {
     mark: "CMU",
     dates: "Prospective · Fall 2030 – Spring 2032",
     org: "Carnegie Mellon University — Tepper School of Business",
     detail:
-      "Prospective Accelerate Online Hybrid MBA (Consortium / R1 path). Targeting the Technology Strategy & Product Management track and concentrations in AI in Business, Business Technologies, Strategy, and Marketing — aligned with AI product management.",
+      "Prospective Accelerate Online Hybrid MBA. Targeting the Technology Strategy & Product Management track and concentrations in AI in Business, Business Technologies, Strategy, and Marketing.",
+    logoSrc: "/tepper-logo.jpg",
   },
-] as const;
+];
 
 /**
  * About page: split hero, bio, numbered pillars, education path.
@@ -138,10 +151,24 @@ export function AboutSection() {
               />
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
                 <div
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-fg/15 bg-surface/90 font-display text-xs font-bold text-accent shadow-sm"
+                  className={cn(
+                    "flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-fg/15 bg-surface/90 shadow-sm",
+                    !e.logoSrc && "font-display text-xs font-bold text-accent",
+                  )}
                   aria-hidden
                 >
-                  {e.mark}
+                  {e.logoSrc ? (
+                    // eslint-disable-next-line @next/next/no-img-element -- /public logos on static export
+                    <img
+                      src={publicPath(e.logoSrc)}
+                      alt=""
+                      className="h-full w-full object-contain p-1.5"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    e.mark
+                  )}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">{e.dates}</p>
