@@ -6,7 +6,7 @@ import type { Project } from "@/types";
 export const projects: Project[] = [
   {
     id: "u2-kbxcom",
-    name: "U2 — Unified Property/Utility Billing SaaS (KBXCOM)",
+    name: "U2 — Unified Property/Utility Billing SaaS",
     year: "2025",
     category: "Full-stack product",
     description: [
