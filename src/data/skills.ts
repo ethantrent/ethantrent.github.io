@@ -25,12 +25,16 @@ export const skillCategories: SkillCategory[] = [
       { name: "SQL", iconKey: "sql", borderClass: "border-orange-500/50" },
       { name: "Git", iconKey: "git", borderClass: "border-red-500/40" },
       { name: "GitHub", iconKey: "github", borderClass: "border-fg/30" },
+      { name: "Cursor", iconKey: "cursor", borderClass: "border-violet-500/45" },
     ],
   },
   {
     title: "Cloud & frameworks",
     items: [
       { name: "AWS", iconKey: "aws", borderClass: "border-amber-500/50" },
+      { name: "Terraform", iconKey: "terraform", borderClass: "border-purple-500/50" },
+      { name: "Docker", iconKey: "docker", borderClass: "border-sky-500/50" },
+      { name: "GitHub Actions", iconKey: "githubactions", borderClass: "border-fg/30" },
       { name: "React", iconKey: "react", borderClass: "border-cyan-400/50" },
       { name: "Node.js", iconKey: "nodejs", borderClass: "border-green-500/50" },
       { name: "Next.js", iconKey: "nextjs", borderClass: "border-fg/30" },

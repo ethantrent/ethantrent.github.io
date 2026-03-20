@@ -32,11 +32,13 @@ import {
   ListChecks,
   MapPinned,
   MessageSquare,
+  MousePointer2,
   Search,
   Server,
   Users,
   Workflow,
 } from "lucide-react";
+import { skillCategories } from "@/data/skills";
 
 export type TechIconComponent = ComponentType<{ className?: string }>;
 
@@ -78,21 +80,21 @@ export const TECH_ICON_MAP: Record<string, TechIconComponent> = {
   stakeholders: Users,
   promptengineering: MessageSquare,
   rag: Binary,
+  cursor: MousePointer2,
 };
 
-export const MARQUEE_TECH: { key: string; label: string }[] = [
-  { key: "aws", label: "AWS" },
-  { key: "azuredevops", label: "Azure DevOps" },
-  { key: "terraform", label: "Terraform" },
-  { key: "docker", label: "Docker" },
-  { key: "githubactions", label: "GitHub Actions" },
-  { key: "python", label: "Python" },
-  { key: "typescript", label: "TypeScript" },
-  { key: "javascript", label: "JavaScript" },
-  { key: "react", label: "React" },
-  { key: "nextjs", label: "Next.js" },
-  { key: "langchain", label: "LangChain" },
-  { key: "nodejs", label: "Node.js" },
-  { key: "figma", label: "Figma" },
-  { key: "openai", label: "OpenAI" },
-];
+/** Shown on home tech marquee — every skill from `skills.ts` plus common delivery/infra tools (deduped). */
+function buildMarqueeTech(): { key: string; label: string }[] {
+  const seen = new Set<string>();
+  const out: { key: string; label: string }[] = [];
+  for (const cat of skillCategories) {
+    for (const item of cat.items) {
+      if (seen.has(item.iconKey)) continue;
+      seen.add(item.iconKey);
+      out.push({ key: item.iconKey, label: item.name });
+    }
+  }
+  return out;
+}
+
+export const MARQUEE_TECH = buildMarqueeTech();
