@@ -40,8 +40,8 @@ export const experience: ExperienceEntry[] = [
       "Spearheaded discovery-phase development and operational use of AuditAI — 6 internal AI agents for the Audit department, automating ~30% of common processes and reducing ~50% of manual labor time.",
       "Aligned engineering, Auditing, and General Counsel on parallel maintenance and modernization workstreams, delivering regulatory-compliant releases on a 2-week sprint cadence.",
     ],
-    logoSrc: "/experience/placeholder-church.svg",
-    logoAlt: "Organization logo placeholder",
+    logoSrc: "/1200x675size-English-square.jpg",
+    logoAlt: "The Church of Jesus Christ of Latter-day Saints logo",
     detail:
       "High-stakes environment balancing legacy modernization, compliance, and new AI capability — strong training in cross-functional PM at scale.",
   },
