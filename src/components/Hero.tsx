@@ -117,21 +117,11 @@ export function Hero() {
           )}
         </motion.p>
 
-        <motion.p
-          className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted sm:text-lg"
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.18 }}
-        >
-          I bridge product ownership, cloud delivery, and applied AI — from AWS migrations and internal agent
-          programs to a RAG campus assistant for 20,000+ students.
-        </motion.p>
-
         <motion.div
           className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-fg/90"
           initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.2 }}
+          transition={{ duration: 0.45, delay: 0.18 }}
         >
           <a
             href={`mailto:${siteConfig.email}`}
