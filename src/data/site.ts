@@ -16,7 +16,7 @@ export const siteConfig = {
     highlight2: "execution",
     after: ".",
   },
-  location: "Rexburg, ID · Westlake, TX (Summer 2026)",
+  location: "Dallas, TX · Westlake, TX (Summer 2026)",
   email: "ethanjotrent@gmail.com",
   social: {
     linkedin: "https://www.linkedin.com/in/ethantrent",

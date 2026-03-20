@@ -119,7 +119,7 @@ export function AboutSection() {
           ))}
         </ol>
         <p className="mt-6 text-sm text-muted">
-          Currently based in Rexburg, ID, with Cornell fellow travel in New York and San Francisco — open to
+          Currently based in Dallas, TX, with Cornell fellow travel in New York and San Francisco — open to
           conversations that move product and platform forward.
         </p>
       </section>
