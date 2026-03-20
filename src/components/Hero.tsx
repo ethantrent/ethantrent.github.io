@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown, FileDown, Mail } from "lucide-react";
@@ -8,8 +7,8 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { ParticleBackground } from "@/components/ParticleBackground";
+import { ProfileAvatar } from "@/components/ProfileAvatar";
 import { siteConfig } from "@/data/site";
-import { publicPath } from "@/lib/publicPath";
 import { cn } from "@/lib/utils";
 
 const ROLES = [
@@ -52,13 +51,10 @@ export function Hero() {
                 className="absolute -inset-1 rounded-full bg-gradient-to-tr from-accent/50 to-accent-violet/40 blur-md"
                 aria-hidden
               />
-              <Image
-                src={publicPath("/profile-mark.svg")}
-                alt="Ethan Trent"
-                width={56}
-                height={56}
-                className="relative rounded-full border-2 border-accent/60 object-cover"
+              <ProfileAvatar
+                size={56}
                 priority
+                className="relative rounded-full border-2 border-accent/60 object-cover"
               />
             </div>
             <div className="relative">

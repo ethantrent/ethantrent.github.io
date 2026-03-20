@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { publicPath } from "@/lib/publicPath";
+import { ProfileAvatar } from "@/components/ProfileAvatar";
 
 const PILLARS = [
   {
@@ -84,12 +83,9 @@ export function AboutSection() {
           className="relative mx-auto max-w-sm lg:mx-0 lg:justify-self-end"
         >
           <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-accent/30 to-accent-violet/25 blur-2xl" aria-hidden />
-          <Image
-            src={publicPath("/profile-mark.svg")}
-            alt="Ethan Trent"
-            width={400}
-            height={400}
-            className="relative rounded-3xl border border-fg/10 object-cover"
+          <ProfileAvatar
+            size={400}
+            className="relative h-auto w-full max-w-sm rounded-3xl border border-fg/10 object-cover"
           />
         </motion.div>
       </section>

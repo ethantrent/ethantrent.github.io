@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Ethan Trent  abstract profile mark">
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Ethan Trent abstract profile mark">
   <defs>
     <linearGradient id="pmRing" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#38bdf8"/>
@@ -12,7 +12,6 @@
     </radialGradient>
   </defs>
   <circle cx="100" cy="100" r="98" fill="url(#pmBg)" stroke="url(#pmRing)" stroke-width="3"/>
-  <!-- Abstract network / product mark (reads clearly at small sizes; not initials) -->
   <g transform="translate(100 102)" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <line x1="-46" y1="18" x2="-8" y2="-8" stroke="#38bdf8" stroke-width="5" opacity="0.85"/>
     <line x1="-8" y1="-8" x2="44" y2="12" stroke="#38bdf8" stroke-width="5" opacity="0.85"/>
