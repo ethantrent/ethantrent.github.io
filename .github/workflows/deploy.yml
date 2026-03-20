@@ -1,0 +1,73 @@
+# Build static Next.js export and publish to GitHub Pages (Actions source).
+# Repo Settings → Pages → Source: GitHub Actions.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      # Project repo → site at https://OWNER.github.io/REPO/ (needs Next basePath).
+      # Repo named *.github.io → user/org site at https://OWNER.github.io/ (root).
+      - name: Resolve Pages URL and base path
+        id: pages
+        run: |
+          OWNER="${GITHUB_REPOSITORY%%/*}"
+          REPO="${GITHUB_REPOSITORY#*/}"
+          if [[ "$REPO" == *.github.io ]]; then
+            echo "base=" >> "$GITHUB_OUTPUT"
+            echo "site=https://${OWNER}.github.io" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=/${REPO}" >> "$GITHUB_OUTPUT"
+            echo "site=https://${OWNER}.github.io/${REPO}" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
+      - name: Install and build
+        env:
+          GITHUB_PAGES_BASE_PATH: ${{ steps.pages.outputs.base }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.site }}
+        run: |
+          npm ci
+          npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/*
+  Design tokens: dark is default via `next-themes` (`class="dark"` on html).
+  Electric blue + violet + cyan headline accents on near-black / cream.
+  Typography: Figtree (body) + Syne (display) — readable for recruiters, not generic Inter/Space Grotesk.
+*/
+:root {
+  --bg: #f5f2eb;
+  --fg: #0d0d0d;
+  --surface: #ffffff;
+  --muted: #57534e;
+  --accent: #3b82f6;
+  --accent-violet: #7c3aed;
+  --accent-cyan: #22d3ee;
+  --keyword-orange: #f97316;
+  --keyword-teal: #14b8a6;
+  --available-green: #22c55e;
+}
+
+.dark {
+  --bg: #0d0d0d;
+  --fg: #f0ebd8;
+  --surface: #141414;
+  --muted: #a39e8c;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-keyword-orange: var(--keyword-orange);
+  --color-keyword-teal: var(--keyword-teal);
+  --color-available: var(--available-green);
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: transparent;
+  color: var(--fg);
+}
+
+/* Subtle grain behind content (html holds base color so z-index:-1 stays visible). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.dark body::before {
+  opacity: 0.055;
+}
+
+/* Custom cursor: applied only when `CustomCursor` mounts (fine pointer + motion OK). */
+body.custom-cursor-active,
+body.custom-cursor-active * {
+  cursor: none !important;
+}
+
+body.custom-cursor-active .skip-link:focus,
+body.custom-cursor-active *:focus-visible {
+  cursor: auto !important;
+}
+
+/* Availability / live indicator */
+@keyframes availability-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--available-green) 55%, transparent);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--available-green) 0%, transparent);
+    opacity: 0.95;
+  }
+}
+
+.availability-dot {
+  animation: availability-pulse 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .availability-dot {
+    animation: none;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-soft {
+  animation: float-soft 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-soft {
+    animation: none;
+  }
+}
+
+/* Skip link: visible on keyboard focus */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--accent-violet);
+  outline-offset: 2px;
+}
+
+.font-display {
+  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+}
