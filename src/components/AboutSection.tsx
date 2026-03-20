@@ -38,12 +38,6 @@ const EDU_ENTRIES = [
     org: "Cornell University",
     detail: "Machine Learning certificate (remote)",
   },
-  {
-    mark: "CT",
-    dates: "May 2026 – Apr 2027",
-    org: "Cornell Tech × Break Through Tech AI",
-    detail: "AI Fellow — NYC + San Francisco immersion",
-  },
 ] as const;
 
 /**
@@ -153,8 +147,7 @@ export function AboutSection() {
           </ol>
         </div>
         <p className="mt-6 text-sm text-muted">
-          Currently based in Dallas, TX, with Cornell fellow travel in New York and San Francisco — open to
-          conversations that move product and platform forward.
+          Currently based in Dallas, TX — open to conversations that move product and platform forward.
         </p>
       </section>
     </div>
