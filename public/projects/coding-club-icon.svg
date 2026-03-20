@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Technical community program icon">
+  <defs>
+    <linearGradient id="ccbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#020617"/>
+  <rect x="40" y="40" width="720" height="420" rx="24" fill="url(#ccbg)"/>
+  <g fill="none" stroke="#3b82f6" stroke-width="7" stroke-linecap="round">
+    <circle cx="280" cy="220" r="36"/>
+    <circle cx="400" cy="180" r="36"/>
+    <circle cx="520" cy="220" r="36"/>
+    <circle cx="340" cy="300" r="36"/>
+    <circle cx="460" cy="300" r="36"/>
+    <path d="M 312 208 L 368 192 M 432 192 L 488 208 M 304 248 L 328 276 M 472 248 L 448 276 M 368 300 L 432 300"/>
+  </g>
+  <text x="400" y="420" text-anchor="middle" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14" font-weight="600" letter-spacing="0.2em" opacity="0.7">PEER TECH COMMUNITY</text>
+</svg>

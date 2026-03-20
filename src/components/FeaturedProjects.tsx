@@ -2,9 +2,10 @@ import Link from "next/link";
 import { projects } from "@/data/projects";
 import { ProjectTeaserCard } from "@/components/ProjectTeaserCard";
 import { siteConfig } from "@/data/site";
+import { cn } from "@/lib/utils";
 
 /**
- * Home-page project teasers: featured first, three cards linking to `/projects`.
+ * Home-page project teasers: featured projects (up to 3), linking to `/projects`.
  */
 export function FeaturedProjects() {
   const featured = projects.filter((p) => p.featured);
@@ -31,7 +32,14 @@ export function FeaturedProjects() {
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={cn(
+            "mt-12 grid gap-8",
+            slice.length <= 2
+              ? "md:mx-auto md:max-w-4xl md:grid-cols-2"
+              : "md:grid-cols-2 lg:grid-cols-3",
+          )}
+        >
           {slice.map((p) => (
             <ProjectTeaserCard key={p.id} project={p} />
           ))}

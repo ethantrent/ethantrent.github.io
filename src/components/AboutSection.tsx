@@ -124,14 +124,19 @@ export function AboutSection() {
         <h2 id="edu-heading" className="font-display text-3xl font-bold text-fg">
           Education & trajectory
         </h2>
-        <ol className="mt-8 space-y-0 border-l-2 border-accent/35 pl-0">
+        <div className="relative mt-10">
+          <div
+            className="absolute left-[15px] top-4 bottom-4 w-px bg-gradient-to-b from-accent via-accent/50 to-accent-violet md:left-[19px]"
+            aria-hidden
+          />
+          <ol className="space-y-0">
           {EDU_ENTRIES.map((e) => (
             <li
               key={e.org}
-              className="relative border-b border-fg/10 py-6 pl-8 last:border-b-0 md:pl-10"
+              className="relative border-b border-fg/10 py-6 pl-10 last:border-b-0 md:pl-14"
             >
               <span
-                className="absolute -left-[5px] top-8 flex h-3 w-3 rounded-full border-2 border-accent bg-bg md:top-9"
+                className="absolute left-[9px] top-[2.35rem] flex h-3 w-3 rounded-full border-2 border-accent bg-bg shadow-[0_0_0_4px_var(--color-bg)] md:left-[13px] md:top-[2.5rem]"
                 aria-hidden
               />
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
@@ -149,7 +154,8 @@ export function AboutSection() {
               </div>
             </li>
           ))}
-        </ol>
+          </ol>
+        </div>
         <p className="mt-6 text-sm text-muted">
           Currently based in Dallas, TX, with Cornell fellow travel in New York and San Francisco — open to
           conversations that move product and platform forward.

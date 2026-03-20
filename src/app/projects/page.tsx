@@ -18,8 +18,16 @@ export default function ProjectsPage() {
         <p className="mt-4 text-pretty text-muted">{siteConfig.pageIntros.projects}</p>
       </header>
       <div className="mt-14 grid gap-10 md:grid-cols-2">
-        {projects.map((p) => (
-          <ProjectCard key={p.id} project={p} />
+        {projects.map((p, i) => (
+          <ProjectCard
+            key={p.id}
+            project={p}
+            className={
+              projects.length % 2 === 1 && i === projects.length - 1
+                ? "md:col-span-2 md:mx-auto md:w-full md:max-w-3xl"
+                : undefined
+            }
+          />
         ))}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { ArrowUpRight, FileDown } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { siteConfig } from "@/data/site";
+import { cn } from "@/lib/utils";
 
 const EXPLORE = [
   ["/about", "About"],
@@ -53,12 +54,19 @@ export function Footer() {
 
           <div>
             <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-muted">Follow me</h2>
-            <ul className="mt-4 flex flex-wrap gap-3">
+            <ul className="mt-4 flex flex-wrap items-center gap-3">
               {followSocials.map(({ href, label, Icon }) => (
                 <li key={label}>
                   <a
                     href={href}
-                    className="flex h-12 w-12 items-center justify-center rounded-full border border-fg/15 bg-bg/40 text-fg transition hover:border-accent/50 hover:text-accent"
+                    className={cn(
+                      "flex h-12 w-12 items-center justify-center rounded-full border bg-bg/40 transition",
+                      label === "LinkedIn" &&
+                        "border-[#0A66C2]/40 text-[#0A66C2] hover:border-[#0A66C2] hover:bg-[#0A66C2]/15",
+                      label === "GitHub" &&
+                        "border-fg/20 text-fg hover:border-fg/40 hover:bg-fg/10 dark:hover:bg-white/10",
+                      label === "X" && "border-fg/15 text-fg hover:border-accent/50 hover:text-accent",
+                    )}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
@@ -67,17 +75,15 @@ export function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href={siteConfig.resumePath}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-fg/15 bg-bg/40 text-fg transition hover:border-accent/50 hover:text-accent"
-                  download
-                  aria-label="Download resume"
-                >
-                  <FileDown className="h-5 w-5" aria-hidden />
-                </a>
-              </li>
             </ul>
+            <a
+              href={siteConfig.resumePath}
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:text-accent-violet"
+              download
+            >
+              <FileDown className="h-4 w-4" aria-hidden />
+              Download resume (PDF)
+            </a>
           </div>
 
           <div className="rounded-2xl border border-fg/10 bg-bg/30 p-6 dark:bg-black/20">

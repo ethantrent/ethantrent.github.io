@@ -11,7 +11,6 @@ const TILES: {
   title: string;
   description: string;
   Icon: LucideIcon;
-  borderClass: string;
   panelClass: string;
 }[] = [
   {
@@ -19,32 +18,28 @@ const TILES: {
     title: "AI Product Strategy",
     description: "Defining roadmaps, user stories, and success metrics.",
     Icon: LineChart,
-    borderClass: "border-l-accent",
-    panelClass: "from-accent/12 via-surface/70 to-surface/70",
+    panelClass: "from-accent/10 via-surface/70 to-surface/70",
   },
   {
     n: "02",
     title: "Cloud & DevOps",
     description: "AWS, Terraform, Docker, and CI/CD pipelines.",
     Icon: Cloud,
-    borderClass: "border-l-accent-cyan",
-    panelClass: "from-accent-cyan/10 via-surface/70 to-surface/70",
+    panelClass: "from-accent/10 via-surface/70 to-surface/70",
   },
   {
     n: "03",
     title: "Technical PM",
     description: "Bridging engineering teams and business stakeholders.",
     Icon: GitBranch,
-    borderClass: "border-l-accent-violet",
-    panelClass: "from-accent-violet/12 via-surface/70 to-surface/70",
+    panelClass: "from-accent/10 via-surface/70 to-surface/70",
   },
   {
     n: "04",
     title: "Systems Thinking",
     description: "Legacy modernization, architecture, and scalability.",
     Icon: Cpu,
-    borderClass: "border-l-keyword-teal",
-    panelClass: "from-keyword-teal/10 via-surface/70 to-surface/70",
+    panelClass: "from-accent/10 via-surface/70 to-surface/70",
   },
 ];
 
@@ -73,8 +68,7 @@ export function WhatIDoSection() {
               transition={{ delay: i * 0.05, duration: 0.4 }}
               className={cn(
                 "rounded-2xl border border-fg/10 bg-gradient-to-br p-6 shadow-sm backdrop-blur transition hover:border-accent/25",
-                "border-l-[3px]",
-                tile.borderClass,
+                "border-l-[3px] border-l-accent",
                 tile.panelClass,
               )}
             >

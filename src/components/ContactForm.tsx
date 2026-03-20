@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Link from "next/link";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -202,8 +203,9 @@ export function ContactForm() {
               href={siteConfig.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-fg/15 bg-surface/50 px-3 py-1.5 text-xs font-semibold transition hover:border-accent hover:text-accent"
+              className="inline-flex items-center gap-2 rounded-full border border-[#0A66C2]/35 bg-surface/50 px-3 py-2 text-xs font-semibold text-fg transition hover:border-[#0A66C2] hover:bg-[#0A66C2]/12 hover:text-[#0A66C2]"
             >
+              <FaLinkedin className="h-4 w-4 shrink-0 text-[#0A66C2]" aria-hidden />
               LinkedIn
             </a>
             {siteConfig.social.github ? (
@@ -211,8 +213,9 @@ export function ContactForm() {
                 href={siteConfig.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-fg/15 bg-surface/50 px-3 py-1.5 text-xs font-semibold transition hover:border-accent hover:text-accent"
+                className="inline-flex items-center gap-2 rounded-full border border-fg/15 bg-surface/50 px-3 py-2 text-xs font-semibold text-fg transition hover:border-fg/35 hover:bg-fg/10 dark:hover:bg-white/10"
               >
+                <FaGithub className="h-4 w-4 shrink-0" aria-hidden />
                 GitHub
               </a>
             ) : null}
