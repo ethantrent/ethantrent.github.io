@@ -39,7 +39,7 @@ export const siteConfig = {
   },
   techMarquee: {
     introBefore: "I work with ",
-    introHighlight1: "technologies",
+    introHighlight1: "skills",
     introMiddle: " that ship ",
     introHighlight2: "cutting-edge solutions",
     introAfter: " — from idea to production.",

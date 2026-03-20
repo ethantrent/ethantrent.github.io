@@ -35,16 +35,16 @@ function Row({ reverse }: { reverse?: boolean }) {
 }
 
 /**
- * Infinite tech logo strip; static row when `prefers-reduced-motion`.
+ * Infinite skills strip (icons + labels); static row when `prefers-reduced-motion`.
  */
 export function TechMarquee() {
   const reduceMotion = useReducedMotion();
   const t = siteConfig.techMarquee;
 
   return (
-    <section className="border-y border-fg/10 bg-surface/25 py-14 backdrop-blur-sm" aria-label="Technology stack">
+    <section className="border-y border-fg/10 bg-surface/25 py-14 backdrop-blur-sm" aria-label="Skills">
       <div className="mx-auto max-w-6xl px-4 text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">My tech stack</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">My skills</p>
         <p className="mx-auto mt-3 max-w-2xl text-pretty text-sm text-muted sm:text-base">
           {t.introBefore}
           <span className="font-semibold text-keyword-orange">{t.introHighlight1}</span>
