@@ -82,29 +82,6 @@ body.custom-cursor-active *:focus-visible {
   cursor: auto !important;
 }
 
-/* Availability / live indicator */
-@keyframes availability-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--available-green) 55%, transparent);
-    opacity: 1;
-  }
-  50% {
-    box-shadow: 0 0 0 8px color-mix(in srgb, var(--available-green) 0%, transparent);
-    opacity: 0.95;
-  }
-}
-
-.availability-dot {
-  animation: availability-pulse 2s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .availability-dot {
-    animation: none;
-  }
-}
-
 @keyframes float-soft {
   0%,
   100% {

@@ -1,5 +1,5 @@
 /**
- * Global site copy and outbound links. Add `social.github` / `social.twitter` when you have URLs.
+ * Global site copy and outbound links. Add `social.twitter` when you have a URL (hidden if empty).
  */
 
 export const siteConfig = {
@@ -26,8 +26,6 @@ export const siteConfig = {
   resumePath: "/resume.pdf",
   hero: {
     roleCaption: "// Product Manager & CS student · AI + cloud delivery",
-    availabilityLabel: "Open to opportunities",
-    floatingNameTag: "Ethan Trent",
   },
   manifesto: {
     line1: "Shipping Products",

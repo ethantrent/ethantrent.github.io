@@ -3,12 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import {
-  ChevronDown,
-  FileDown,
-  Mail,
-  MousePointer2,
-} from "lucide-react";
+import { ChevronDown, FileDown, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { useEffect, useState } from "react";
@@ -23,14 +18,8 @@ const ROLES = [
   "CS @ BYU–Idaho · Cloud, agents, and RAG at scale",
 ] as const;
 
-const floatLoop = {
-  y: [0, -10, 0],
-  transition: { duration: 3.2, repeat: Infinity, ease: "easeInOut" as const },
-};
-
 /**
- * Rich hero: orbit-style badges, split headline colors, avatar + speech bubble,
- * code-style meta lines, availability pulse, hero socials + email.
+ * Hero: split headline, avatar + intro, rotating role line, socials, CTAs.
  */
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -86,16 +75,6 @@ export function Hero() {
                 aria-hidden
               />
             </div>
-            <div
-              className="inline-flex items-center gap-2 rounded-full border border-available/40 bg-available/10 px-3 py-1.5 text-xs font-semibold text-fg"
-              role="status"
-            >
-              <span
-                className="availability-dot h-2 w-2 shrink-0 rounded-full bg-available"
-                aria-hidden
-              />
-              {siteConfig.hero.availabilityLabel}
-            </div>
           </div>
           <p className="font-mono text-[11px] uppercase tracking-widest text-muted sm:max-w-[14rem] sm:text-right">
             <span aria-hidden>{"// "}</span>
@@ -107,38 +86,7 @@ export function Hero() {
           {siteConfig.hero.roleCaption}
         </p>
 
-        {/* Headline + floating badges */}
         <div className="relative mt-10 md:mt-14">
-          {!reduceMotion && (
-            <>
-              <motion.div
-                className="absolute -right-2 top-0 z-10 rounded-full border border-accent-violet/40 bg-accent-violet/20 px-3 py-1.5 text-xs font-bold text-accent-violet shadow-lg backdrop-blur md:right-8 md:top-2"
-                animate={floatLoop}
-              >
-                AI PM
-              </motion.div>
-              <motion.div
-                className="absolute -left-4 bottom-0 z-10 flex items-center gap-1.5 rounded-full border border-accent/35 bg-accent/15 px-3 py-1.5 text-xs font-bold text-accent shadow-lg backdrop-blur md:bottom-4 md:left-0"
-                animate={{
-                  y: [0, -8, 0],
-                  transition: { duration: 2.8, repeat: Infinity, ease: "easeInOut" },
-                }}
-              >
-                <MousePointer2 className="h-3.5 w-3.5" aria-hidden />
-                Builder
-              </motion.div>
-              <motion.div
-                className="absolute right-[10%] bottom-[-12%] z-10 rounded-full border border-fg/20 bg-surface/95 px-3 py-1.5 text-xs font-semibold text-muted shadow-md backdrop-blur"
-                animate={{
-                  y: [0, -6, 0],
-                  transition: { duration: 3.6, repeat: Infinity, ease: "easeInOut", delay: 0.4 },
-                }}
-              >
-                {siteConfig.hero.floatingNameTag}
-              </motion.div>
-            </>
-          )}
-
           <motion.h1
             id="hero-heading"
             className="font-display relative z-0 max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
