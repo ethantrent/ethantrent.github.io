@@ -44,10 +44,23 @@ Replace `public/avatar-placeholder.svg`, `public/projects/*`, `public/experience
 
 ## GitHub Pages deployment
 
-**This repo:** [`ethantrent/portfolio`](https://github.com/ethantrent/portfolio) → live site **`https://ethantrent.github.io/portfolio/`** (after Pages is enabled and `main` has been deployed).
+**This repo:** [`ethantrent/portfolio`](https://github.com/ethantrent/portfolio) → live site **`https://ethantrent.github.io/portfolio/`** (trailing slash is fine).
+
+### If you see “404 — There isn’t a GitHub Pages site here”
+
+1. **Use the project URL, not the profile root.**  
+   `https://ethantrent.github.io` only works if you have a **`ethantrent.github.io`** repository (user site). This portfolio lives at **`https://ethantrent.github.io/portfolio/`** because the repo is named `portfolio`.
+
+2. **Turn on Actions-based Pages.** Repo **Settings → Pages → Build and deployment → Source:** choose **GitHub Actions** (not “Deploy from a branch”).
+
+3. **Push `main` and wait for green checks.** Open the **Actions** tab → **Deploy to GitHub Pages**. If the **deploy** job says it’s waiting for an environment, open the run and **approve** the `github-pages` environment (first run only). You can also run the workflow manually: **Actions → Deploy to GitHub Pages → Run workflow**.
+
+4. **Confirm the default branch is `main`.** If yours is `master`, either rename it to `main` or change the `on.push.branches` list in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+---
 
 1. GitHub → **Settings → Pages → Build and deployment**: set **Source** to **GitHub Actions** (not “Deploy from a branch”).
-2. Push to **`main`** — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs `npm ci`, `npm run build`, and publishes the **`out/`** folder.
+2. Push to **`main`** (or **Run workflow** manually) — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs `npm ci`, `npm run build`, and publishes the **`out/`** folder.
 3. The workflow sets **`GITHUB_PAGES_BASE_PATH`** and **`NEXT_PUBLIC_SITE_URL`** automatically:
    - Repo named `anything` except `*.github.io` → base path `/REPO_NAME` (e.g. `/portfolio`).
    - Repo named `yourusername.github.io` → root `/` (user/org site).
