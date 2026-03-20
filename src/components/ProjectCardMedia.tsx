@@ -11,15 +11,18 @@ type Props = {
 const mediaClassName =
   "object-contain p-6 transition duration-500 group-hover:scale-[1.02] md:p-8";
 
+/** SVG + raster under /public: plain img avoids next/image quirks on static export (GitHub Pages). */
+const USE_IMG = /\.(svg|png|jpe?g|gif|webp)$/i;
+
 /**
- * Local SVGs use a plain img so they reliably render; next/image often skips SVGs from /public.
- * Raster assets use next/image with fill.
+ * Project thumbnails from `/public` render with native img for reliable static hosting.
+ * Other paths still use next/image.
  */
 export function ProjectCardMedia({ imageSrc, imageAlt, sizes }: Props) {
   const url = publicPath(imageSrc);
-  if (imageSrc.toLowerCase().endsWith(".svg")) {
+  if (USE_IMG.test(imageSrc)) {
     return (
-      // eslint-disable-next-line @next/next/no-img-element -- next/image often skips local SVGs
+      // eslint-disable-next-line @next/next/no-img-element -- reliable /public assets on static export
       <img
         src={url}
         alt={imageAlt}
