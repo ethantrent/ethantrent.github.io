@@ -32,7 +32,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "ics-pm",
-    role: "Project Manager Intern",
+    role: "IT Project Manager",
     company: "Information and Communication Services – Global Nonprofit",
     dateRange: "January 2026 — May 2026 · Riverton, UT",
     bullets: [

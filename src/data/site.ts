@@ -43,7 +43,7 @@ export const siteConfig = {
     about:
       "About Ethan Trent — CS at BYU–Idaho, incoming PM intern at Charles Schwab (Conversational AI), Cornell Tech × Break Through Tech AI Fellow, and shipped cloud & AI work.",
     experience:
-      "Experience timeline: Charles Schwab PM intern, Cornell Tech AI Fellow, ICS global nonprofit PM intern, and KBXCOM software engineering intern.",
+      "Experience timeline: Charles Schwab PM intern, Cornell Tech AI Fellow, ICS global nonprofit IT Project Manager, and KBXCOM software engineering intern.",
     projects:
       "Project highlights: financial audit AWS modernization, internal AI agent programs, unified billing SaaS, campus RAG support agent, and technical leadership.",
     skills:
