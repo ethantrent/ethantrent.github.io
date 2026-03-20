@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/types";
+import { projectCategoryChipClassName, projectTagChipClassName } from "@/lib/projectChips";
 import { publicPath } from "@/lib/publicPath";
 import { cn } from "@/lib/utils";
+import { Layers } from "lucide-react";
 
 type Props = {
   project: Project;
@@ -50,16 +52,14 @@ export function ProjectCard({ project, className }: Props) {
 
       <div className="flex flex-1 flex-col gap-4 p-6">
         {project.category && (
-          <span className="w-fit rounded-full border border-fg/15 bg-fg/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-muted">
+          <span className={cn("w-fit", projectCategoryChipClassName())}>
+            <Layers className="h-4 w-4 shrink-0 text-accent" aria-hidden />
             {project.category}
           </span>
         )}
         <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
-            >
+          {project.tags.map((tag, ti) => (
+            <span key={tag} className={projectTagChipClassName(ti)}>
               {tag}
             </span>
           ))}
@@ -83,7 +83,7 @@ export function ProjectCard({ project, className }: Props) {
             rel="noopener noreferrer"
             className="inline-flex rounded-full border border-fg/15 px-5 py-2.5 text-sm font-semibold text-fg transition group-hover:border-accent group-hover:text-accent"
           >
-            View project
+            {project.ctaLabel ?? "Visit"}
           </Link>
         </div>
       </div>

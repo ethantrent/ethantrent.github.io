@@ -12,7 +12,7 @@ export function FeaturedProjects() {
   const slice = list.slice(0, 3);
 
   return (
-    <section id="projects" className="scroll-mt-28 py-20 md:py-24" aria-labelledby="projects-heading">
+    <section id="projects" className="scroll-mt-28 py-14 md:py-16" aria-labelledby="projects-heading">
       <div className="mx-auto max-w-6xl px-4">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>

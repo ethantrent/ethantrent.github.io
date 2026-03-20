@@ -26,10 +26,25 @@ const PILLARS = [
   },
 ] as const;
 
-const EDU = [
-  "Brigham Young University–Idaho — B.S. Computer Science; Full Stack Web & App Development certificate (Sep 2023 – Jul 2026)",
-  "Cornell University — Machine Learning certificate, remote (May – Aug 2026)",
-  "Cornell Tech × Break Through Tech AI — AI Fellow; NYC + SF immersion (May 2026 – Apr 2027)",
+const EDU_ENTRIES = [
+  {
+    mark: "BYU–I",
+    dates: "Sep 2023 – Jul 2026",
+    org: "Brigham Young University–Idaho",
+    detail: "B.S. Computer Science · Full Stack Web & App Development certificate",
+  },
+  {
+    mark: "CU",
+    dates: "May – Aug 2026",
+    org: "Cornell University",
+    detail: "Machine Learning certificate (remote)",
+  },
+  {
+    mark: "CT",
+    dates: "May 2026 – Apr 2027",
+    org: "Cornell Tech × Break Through Tech AI",
+    detail: "AI Fellow — NYC + San Francisco immersion",
+  },
 ] as const;
 
 /**
@@ -110,11 +125,29 @@ export function AboutSection() {
         <h2 id="edu-heading" className="font-display text-3xl font-bold text-fg">
           Education & trajectory
         </h2>
-        <ol className="mt-8 space-y-4 border-l border-accent/40 pl-6">
-          {EDU.map((line) => (
-            <li key={line} className="relative text-sm text-fg/90">
-              <span className="absolute -left-[1.4rem] top-1.5 h-2 w-2 rounded-full bg-accent" aria-hidden />
-              {line}
+        <ol className="mt-8 space-y-0 border-l-2 border-accent/35 pl-0">
+          {EDU_ENTRIES.map((e) => (
+            <li
+              key={e.org}
+              className="relative border-b border-fg/10 py-6 pl-8 last:border-b-0 md:pl-10"
+            >
+              <span
+                className="absolute -left-[5px] top-8 flex h-3 w-3 rounded-full border-2 border-accent bg-bg md:top-9"
+                aria-hidden
+              />
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
+                <div
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-fg/15 bg-surface/90 font-display text-xs font-bold text-accent shadow-sm"
+                  aria-hidden
+                >
+                  {e.mark}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">{e.dates}</p>
+                  <p className="mt-1 font-display text-lg font-bold text-fg">{e.org}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted">{e.detail}</p>
+                </div>
+              </div>
             </li>
           ))}
         </ol>

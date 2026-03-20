@@ -76,16 +76,13 @@ export function ContactForm() {
   return (
     <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px]">
       <div>
-        {!action && (
+        {!action && process.env.NODE_ENV === "development" ? (
           <p className="mb-6 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-fg">
-            Set <code className="rounded bg-black/10 px-1 dark:bg-white/10">NEXT_PUBLIC_FORMSPREE_FORM_ID</code> in{" "}
-            <code className="rounded bg-black/10 px-1 dark:bg-white/10">.env.local</code> to enable submissions. See{" "}
-            <a href="https://formspree.io" className="font-semibold text-accent underline" target="_blank" rel="noreferrer">
-              Formspree
-            </a>
-            .
+            Dev only: set <code className="rounded bg-black/10 px-1 dark:bg-white/10">NEXT_PUBLIC_FORMSPREE_FORM_ID</code> in{" "}
+            <code className="rounded bg-black/10 px-1 dark:bg-white/10">.env.local</code> for Formspree. Production builds omit
+            this note.
           </p>
-        )}
+        ) : null}
 
         <form ref={formRef} onSubmit={onSubmit} className="space-y-8" noValidate>
           <input type="hidden" name="_subject" value={`Portfolio inquiry from ${siteConfig.name}`} />
@@ -198,25 +195,28 @@ export function ContactForm() {
             </Link>
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <a
-            href={siteConfig.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-fg/15 px-3 py-1.5 text-xs font-semibold hover:border-accent"
-          >
-            LinkedIn
-          </a>
-          {siteConfig.social.github ? (
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-fg/70">Social</p>
+          <div className="mt-2 flex flex-wrap gap-2">
             <a
-              href={siteConfig.social.github}
+              href={siteConfig.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-fg/15 px-3 py-1.5 text-xs font-semibold hover:border-accent"
+              className="rounded-full border border-fg/15 bg-surface/50 px-3 py-1.5 text-xs font-semibold transition hover:border-accent hover:text-accent"
             >
-              GitHub
+              LinkedIn
             </a>
-          ) : null}
+            {siteConfig.social.github ? (
+              <a
+                href={siteConfig.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-fg/15 bg-surface/50 px-3 py-1.5 text-xs font-semibold transition hover:border-accent hover:text-accent"
+              >
+                GitHub
+              </a>
+            ) : null}
+          </div>
         </div>
       </aside>
     </div>

@@ -15,6 +15,10 @@ export type Project = {
   imageAlt: string;
   href: string;
   featured?: boolean;
+  /** Home teaser link line (e.g. “How I shipped it →”). */
+  teaserCta?: string;
+  /** Full card primary button label. */
+  ctaLabel?: string;
 };
 
 export type ExperienceEntry = {

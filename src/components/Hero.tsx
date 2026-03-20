@@ -48,13 +48,13 @@ export function Hero() {
 
   return (
     <section
-      className="relative isolate flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden px-4 pb-16 pt-28 md:pt-32"
+      className="relative isolate flex min-h-[calc(90vh-4rem)] flex-col overflow-hidden px-4 pt-28 pb-0 md:pt-32"
       aria-labelledby="hero-heading"
     >
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-accent/5 via-transparent to-transparent dark:from-accent/10" />
       <ParticleBackground />
 
-      <div className="relative mx-auto w-full max-w-6xl flex-1">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center pb-6">
         {/* Top row: intro + location */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex flex-wrap items-center gap-3">
@@ -259,7 +259,7 @@ export function Hero() {
 
       <motion.a
         href="#projects"
-        className="mx-auto mt-10 flex flex-col items-center gap-1 text-xs font-medium text-muted"
+        className="mx-auto mt-auto flex flex-col items-center gap-1 pb-6 pt-4 text-xs font-medium text-muted"
         initial={reduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}

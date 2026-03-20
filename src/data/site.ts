@@ -20,8 +20,7 @@ export const siteConfig = {
   email: "ethanjotrent@gmail.com",
   social: {
     linkedin: "https://www.linkedin.com/in/ethantrent",
-    /** Paste your profile URL when ready; hidden in UI if empty. */
-    github: "",
+    github: "https://github.com/ethantrent",
     twitter: "",
   },
   resumePath: "/resume.pdf",
@@ -62,18 +61,14 @@ export const siteConfig = {
   },
   /** Short intros shown under page headings (no bracket placeholders). */
   pageIntros: {
-    whatIDo:
-      "I work where AI product strategy, cloud delivery, and cross-functional execution meet — from roadmaps and PRDs to production releases.",
-    featuredProjects:
-      "Highlights across cloud migration, internal AI programs, SaaS delivery, and campus-scale assistants — the work I want hiring teams to remember.",
+    whatIDo: "",
+    featuredProjects: "The projects I'm most proud of — real systems, real users.",
     toolkit: "The stacks and rituals I use to go from clarity to shipped software without losing velocity.",
     contact:
       "Recruiters and hiring managers: I’m open to PM, AI, and technical program conversations. I usually reply within a few business days.",
     experience:
       "Internships and roles from global-scale nonprofit platforms and startup SaaS to incoming PM at Schwab and a year-long AI fellowship with Cornell Tech.",
-    skills:
-      "How I group capabilities in practice — product leadership, engineering delivery, and applied AI — so you can scan for fit fast.",
-    projects:
-      "Scope, stack, and outcomes for each initiative. Add repo or demo URLs in the data file when they’re public.",
+    skills: "What I actually know how to do, grouped by how I use it day to day.",
+    projects: "Scope, stack, and outcomes behind each initiative.",
   },
 } as const;

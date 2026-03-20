@@ -43,7 +43,7 @@ export function ManifestoBlock() {
 
   return (
     <section
-      className="border-y border-fg/10 bg-surface/30 py-16 backdrop-blur-sm md:py-20"
+      className="border-y border-fg/10 bg-surface/30 py-12 backdrop-blur-sm md:py-14"
       aria-labelledby="manifesto-heading"
     >
       <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:gap-16 md:items-center">

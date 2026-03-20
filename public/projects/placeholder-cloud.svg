@@ -1,4 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Project placeholder">
-  <rect width="800" height="500" fill="#141414"/><circle cx="400" cy="250" r="140" fill="none" stroke="#3b82f6" stroke-opacity="0.35" stroke-width="2"/>
-  <text x="400" y="260" text-anchor="middle" fill="#f0ebd8" font-family="system-ui,sans-serif" font-size="22" opacity="0.7">[PROJECT_IMAGE]</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Cloud project abstract">
+  <defs>
+    <linearGradient id="c" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#141414;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#0d0d0d"/>
+  <rect x="32" y="32" width="736" height="436" rx="20" fill="url(#c)"/>
+  <path
+    d="M280 300 Q320 240 400 260 Q460 220 540 250 Q600 270 580 330 L240 330 Q220 290 280 300Z"
+    fill="none"
+    stroke="#f0ebd8"
+    stroke-opacity="0.25"
+    stroke-width="2"
+  />
 </svg>

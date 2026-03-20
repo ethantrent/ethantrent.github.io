@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/types";
+import { projectCategoryChipClassName, projectTagChipClassName } from "@/lib/projectChips";
 import { publicPath } from "@/lib/publicPath";
 import { cn } from "@/lib/utils";
+import { Layers } from "lucide-react";
 
 type Props = {
   project: Project;
@@ -50,7 +52,8 @@ export function ProjectTeaserCard({ project, className }: Props) {
         </div>
         <div className="flex flex-1 flex-col gap-3 p-5">
           {project.category && (
-            <span className="w-fit rounded-full border border-fg/15 bg-fg/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-muted">
+            <span className={cn("w-fit", projectCategoryChipClassName())}>
+              <Layers className="h-4 w-4 shrink-0 text-accent" aria-hidden />
               {project.category}
             </span>
           )}
@@ -58,16 +61,15 @@ export function ProjectTeaserCard({ project, className }: Props) {
             {project.name}
           </h3>
           <div className="flex flex-wrap gap-2">
-            {project.tags.slice(0, 4).map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-accent/25 bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent"
-              >
+            {project.tags.slice(0, 4).map((tag, ti) => (
+              <span key={tag} className={projectTagChipClassName(ti)}>
                 {tag}
               </span>
             ))}
           </div>
-          <span className="mt-auto pt-2 text-sm font-semibold text-accent">Open projects →</span>
+          <span className="mt-auto pt-2 text-sm font-semibold text-accent">
+            {project.teaserCta ?? "Project details →"}
+          </span>
         </div>
       </Link>
     </motion.div>
