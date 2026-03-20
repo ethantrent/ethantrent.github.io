@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/types";
+import { ProjectHeading } from "@/components/ProjectHeading";
 import { projectCategoryChipClassName, projectTagChipClassName } from "@/lib/projectChips";
 import { publicPath } from "@/lib/publicPath";
 import { cn } from "@/lib/utils";
@@ -65,7 +66,11 @@ export function ProjectCard({ project, className }: Props) {
           ))}
         </div>
 
-        <h2 className="font-display text-2xl font-bold tracking-tight text-fg">{project.name}</h2>
+        <ProjectHeading
+          project={project}
+          as="h2"
+          className="font-display text-2xl font-bold tracking-tight text-fg"
+        />
 
         <ul className="space-y-2 text-sm leading-relaxed text-muted">
           {project.description.map((line) => (

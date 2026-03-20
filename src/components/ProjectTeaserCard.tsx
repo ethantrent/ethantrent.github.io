@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/types";
+import { ProjectHeading } from "@/components/ProjectHeading";
 import { projectCategoryChipClassName, projectTagChipClassName } from "@/lib/projectChips";
 import { publicPath } from "@/lib/publicPath";
 import { cn } from "@/lib/utils";
@@ -57,9 +58,11 @@ export function ProjectTeaserCard({ project, className }: Props) {
               {project.category}
             </span>
           )}
-          <h3 className="font-display text-xl font-bold tracking-tight text-fg group-hover:text-accent">
-            {project.name}
-          </h3>
+          <ProjectHeading
+            project={project}
+            as="h3"
+            className="font-display text-xl font-bold tracking-tight text-fg group-hover:text-accent"
+          />
           <div className="flex flex-wrap gap-2">
             {project.tags.slice(0, 4).map((tag, ti) => (
               <span key={tag} className={projectTagChipClassName(ti)}>
