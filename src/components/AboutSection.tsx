@@ -38,6 +38,13 @@ const EDU_ENTRIES = [
     org: "Cornell University",
     detail: "Machine Learning certificate (remote)",
   },
+  {
+    mark: "CMU",
+    dates: "Prospective · Fall 2030 – Spring 2032",
+    org: "Carnegie Mellon University — Tepper School of Business",
+    detail:
+      "Prospective Accelerate Online Hybrid MBA (Consortium / R1 path). Targeting the Technology Strategy & Product Management track and concentrations in AI in Business, Business Technologies, Strategy, and Marketing — aligned with AI product management.",
+  },
 ] as const;
 
 /**
@@ -56,11 +63,11 @@ export function AboutSection() {
           </h1>
           <p className="mt-6 text-pretty text-base leading-relaxed text-muted">
             I’m a Computer Science student at BYU–Idaho with hands-on experience across nonprofit and startup
-            environments — modernizing financial audit infrastructure on AWS, standing up internal AI tooling, and
+            environments ranging from modernizing financial audit infrastructure on AWS, utility billing and property management SaaS, to standing up internal AI tooling and
             prototyping a RAG-based campus support agent.
           </p>
           <p className="mt-4 text-pretty text-base leading-relaxed text-muted">
-            I’m an incoming Digital Product Manager on Charles Schwab’s Conversational AI team and an AI Fellow with
+            I am an incoming Digital Product Manager on Charles Schwab’s Conversational AI team and an AI Fellow with
             Cornell Tech × Break Through Tech, building fluency in applied ML and product leadership.
           </p>
           <Link
@@ -89,7 +96,7 @@ export function AboutSection() {
           What I bring to the table
         </h2>
         <p className="mt-2 max-w-2xl text-sm text-muted">
-          Engineering depth, product judgment, and a bias for shipping — especially where AI meets real users and real
+          Engineering depth, product judgment, and a bias for shipping, especially where AI meets real users and real
           systems.
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -147,7 +154,7 @@ export function AboutSection() {
           </ol>
         </div>
         <p className="mt-6 text-sm text-muted">
-          Currently based in Dallas, TX — open to conversations that move product and platform forward.
+          Currently based in Dallas, TX.
         </p>
       </section>
     </div>
