@@ -53,7 +53,7 @@ export function Hero() {
                 aria-hidden
               />
               <Image
-                src={publicPath("/avatar-placeholder.svg")}
+                src={publicPath("/profile-mark.svg")}
                 alt="Ethan Trent"
                 width={56}
                 height={56}

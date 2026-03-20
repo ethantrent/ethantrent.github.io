@@ -85,7 +85,7 @@ export function AboutSection() {
         >
           <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-accent/30 to-accent-violet/25 blur-2xl" aria-hidden />
           <Image
-            src={publicPath("/avatar-placeholder.svg")}
+            src={publicPath("/profile-mark.svg")}
             alt="Ethan Trent"
             width={400}
             height={400}

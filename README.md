@@ -47,7 +47,7 @@ Main content lives in:
 
 The home **tech marquee** becomes a static flex row when the user prefers reduced motion.
 
-Replace `public/avatar-placeholder.svg`, `public/projects/*`, `public/experience/*`, and `public/resume.pdf` with real assets.
+Replace `public/profile-mark.svg` (or use your photo path in `Hero` / `AboutSection`), `public/projects/*`, `public/experience/*`, and `public/resume.pdf` with real assets.
 
 ## GitHub Pages deployment
 
