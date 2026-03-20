@@ -27,8 +27,8 @@ export const experience: ExperienceEntry[] = [
       "Selected from 3,500+ applicants for a 12-month AI/ML fellowship with Cornell faculty; earning the Cornell University Machine Learning Certificate upon completion.",
       "Partnering with an industry company through AI Studio on a real-world ML challenge project (scope TBD).",
     ],
-    logoSrc: "/4.png",
-    logoAlt: "Break Through Tech AI program mark",
+    logoSrc: "/break_through_tech_logo.jpg",
+    logoAlt: "Break Through Tech logo",
     detail:
       "Program blends academic rigor with industry application — ideal for deepening end-to-end ML product skills alongside formal certification.",
   },
