@@ -1,12 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/types";
+import { ProjectCardMedia } from "@/components/ProjectCardMedia";
 import { ProjectHeading } from "@/components/ProjectHeading";
 import { projectCategoryChipClassName, projectTagChipClassName } from "@/lib/projectChips";
-import { publicPath } from "@/lib/publicPath";
 import { cn } from "@/lib/utils";
 import { Layers } from "lucide-react";
 
@@ -34,11 +33,9 @@ export function ProjectCard({ project, className }: Props) {
       )}
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface/60">
-        <Image
-          src={publicPath(project.imageSrc)}
-          alt={project.imageAlt}
-          fill
-          className="object-contain p-6 transition duration-500 group-hover:scale-[1.02] md:p-8"
+        <ProjectCardMedia
+          imageSrc={project.imageSrc}
+          imageAlt={project.imageAlt}
           sizes="(max-width:768px) 100vw, 50vw"
         />
         {project.featured && (

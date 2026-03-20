@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="BYUI campus chatbot icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="BYU-Idaho campus chatbot icon">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1"/>
@@ -7,7 +7,6 @@
   </defs>
   <rect width="800" height="500" fill="#020617"/>
   <rect x="40" y="40" width="720" height="420" rx="24" fill="url(#bg)"/>
-  <!-- Original chatbot mark: rounded face, eyes, smile, center antenna (not third-party logo) -->
   <g transform="translate(400 250)" stroke="#3b82f6" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
     <line x1="0" y1="-118" x2="0" y2="-158"/>
     <circle cx="0" cy="-168" r="14" fill="#3b82f6" stroke="none"/>
