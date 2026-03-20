@@ -17,8 +17,6 @@ export const siteConfig = {
     after: ".",
   },
   location: "Dallas, TX · Westlake, TX (Summer 2026)",
-  /** One understated hero role line (reference: single // caption). Cornell × BTT lives on About. */
-  heroRoleCaption: "// Incoming PM Intern · Charles Schwab · Conversational AI",
   email: "ethanjotrent@gmail.com",
   social: {
     linkedin: "https://www.linkedin.com/in/ethantrent",

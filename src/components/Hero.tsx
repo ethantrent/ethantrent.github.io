@@ -6,16 +6,34 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown, FileDown, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 import { ParticleBackground } from "@/components/ParticleBackground";
 import { siteConfig } from "@/data/site";
 import { publicPath } from "@/lib/publicPath";
 import { cn } from "@/lib/utils";
 
+const ROLES = [
+  "Digital Product Manager · Charles Schwab",
+  "AI Fellow · Cornell Tech × Break Through Tech",
+  "CS · BYU–Idaho",
+] as const;
+
 /**
- * Hero: split headline, avatar + intro, single role caption, socials, CTAs, scroll cue pinned to viewport floor.
+ * Hero: split headline, avatar + intro, rotating role line, socials, CTAs, scroll cue pinned to viewport floor.
  */
 export function Hero() {
   const reduceMotion = useReducedMotion();
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    const id = window.setInterval(() => {
+      setRoleIndex((i) => (i + 1) % ROLES.length);
+    }, 3200);
+    return () => window.clearInterval(id);
+  }, [reduceMotion]);
+
+  const currentRole = ROLES[roleIndex];
 
   return (
     <section
@@ -74,12 +92,24 @@ export function Hero() {
         </div>
 
         <motion.p
-          className="mt-5 max-w-3xl font-mono text-sm leading-relaxed text-muted sm:text-base"
+          className="mt-6 min-h-[2.75rem] text-xl font-medium text-fg/90 sm:min-h-[3rem] sm:text-2xl"
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.12 }}
+          aria-live="polite"
         >
-          {siteConfig.heroRoleCaption}
+          {reduceMotion ? (
+            ROLES[0]
+          ) : (
+            <motion.span
+              key={currentRole}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35 }}
+            >
+              {currentRole}
+            </motion.span>
+          )}
         </motion.p>
 
         <motion.div
