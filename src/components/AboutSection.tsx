@@ -12,6 +12,7 @@ type EduEntry = {
   org: string;
   detail: string;
   logoSrc?: string;
+  logoAlt?: string;
 };
 
 const PILLARS = [
@@ -42,13 +43,13 @@ const EDU_ENTRIES: EduEntry[] = [
     org: "Brigham Young University–Idaho",
     detail: "B.S. Computer Science · Full Stack Web Development",
     logoSrc: "/byui-logo.jpg",
+    logoAlt: "BYU–Idaho logo",
   },
   {
     mark: "CU",
     dates: "May – Aug 2026",
     org: "Cornell University",
     detail: "Machine Learning Certificate",
-    logoSrc: "/Cornell_University_seal.svg.png",
   },
   {
     mark: "CMU",
@@ -57,6 +58,7 @@ const EDU_ENTRIES: EduEntry[] = [
     detail:
       "Prospective Accelerate Online Hybrid MBA. Targeting the Technology Strategy & Product Management track and concentrations in AI in Business, Business Technologies, Strategy, and Marketing.",
     logoSrc: "/tepper-logo.jpg",
+    logoAlt: "Tepper School of Business logo",
   },
 ];
 
@@ -155,14 +157,14 @@ export function AboutSection() {
                     "flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-fg/15 bg-surface/90 shadow-sm",
                     !e.logoSrc && "font-display text-xs font-bold text-accent",
                   )}
-                  aria-hidden
+                  {...(e.logoSrc ? {} : { "aria-hidden": true })}
                 >
                   {e.logoSrc ? (
                     // eslint-disable-next-line @next/next/no-img-element -- /public logos on static export
                     <img
                       src={publicPath(e.logoSrc)}
-                      alt=""
-                      className="h-full w-full object-contain p-1.5"
+                      alt={e.logoAlt ?? ""}
+                      className="h-full w-full object-contain p-1"
                       loading="lazy"
                       decoding="async"
                     />
