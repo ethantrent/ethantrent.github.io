@@ -24,9 +24,6 @@ export const siteConfig = {
     twitter: "",
   },
   resumePath: "/resume.pdf",
-  hero: {
-    roleCaption: "// Product Manager & CS student · AI + cloud delivery",
-  },
   manifesto: {
     line1: "Shipping Products",
     line2: "Scaling Systems",

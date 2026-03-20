@@ -82,10 +82,6 @@ export function Hero() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-[12rem] font-mono text-[11px] leading-relaxed tracking-wide text-muted md:absolute md:left-0 md:top-[38%] md:mt-0 md:-translate-y-1/2">
-          {siteConfig.hero.roleCaption}
-        </p>
-
         <div className="relative mt-10 md:mt-14">
           <motion.h1
             id="hero-heading"
