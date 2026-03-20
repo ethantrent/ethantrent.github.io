@@ -13,7 +13,7 @@ import { publicPath } from "@/lib/publicPath";
 import { cn } from "@/lib/utils";
 
 const ROLES = [
-  "Incoming PM Intern · Schwab Conversational AI",
+  "Digital Product Manager · Charles Schwab",
   "AI Fellow · Cornell Tech × Break Through Tech",
   "CS · BYU–Idaho",
 ] as const;

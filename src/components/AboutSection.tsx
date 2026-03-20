@@ -64,12 +64,11 @@ export function AboutSection() {
           <p className="mt-6 text-pretty text-base leading-relaxed text-muted">
             I’m a Computer Science student at BYU–Idaho with hands-on experience across nonprofit and startup
             environments — modernizing financial audit infrastructure on AWS, standing up internal AI tooling, and
-            shipping a RAG-based campus support agent.
+            prototyping a RAG-based campus support agent.
           </p>
           <p className="mt-4 text-pretty text-base leading-relaxed text-muted">
             I’m an incoming Digital Product Manager on Charles Schwab’s Conversational AI team and an AI Fellow with
-            Cornell Tech × Break Through Tech, building fluency in applied ML and product leadership from New York and
-            San Francisco.
+            Cornell Tech × Break Through Tech, building fluency in applied ML and product leadership.
           </p>
           <Link
             href="/contact"

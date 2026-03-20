@@ -45,7 +45,7 @@ export const siteConfig = {
     experience:
       "Experience timeline: incoming Charles Schwab Digital Product Manager, Cornell Tech AI Fellow, ICS global nonprofit IT Project Manager, and KBXCOM software engineering intern.",
     projects:
-      "Project highlights: financial audit AWS modernization, internal AI agent programs, Unified Property/Billing SaaS (U2), campus RAG support agent, and technical leadership.",
+      "Project highlights: financial audit AWS modernization, internal AI agent programs, Unified Property/Utility Billing SaaS (U2), campus RAG support agent, and technical leadership.",
     skills:
       "Skills across product delivery, cloud & engineering, and applied AI — roadmapping, AWS, TypeScript, Python, LangChain, RAG, and stakeholder alignment.",
     toolkit:

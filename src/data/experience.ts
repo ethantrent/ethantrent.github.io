@@ -50,10 +50,10 @@ export const experience: ExperienceEntry[] = [
   {
     id: "kbxcom",
     role: "Software Developer Intern",
-    company: "KBXCOM – Unified Property/Billing SaaS",
+    company: "KBXCOM – Unified Property/Utility Billing SaaS",
     dateRange: "July 2025 — December 2025 · Rexburg, ID",
     bullets: [
-      "Co-built U2, a Unified Property/Billing SaaS targeting a $340M SOM; defined product requirements and prioritized features across three investor pillars using legacy benchmarking.",
+      "Co-built U2, a Unified Property/Utility Billing SaaS targeting a $340M SOM; defined product requirements and prioritized features across three investor pillars using legacy benchmarking.",
       "Researched AI analytics and designed a roadmap for six ML capabilities (anomaly detection, usage forecasting, equity heatmaps, predictive collections), deployed on AWS.",
       "Compressed PRD-to-prototype cycle from weeks to days using AI-assisted development (Claude Code, Cursor, Codex) for faster validation each sprint.",
     ],
