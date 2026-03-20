@@ -7,7 +7,7 @@ export const siteConfig = {
   watermarkName: "Ethan Trent",
   title: "Ethan Trent — Product Manager & AI Builder",
   description:
-    "Computer Science student and product-minded builder: PM intern (Schwab), AI Fellow (Cornell Tech × Break Through Tech), and shipped work in cloud migration, internal AI agents, and campus-scale RAG.",
+    "Computer Science student and product-minded builder: incoming Digital Product Manager (Schwab), AI Fellow (Cornell Tech × Break Through Tech), and shipped work in cloud migration, internal AI agents, and campus-scale RAG.",
   tagline: "Where strategy meets execution.",
   footerTagline: {
     before: "Where ",
@@ -41,9 +41,9 @@ export const siteConfig = {
   /** Meta descriptions for route-level SEO (recruiter / link-preview friendly). */
   seoPages: {
     about:
-      "About Ethan Trent — CS at BYU–Idaho, incoming PM intern at Charles Schwab (Conversational AI), Cornell Tech × Break Through Tech AI Fellow, and shipped cloud & AI work.",
+      "About Ethan Trent — CS at BYU–Idaho, incoming Digital Product Manager at Charles Schwab (Conversational AI), Cornell Tech × Break Through Tech AI Fellow, and shipped cloud & AI work.",
     experience:
-      "Experience timeline: Charles Schwab PM intern, Cornell Tech AI Fellow, ICS global nonprofit IT Project Manager, and KBXCOM software engineering intern.",
+      "Experience timeline: incoming Charles Schwab Digital Product Manager, Cornell Tech AI Fellow, ICS global nonprofit IT Project Manager, and KBXCOM software engineering intern.",
     projects:
       "Project highlights: financial audit AWS modernization, internal AI agent programs, unified billing SaaS, campus RAG support agent, and technical leadership.",
     skills:
@@ -62,7 +62,7 @@ export const siteConfig = {
     contact:
       "Recruiters and hiring managers: I’m open to PM, AI, and technical program conversations. I usually reply within a few business days.",
     experience:
-      "Internships and roles from global-scale nonprofit platforms and startup SaaS to incoming PM at Schwab and a year-long AI fellowship with Cornell Tech.",
+      "Internships and roles from global-scale nonprofit platforms and startup SaaS to incoming Digital Product Manager at Schwab and a year-long AI fellowship with Cornell Tech.",
     skills: "What I actually know how to do, grouped by how I use it day to day.",
     projects: "Scope, stack, and outcomes behind each initiative.",
   },

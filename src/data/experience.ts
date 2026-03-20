@@ -6,7 +6,7 @@ import type { ExperienceEntry } from "@/types";
 export const experience: ExperienceEntry[] = [
   {
     id: "schwab-pm",
-    role: "Product Manager Intern",
+    role: "Digital Product Manager",
     company: "Charles Schwab",
     dateRange: "June 2026 — August 2026",
     bullets: [

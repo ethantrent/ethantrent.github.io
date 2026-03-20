@@ -67,7 +67,7 @@ export function AboutSection() {
             shipping a RAG-based campus support agent.
           </p>
           <p className="mt-4 text-pretty text-base leading-relaxed text-muted">
-            I’m an incoming Product Management intern on Charles Schwab’s Conversational AI team and an AI Fellow with
+            I’m an incoming Digital Product Manager on Charles Schwab’s Conversational AI team and an AI Fellow with
             Cornell Tech × Break Through Tech, building fluency in applied ML and product leadership from New York and
             San Francisco.
           </p>
