@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="BYUI campus chatbot icon">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#020617"/>
+  <rect x="40" y="40" width="720" height="420" rx="24" fill="url(#bg)"/>
+  <!-- Original chatbot mark: rounded face, eyes, smile, center antenna (not third-party logo) -->
+  <g transform="translate(400 250)" stroke="#3b82f6" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <line x1="0" y1="-118" x2="0" y2="-158"/>
+    <circle cx="0" cy="-168" r="14" fill="#3b82f6" stroke="none"/>
+    <rect x="-88" y="-72" width="176" height="132" rx="36" ry="36"/>
+    <rect x="-44" y="-28" width="20" height="36" rx="10" fill="#3b82f6" stroke="none"/>
+    <rect x="24" y="-28" width="20" height="36" rx="10" fill="#3b82f6" stroke="none"/>
+    <path d="M -40 48 Q 0 78 40 48"/>
+  </g>
+  <text x="400" y="420" text-anchor="middle" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14" font-weight="600" letter-spacing="0.2em" opacity="0.7">CAMPUS CHATBOT</text>
+</svg>
