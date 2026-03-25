@@ -53,6 +53,8 @@ jobs:
           GITHUB_PAGES_BASE_PATH: ${{ steps.pages.outputs.base }}
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base }}
           NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.site }}
+          # Optional: create repo secret NEXT_PUBLIC_FORMSPREE_FORM_ID (same value as .env.local).
+          NEXT_PUBLIC_FORMSPREE_FORM_ID: ${{ secrets.NEXT_PUBLIC_FORMSPREE_FORM_ID }}
         run: |
           npm ci
           npm run build
