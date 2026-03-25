@@ -64,9 +64,6 @@ export function AboutSection() {
           <h1 id="about-intro" className="font-display mt-3 text-4xl font-bold tracking-tight text-fg md:text-5xl">
             Product-minded builder at the intersection of AI, cloud, and delivery.
           </h1>
-          <p className="mt-3 inline-flex flex-wrap items-center gap-2 text-sm font-medium text-accent">
-            <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1">{siteConfig.cornellBadge}</span>
-          </p>
           <p className="mt-6 text-pretty text-base leading-relaxed text-muted">
             Growing up, technology pulled me from gaming rigs to building my own PC — then into how software shapes real
             decisions. Shifting from pre-med to CS, I traded studying the human body for systems that still fail the same

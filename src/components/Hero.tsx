@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const ROLES = [
   "Digital Product Manager · Charles Schwab (Conversational AI)",
-  "Cornell Tech AI Fellow · selected from 3,500+ applicants",
+  "AI Fellow · Cornell Tech × Break Through Tech",
   "B.S. Computer Science · BYU–Idaho",
 ] as const;
 
@@ -33,8 +33,6 @@ export function Hero() {
   }, [reduceMotion]);
 
   const currentRole = ROLES[roleIndex];
-  const tags = siteConfig.heroFloatingTags;
-  const avail = siteConfig.availability;
 
   return (
     <section
@@ -59,20 +57,12 @@ export function Hero() {
                 className="relative h-14 w-14 rounded-full border-2 border-accent/60 object-cover"
               />
             </div>
-            <div className="relative flex flex-col gap-2 sm:flex-row sm:items-center">
+            <div className="relative">
               <span className="inline-flex items-center rounded-full border border-fg/15 bg-surface/90 px-4 py-2 text-sm font-semibold text-fg shadow-sm backdrop-blur">
                 Hey, I&apos;m {siteConfig.name}
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-available/40 bg-available/10 px-3 py-1 text-xs font-semibold text-available">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-available opacity-40" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-available" />
-                </span>
-                {avail.label}
-                <span className="font-normal text-muted">· {avail.detail}</span>
-              </span>
               <span
-                className="absolute -bottom-1 left-4 h-2 w-2 rotate-45 border-b border-r border-fg/15 bg-surface/90 sm:hidden"
+                className="absolute -bottom-1 left-4 h-2 w-2 rotate-45 border-b border-r border-fg/15 bg-surface/90"
                 aria-hidden
               />
             </div>
@@ -83,50 +73,17 @@ export function Hero() {
           </p>
         </div>
 
-        <p className="mt-4 max-w-3xl text-sm font-medium text-accent/90">{siteConfig.cornellBadge}</p>
-
-        <div className="relative mt-8 md:mt-10">
-          <motion.h1
-            id="hero-heading"
-            className="font-display relative z-0 max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
-            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.05 }}
-          >
-            <span className="block text-accent">AI PRODUCT</span>
-            <span className="block text-fg">MANAGER</span>
-            <span className="block text-accent-cyan">& BUILDER.</span>
-          </motion.h1>
-
-          {!reduceMotion ? (
-            <div className="pointer-events-none absolute -right-4 top-0 hidden select-none md:block lg:right-0" aria-hidden>
-              {tags.map((tag, i) => (
-                <motion.span
-                  key={tag}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.35 + i * 0.08, duration: 0.4 }}
-                  className={cn(
-                    "absolute rounded-full border border-fg/15 bg-surface/80 px-3 py-1 text-xs font-semibold text-fg shadow-md backdrop-blur",
-                    i === 0 && "-top-2 right-0 rotate-[-6deg]",
-                    i === 1 && "top-16 right-8 rotate-[4deg]",
-                    i === 2 && "top-32 right-2 rotate-[-3deg]",
-                  )}
-                >
-                  {tag}
-                </motion.span>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-muted">
-              {tags.map((tag) => (
-                <span key={tag} className="rounded-full border border-fg/15 bg-surface/80 px-2 py-0.5">
-                  {tag}
-                </span>
-              ))}
-            </p>
-          )}
-        </div>
+        <motion.h1
+          id="hero-heading"
+          className="font-display relative z-0 mt-10 max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight sm:mt-12 md:mt-14 sm:text-5xl lg:text-6xl xl:text-7xl"
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.05 }}
+        >
+          <span className="block text-accent">AI PRODUCT</span>
+          <span className="block text-fg">MANAGER</span>
+          <span className="block text-accent-cyan">& BUILDER.</span>
+        </motion.h1>
 
         <motion.p
           className="mt-6 min-h-[2.75rem] text-xl font-medium text-fg/90 sm:min-h-[3rem] sm:text-2xl"
@@ -147,15 +104,6 @@ export function Hero() {
               {currentRole}
             </motion.span>
           )}
-        </motion.p>
-
-        <motion.p
-          className="mt-3 max-w-3xl text-sm leading-relaxed text-muted sm:text-base"
-          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.14 }}
-        >
-          {siteConfig.heroCredibilityLine}
         </motion.p>
 
         <motion.div

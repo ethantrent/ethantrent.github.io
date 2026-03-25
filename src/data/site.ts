@@ -26,21 +26,11 @@ export const siteConfig = {
     twitter: "",
   },
   resumePath: "/Ethan_Trent_Resume.pdf",
-  /** Profile image: add `/public/ethan-headshot.jpg` (or change path). On error, UI falls back to mark. */
+  /** Profile image in `/public`. Space in filename → use %20 in URL. On error, UI falls back to mark. */
   profilePhoto: {
-    primarySrc: "/ethan-headshot.jpg",
+    primarySrc: "/Professional%20Photo.JPG",
     fallbackSrc: "/profile-mark.svg",
   },
-  /** Green-room badge for recruiters */
-  availability: {
-    label: "Open to full-time PM roles",
-    detail: "Graduating Jul 2026 · Fall 2026 start",
-  },
-  /** One-line credibility under rotating roles (hero). */
-  heroCredibilityLine:
-    "Built multi-agent AuditAI for 50,000+ auditors · Campus RAG for 20,000+ students · U2 SaaS targeting $340M SOM · Cornell Tech AI Fellow (3,500+ applicants)",
-  /** Floating pills near headline — keep short for PM audience. */
-  heroFloatingTags: ["Charles Schwab", "AI builder", "Ships in production"] as const,
   /** Homepage impact strip — only metrics you can defend in an interview. */
   impactStats: [
     { label: "Auditors on modernized platform", value: "50,000+" },
@@ -51,7 +41,6 @@ export const siteConfig = {
     { label: "Fellowship applicants (Cornell)", value: "3,500+" },
     { label: "U2 addressable market", value: "$340M SOM" },
   ] as const,
-  cornellBadge: "Cornell Tech × Break Through Tech AI Fellow — selected from 3,500+ applicants",
   aiPmPhilosophy: {
     title: "My take on AI product",
     paragraphs: [
