@@ -7,18 +7,25 @@ import { ProjectCardMedia } from "@/components/ProjectCardMedia";
 import { ProjectHeading } from "@/components/ProjectHeading";
 import { projectCategoryChipClassName, projectTagChipClassName } from "@/lib/projectChips";
 import { cn } from "@/lib/utils";
-import { Layers } from "lucide-react";
+import { ArrowUpRight, Layers } from "lucide-react";
 
 type Props = {
   project: Project;
   className?: string;
 };
 
+function teaserHref(project: Project) {
+  if (project.href.startsWith("/")) return project.href;
+  return "/projects/";
+}
+
 /**
- * Compact home teaser: links to `/projects` (full grid + external links live there).
+ * Compact home teaser: links to case study or projects index.
  */
 export function ProjectTeaserCard({ project, className }: Props) {
   const reduceMotion = useReducedMotion();
+  const href = teaserHref(project);
+  const metricLine = project.metrics?.slice(0, 2).join(" · ");
 
   return (
     <motion.div
@@ -29,9 +36,9 @@ export function ProjectTeaserCard({ project, className }: Props) {
       className={cn("h-full", className)}
     >
       <Link
-        href="/projects"
-        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-fg/10 bg-surface/80 text-left shadow-sm backdrop-blur-sm transition hover:border-accent/35 hover:shadow-lg hover:shadow-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        aria-label={`View all projects — featuring ${project.name}`}
+        href={href}
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-fg/10 bg-surface/80 text-left shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        aria-label={`${project.teaserCta ?? "View project"} — ${project.name}`}
       >
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface/60">
           <ProjectCardMedia
@@ -55,6 +62,9 @@ export function ProjectTeaserCard({ project, className }: Props) {
               {project.category}
             </span>
           )}
+          {metricLine ? (
+            <p className="text-xs font-semibold uppercase tracking-wide text-accent">{metricLine}</p>
+          ) : null}
           <ProjectHeading
             project={project}
             as="h3"
@@ -67,8 +77,9 @@ export function ProjectTeaserCard({ project, className }: Props) {
               </span>
             ))}
           </div>
-          <span className="mt-auto pt-2 text-sm font-semibold text-accent">
+          <span className="mt-auto inline-flex items-center gap-1 pt-2 text-sm font-semibold text-accent">
             {project.teaserCta ?? "Project details →"}
+            <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
           </span>
         </div>
       </Link>

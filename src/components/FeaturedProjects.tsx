@@ -24,7 +24,7 @@ export function FeaturedProjects() {
             <p className="mt-2 max-w-xl text-sm text-muted">{siteConfig.pageIntros.featuredProjects}</p>
           </div>
           <Link
-            href="/projects"
+            href="/projects/"
             className="inline-flex w-fit items-center gap-2 rounded-full border border-fg/15 bg-surface/70 px-5 py-2.5 text-sm font-semibold text-fg backdrop-blur transition hover:border-accent hover:text-accent"
           >
             View all projects

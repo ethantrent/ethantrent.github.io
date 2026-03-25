@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 
 /**
  * Lightweight canvas particle field for the hero. Respects `prefers-reduced-motion`.
+ * Radial glow + grid overlay for a more editorial feel (vs. stars alone).
  */
 export function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,15 +31,15 @@ export function ParticleBackground() {
       canvas.height = clientHeight * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       dots.length = 0;
-      const count = Math.min(80, Math.floor((clientWidth * clientHeight) / 12000));
+      const count = Math.min(56, Math.floor((clientWidth * clientHeight) / 14000));
       for (let i = 0; i < count; i++) {
         dots.push({
           x: Math.random() * clientWidth,
           y: Math.random() * clientHeight,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          r: Math.random() * 1.4 + 0.4,
-          a: Math.random() * 0.35 + 0.15,
+          vx: (Math.random() - 0.5) * 0.22,
+          vy: (Math.random() - 0.5) * 0.22,
+          r: Math.random() * 1.2 + 0.35,
+          a: Math.random() * 0.28 + 0.1,
         });
       }
     };
@@ -71,10 +72,22 @@ export function ParticleBackground() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="pointer-events-none absolute inset-0 h-full w-full opacity-80 dark:opacity-100"
-      aria-hidden
-    />
+    <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
+      <div
+        className="absolute inset-0 opacity-90 dark:opacity-100"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% -20%, rgba(59, 130, 246, 0.18), transparent 55%), radial-gradient(ellipse 60% 50% at 100% 50%, rgba(124, 58, 237, 0.12), transparent 50%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-[0.35] dark:opacity-[0.45]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px)`,
+          backgroundSize: "48px 48px",
+        }}
+      />
+      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-70 dark:opacity-90" />
+    </div>
   );
 }

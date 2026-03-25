@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  BookOpen,
   Briefcase,
   Clock3,
   House,
@@ -20,10 +21,11 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV: { href: string; label: string; icon: LucideIcon }[] = [
   { href: "/", label: "Home", icon: House },
-  { href: "/about", label: "About", icon: UserRound },
-  { href: "/experience", label: "Experience", icon: Clock3 },
-  { href: "/projects", label: "Projects", icon: Briefcase },
-  { href: "/skills", label: "Skills", icon: Layers },
+  { href: "/about/", label: "About", icon: UserRound },
+  { href: "/experience/", label: "Experience", icon: Clock3 },
+  { href: "/projects/", label: "Projects", icon: Briefcase },
+  { href: "/skills/", label: "Skills", icon: Layers },
+  { href: "/writing/", label: "Writing", icon: BookOpen },
 ];
 
 /**
@@ -50,8 +52,11 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/" || pathname === "";
+    const base = href.replace(/\/$/, "");
+    return pathname === href || pathname === `${base}/` || pathname.startsWith(`${base}/`);
+  };
 
   return (
     <>
@@ -109,12 +114,12 @@ export function Navbar() {
           <div className="pointer-events-auto flex items-center gap-2 md:absolute md:right-4 md:top-4">
             <ThemeToggle />
             <Link
-              href="/contact"
+              href="/contact/"
               className={cn(
                 "inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-accent/25 transition hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-violet",
-                pathname === "/contact" && "ring-2 ring-accent-violet/60",
+                pathname.startsWith("/contact") && "ring-2 ring-accent-violet/60",
               )}
-              aria-current={pathname === "/contact" ? "page" : undefined}
+              aria-current={pathname.startsWith("/contact") ? "page" : undefined}
             >
               <Mail className="h-4 w-4 shrink-0" aria-hidden />
               Contact
@@ -177,7 +182,7 @@ export function Navbar() {
                   );
                 })}
                 <Link
-                  href="/contact"
+                  href="/contact/"
                   onClick={() => setOpen(false)}
                   className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-center font-semibold text-white"
                 >

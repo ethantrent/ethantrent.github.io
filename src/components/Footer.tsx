@@ -6,11 +6,12 @@ import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const EXPLORE = [
-  ["/about", "About"],
-  ["/experience", "Experience"],
-  ["/projects", "Projects"],
-  ["/skills", "Skills"],
-  ["/contact", "Contact"],
+  ["/about/", "About"],
+  ["/experience/", "Experience"],
+  ["/projects/", "Projects"],
+  ["/skills/", "Skills"],
+  ["/writing/", "Writing"],
+  ["/contact/", "Contact"],
 ] as const;
 
 /**
@@ -29,7 +30,7 @@ export function Footer() {
   return (
     <footer className="relative mt-auto overflow-hidden border-t border-fg/10 bg-surface/50 backdrop-blur-sm">
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-14">
-        <p className="max-w-xl font-display text-xl font-semibold leading-snug text-fg md:text-2xl">
+        <p className="max-w-3xl font-display text-3xl font-semibold leading-tight text-fg sm:text-4xl md:text-5xl lg:text-6xl">
           {ft.before}
           <span className="text-accent-violet">{ft.highlight1}</span>
           {ft.middle}
@@ -105,8 +106,12 @@ export function Footer() {
               ·
             </span>
             {siteConfig.location}
+            <span className="mx-2 text-fg/20" aria-hidden>
+              ·
+            </span>
+            Last updated {siteConfig.lastUpdated}
           </p>
-          <Link href="/privacy" className="transition hover:text-accent">
+          <Link href="/privacy/" className="transition hover:text-accent">
             Privacy Policy
           </Link>
         </div>

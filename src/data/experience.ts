@@ -25,7 +25,7 @@ export const experience: ExperienceEntry[] = [
     dateRange: "May 2026 — April 2027 · Remote",
     bullets: [
       "Selected from 3,500+ applicants for a 12-month AI/ML fellowship with Cornell faculty; earning the Cornell University Machine Learning Certificate upon completion.",
-      "Partnering with an industry company through AI Studio on a real-world ML challenge project (scope TBD).",
+      "Partnering with an industry company through AI Studio on a real-world ML challenge — agentic workflows, evaluation, and shipping discipline in an academic–industry setting (scope TBD).",
     ],
     logoSrc: "/break_through_tech_logo.jpg",
     logoAlt: "Break Through Tech logo",
@@ -39,8 +39,8 @@ export const experience: ExperienceEntry[] = [
     dateRange: "January 2026 — May 2026 · Riverton, UT",
     bullets: [
       "Drove AWS migration of the Financial Audit System, modernizing the platform for 50,000+ volunteer auditors across 31,000 units; managed sprint planning and release roadmaps in Azure DevOps.",
-      "Spearheaded discovery-phase development and operational use of AuditAI — 6 internal AI agents for the Audit department, automating ~30% of common processes and reducing ~50% of manual labor time.",
-      "Aligned engineering, Auditing, and General Counsel on parallel maintenance and modernization workstreams, delivering regulatory-compliant releases on a 2-week sprint cadence.",
+      "Spearheaded discovery-phase development and operational use of AuditAI — six internal agentic AI assistants for the Audit department (orchestrated workflows, tool use, and human review gates), automating ~30% of common processes and reducing ~50% of manual labor time on scoped tasks.",
+      "Aligned engineering, Auditing, and General Counsel on trust, safety, and compliance: release criteria, escalation paths, and parallel modernization workstreams — shipping on a 2-week sprint cadence.",
     ],
     logoSrc: "/1200x675size-English-square.jpg",
     logoAlt: "The Church of Jesus Christ of Latter-day Saints logo",

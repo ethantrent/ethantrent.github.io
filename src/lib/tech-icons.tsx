@@ -79,6 +79,8 @@ export const TECH_ICON_MAP: Record<string, TechIconComponent> = {
   stakeholders: Users,
   promptengineering: MessageSquare,
   rag: Binary,
+  tooluse: Code2,
+  agents: Users,
 };
 
 /** Shown on home tech marquee — every skill from `skills.ts` plus common delivery/infra tools (deduped). */

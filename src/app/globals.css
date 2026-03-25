@@ -178,3 +178,12 @@ body.custom-cursor-active *:focus-visible {
 .font-display {
   font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Light theme polish (`next-themes` adds `class="light"` on html). */
+html.light {
+  --surface: #fafaf8;
+}
+
+html.light .border-fg\/10 {
+  border-color: color-mix(in srgb, var(--fg) 14%, transparent);
+}

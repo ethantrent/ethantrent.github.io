@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import { siteConfig } from "@/data/site";
 import { MARQUEE_TECH, TECH_ICON_MAP } from "@/lib/tech-icons";
@@ -37,19 +38,24 @@ function Row({ reverse }: { reverse?: boolean }) {
 
 /**
  * Infinite skills strip (icons + labels); static row when `prefers-reduced-motion`.
- * Custom CSS scroll (no react-fast-marquee) avoids flex/scrollport quirks → stray scrollbars on Windows.
+ * Links to full skills matrix for PM-framed depth.
  */
 export function TechMarquee() {
   const reduceMotion = useReducedMotion();
   const t = siteConfig.techMarquee;
 
   return (
-    <section className="border-y border-fg/10 bg-surface/25 py-14 backdrop-blur-sm" aria-label="Skills">
+    <section className="border-y border-fg/10 bg-bg/30 py-12 backdrop-blur-sm dark:bg-surface/20" aria-label="Skills preview">
       <div className="mx-auto max-w-6xl px-4 text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">My skills</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">Tools & domains</p>
         <p className="mx-auto mt-3 max-w-2xl text-pretty text-sm text-muted sm:text-base">
           {t.introBefore}
-          <span className="font-semibold text-keyword-orange">{t.introHighlight1}</span>
+          <Link
+            href="/skills/"
+            className="font-semibold text-keyword-orange underline decoration-accent/40 underline-offset-2 transition hover:text-accent"
+          >
+            {t.introHighlight1}
+          </Link>
           {t.introMiddle}
           <span className="font-semibold text-keyword-teal">{t.introHighlight2}</span>
           {t.introAfter}

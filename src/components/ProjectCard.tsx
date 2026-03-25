@@ -14,11 +14,20 @@ type Props = {
   className?: string;
 };
 
+function isInternalHref(href: string) {
+  return href.startsWith("/");
+}
+
 /**
  * Project tile: year badge, tags, bullets, mockup, external link.
  */
 export function ProjectCard({ project, className }: Props) {
   const reduceMotion = useReducedMotion();
+  const primaryInternal = isInternalHref(project.href);
+  const primaryLabel = project.ctaLabel ?? (primaryInternal ? "View details" : "Visit");
+
+  const linkClassName =
+    "inline-flex rounded-full border border-fg/15 px-5 py-2.5 text-sm font-semibold text-fg transition group-hover:border-accent group-hover:text-accent";
 
   return (
     <motion.article
@@ -28,7 +37,7 @@ export function ProjectCard({ project, className }: Props) {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.45 }}
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-2xl border border-fg/10 bg-surface/80 shadow-sm backdrop-blur-sm transition hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5",
+        "group flex h-full flex-col overflow-hidden rounded-2xl border border-fg/10 bg-surface/80 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10",
         className,
       )}
     >
@@ -55,6 +64,11 @@ export function ProjectCard({ project, className }: Props) {
             {project.category}
           </span>
         )}
+        {project.metrics && project.metrics.length > 0 ? (
+          <p className="text-xs font-medium uppercase tracking-wider text-accent">
+            {project.metrics.slice(0, 3).join(" · ")}
+          </p>
+        ) : null}
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag, ti) => (
             <span key={tag} className={projectTagChipClassName(ti)}>
@@ -78,15 +92,26 @@ export function ProjectCard({ project, className }: Props) {
           ))}
         </ul>
 
-        <div className="mt-auto pt-2">
-          <Link
-            href={project.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex rounded-full border border-fg/15 px-5 py-2.5 text-sm font-semibold text-fg transition group-hover:border-accent group-hover:text-accent"
-          >
-            {project.ctaLabel ?? "Visit"}
-          </Link>
+        <div className="mt-auto flex flex-wrap gap-3 pt-2">
+          {primaryInternal ? (
+            <Link href={project.href} className={linkClassName}>
+              {primaryLabel}
+            </Link>
+          ) : (
+            <a href={project.href} target="_blank" rel="noopener noreferrer" className={linkClassName}>
+              {primaryLabel}
+            </a>
+          )}
+          {project.externalHref ? (
+            <a
+              href={project.externalHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClassName}
+            >
+              {project.externalCtaLabel ?? "Live demo"}
+            </a>
+          ) : null}
         </div>
       </div>
     </motion.article>

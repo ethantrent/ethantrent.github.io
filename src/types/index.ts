@@ -13,12 +13,18 @@ export type Project = {
   tags: string[];
   imageSrc: string;
   imageAlt: string;
+  /** Primary action: external URL or internal path (e.g. `/projects/auditai/`). */
   href: string;
   featured?: boolean;
   /** Home teaser link line (e.g. “How I shipped it →”). */
   teaserCta?: string;
   /** Full card primary button label. */
   ctaLabel?: string;
+  /** One-line outcomes for teasers / cards (e.g. “~30% automation”). */
+  metrics?: string[];
+  /** Optional second button for external demo when case study is internal. */
+  externalHref?: string;
+  externalCtaLabel?: string;
 };
 
 export type ExperienceEntry = {

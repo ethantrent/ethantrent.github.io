@@ -44,6 +44,9 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { name: "Claude", iconKey: "claude", borderClass: "border-orange-400/50" },
       { name: "OpenAI", iconKey: "openai", borderClass: "border-emerald-500/50" },
+      { name: "Agentic systems & tool use", iconKey: "tooluse", borderClass: "border-green-600/50" },
+      { name: "Multi-agent orchestration", iconKey: "agents", borderClass: "border-teal-500/50" },
+      { name: "Model evaluation & safety", iconKey: "rag", borderClass: "border-accent/50" },
       { name: "scikit-learn", iconKey: "scikitlearn", borderClass: "border-orange-500/50" },
       { name: "pandas", iconKey: "pandas", borderClass: "border-sky-500/50" },
       { name: "NumPy", iconKey: "numpy", borderClass: "border-blue-600/50" },

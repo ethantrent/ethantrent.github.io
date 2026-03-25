@@ -43,7 +43,7 @@ export function ManifestoBlock() {
 
   return (
     <section
-      className="-mt-4 border-y border-fg/10 bg-surface/30 py-10 backdrop-blur-sm md:-mt-6 md:py-12"
+      className="-mt-4 border-y border-fg/10 py-12 backdrop-blur-sm md:-mt-6 md:py-16"
       aria-labelledby="manifesto-heading"
     >
       <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:gap-16 md:items-center">
@@ -53,7 +53,10 @@ export function ManifestoBlock() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.45 }}
         >
-          <h2 id="manifesto-heading" className="font-display text-3xl font-bold leading-tight text-fg sm:text-4xl md:text-5xl">
+          <h2
+            id="manifesto-heading"
+            className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-fg sm:text-5xl md:text-6xl lg:text-7xl"
+          >
             {m.line1}
             <span className="block text-accent/90">{m.line2}</span>
           </h2>
@@ -69,7 +72,7 @@ export function ManifestoBlock() {
             {renderBodyWithHighlights(m.body, m.highlightWords)}
           </p>
           <Link
-            href="/about"
+            href="/about/"
             className="inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-widest text-accent transition hover:text-accent-violet"
           >
             About Me
