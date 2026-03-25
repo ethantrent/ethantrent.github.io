@@ -17,27 +17,6 @@ type EduEntry = {
   logoAlt?: string;
 };
 
-const PILLARS = [
-  {
-    n: "01",
-    title: "Ship on real infrastructure",
-    body:
-      "I’ve led AWS migrations (EC2 → ECS Fargate), built internal AI programs (LangChain, OpenAI, RAG), and delivered production features in TypeScript and Python — not just prototypes.",
-  },
-  {
-    n: "02",
-    title: "Own the product arc",
-    body:
-      "From roadmaps and PRDs to stakeholder alignment and user research, I treat delivery as a product problem: clear narrative, measurable outcomes, and tight loops with engineering.",
-  },
-  {
-    n: "03",
-    title: "Scale impact with AI",
-    body:
-      "Whether it’s a campus-wide support agent for 20,000+ students or conversational AI at a global financial firm, I focus on responsible, user-centered AI that teams can trust and adopt.",
-  },
-] as const;
-
 const EDU_ENTRIES: EduEntry[] = [
   {
     mark: "BYU–I",
@@ -68,7 +47,7 @@ const EDU_ENTRIES: EduEntry[] = [
 ];
 
 /**
- * About page: split hero, bio, numbered pillars, education path.
+ * About page: split hero, bio, education path.
  */
 export function AboutSection() {
   const reduceMotion = useReducedMotion();
@@ -82,6 +61,12 @@ export function AboutSection() {
             Product-minded builder at the intersection of AI, cloud, and delivery.
           </h1>
           <p className="mt-6 text-pretty text-base leading-relaxed text-muted">
+            Growing up, technology has always been an interest of mine. Going from using my gaming devices to building
+            my own computer, I wanted to learn more about the technology behind them. This is where it all started and
+            became my why. I took a shift in my academic career from the pre-med field to software engineering,
+            transitioning from learning how the human body works to writing my first “Hello, World!”.
+          </p>
+          <p className="mt-4 text-pretty text-base leading-relaxed text-muted">
             I’m a Computer Science student at BYU–Idaho with hands-on experience across nonprofit and startup
             environments ranging from modernizing financial audit infrastructure on AWS, utility billing and property management SaaS, to standing up internal AI tooling and
             prototyping a RAG-based campus support agent.
@@ -109,32 +94,6 @@ export function AboutSection() {
             className="relative h-auto w-full max-w-sm rounded-3xl border border-fg/10 object-cover"
           />
         </motion.div>
-      </section>
-
-      <section aria-labelledby="pillars-heading">
-        <h2 id="pillars-heading" className="font-display text-3xl font-bold text-fg">
-          What I bring to the table
-        </h2>
-        <p className="mt-2 max-w-2xl text-sm text-muted">
-          Engineering depth, product judgment, and a bias for shipping, especially where AI meets real users and real
-          systems.
-        </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {PILLARS.map((p, i) => (
-            <motion.article
-              key={p.n}
-              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ delay: i * 0.05 }}
-              className="rounded-2xl border border-fg/10 bg-surface/70 p-6 backdrop-blur"
-            >
-              <p className="font-display text-4xl font-bold text-accent/90">{p.n}</p>
-              <h3 className="mt-4 font-display text-lg font-semibold text-fg">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
-            </motion.article>
-          ))}
-        </div>
       </section>
 
       <section aria-labelledby="edu-heading">
