@@ -42,7 +42,7 @@ import { skillCategories } from "@/data/skills";
 export type TechIconComponent = ComponentType<{ className?: string }>;
 
 /**
- * Shared map for skills grid, toolkit, and marquee (`key` matches data files).
+ * Shared map for skills grid and marquee (`key` matches data files).
  */
 export const TECH_ICON_MAP: Record<string, TechIconComponent> = {
   azuredevops: Workflow,

@@ -12,7 +12,6 @@ import {
   Mail,
   Menu,
   UserRound,
-  Wrench,
   X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -25,7 +24,6 @@ const NAV: { href: string; label: string; icon: LucideIcon }[] = [
   { href: "/experience", label: "Experience", icon: Clock3 },
   { href: "/projects", label: "Projects", icon: Briefcase },
   { href: "/skills", label: "Skills", icon: Layers },
-  { href: "/toolkit", label: "Toolkit", icon: Wrench },
 ];
 
 /**

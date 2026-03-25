@@ -48,8 +48,6 @@ export const siteConfig = {
       "Project highlights: financial audit AWS modernization, internal AI agent programs, Unified Property/Utility Billing SaaS (U2), campus RAG support agent, and technical leadership.",
     skills:
       "Skills across product delivery, cloud & engineering, and applied AI — roadmapping, AWS, TypeScript, Python, LangChain, RAG, and stakeholder alignment.",
-    toolkit:
-      "Tools and workflows for shipping product: Azure DevOps, AWS, Claude, GitHub, LangChain, OpenAI, and modern TypeScript stacks.",
     contact:
       "Contact Ethan Trent for recruiting, internships, and collaboration — portfolio inquiry form, email, LinkedIn, and downloadable resume.",
     privacy: "Privacy notice for Ethan Trent’s portfolio and how contact submissions are handled.",
@@ -57,7 +55,6 @@ export const siteConfig = {
   /** Short intros shown under page headings (no bracket placeholders). */
   pageIntros: {
     featuredProjects: "The projects I'm most proud of — real systems, real users.",
-    toolkit: "The stacks and rituals I use to go from clarity to shipped software without losing velocity.",
     contact:
       "Recruiters and hiring managers: I’m open to PM, AI, and technical program conversations. I usually reply within a few business days.",
     experience:

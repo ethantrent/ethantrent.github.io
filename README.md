@@ -14,7 +14,7 @@ The former project URL `https://ethantrent.github.io/portfolio/` is **retired**;
 - TypeScript, Tailwind CSS v4, Framer Motion, `next-themes`, Lucide + react-icons, `react-fast-marquee` (home tech strip)
 - Contact form via **Formspree** (no backend on Pages)
 - **Custom cursor** (fine pointer only, off when `prefers-reduced-motion`) — see `CustomCursor.tsx`
-- Routes: `/`, `/about`, `/experience`, `/projects`, `/skills`, `/toolkit`, `/contact`, `/privacy` (placeholder policy)
+- Routes: `/`, `/about`, `/experience`, `/projects`, `/skills`, `/contact`, `/privacy` (placeholder policy)
 
 ## Local development
 
@@ -43,7 +43,6 @@ Main content lives in:
 - `src/data/projects.ts` — project cards (includes `category` for home teasers)
 - `src/data/experience.ts` — timeline
 - `src/data/skills.ts` — skill categories (`iconKey` maps in `src/lib/tech-icons.tsx` + `SkillsGrid`)
-- `src/data/toolkit.ts` — toolkit page cards
 
 The home **tech marquee** becomes a static flex row when the user prefers reduced motion.
 

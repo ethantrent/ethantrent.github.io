@@ -10,7 +10,6 @@ const EXPLORE = [
   ["/experience", "Experience"],
   ["/projects", "Projects"],
   ["/skills", "Skills"],
-  ["/toolkit", "Toolkit"],
   ["/contact", "Contact"],
 ] as const;
 
