@@ -10,6 +10,8 @@ const basePath = raw === "/" ? "" : raw;
 
 const nextConfig: NextConfig = {
   output: "export",
+  // GitHub Pages serves /about/ from about/index.html, not from about.html at /about.
+  trailingSlash: true,
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),
   images: {
     unoptimized: true,
