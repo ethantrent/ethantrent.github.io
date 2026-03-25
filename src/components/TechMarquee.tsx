@@ -1,9 +1,9 @@
 "use client";
 
-import Marquee from "react-fast-marquee";
 import { useReducedMotion } from "framer-motion";
 import { siteConfig } from "@/data/site";
 import { MARQUEE_TECH, TECH_ICON_MAP } from "@/lib/tech-icons";
+import { cn } from "@/lib/utils";
 import { Code2 } from "lucide-react";
 
 function TechPill({ label, iconKey }: { label: string; iconKey: string }) {
@@ -16,26 +16,28 @@ function TechPill({ label, iconKey }: { label: string; iconKey: string }) {
   );
 }
 
+/** Two equal-width bands so translateX(-50%) loops; second band hidden from SR (duplicate). */
 function Row({ reverse }: { reverse?: boolean }) {
-  const doubled = [...MARQUEE_TECH, ...MARQUEE_TECH];
-  return (
-    <Marquee
-      direction={reverse ? "right" : "left"}
-      speed={32}
-      gradient
-      gradientColor="var(--bg)"
-      gradientWidth={80}
-      className="py-2"
-    >
-      {doubled.map((item, i) => (
-        <TechPill key={`${item.key}-${i}`} label={item.label} iconKey={item.key} />
+  const band = (suffix: string, hidden: boolean) => (
+    <span className={cn("inline-flex shrink-0", hidden && "select-none")} aria-hidden={hidden || undefined}>
+      {MARQUEE_TECH.map((item) => (
+        <TechPill key={`${item.key}${suffix}`} label={item.label} iconKey={item.key} />
       ))}
-    </Marquee>
+    </span>
+  );
+  return (
+    <div className="tech-marquee-row relative min-w-0 w-full overflow-x-hidden py-2">
+      <div className={cn("tech-marquee-track", reverse && "tech-marquee-track--reverse")}>
+        {band("", false)}
+        {band("-loop", true)}
+      </div>
+    </div>
   );
 }
 
 /**
  * Infinite skills strip (icons + labels); static row when `prefers-reduced-motion`.
+ * Custom CSS scroll (no react-fast-marquee) avoids flex/scrollport quirks → stray scrollbars on Windows.
  */
 export function TechMarquee() {
   const reduceMotion = useReducedMotion();
@@ -53,7 +55,7 @@ export function TechMarquee() {
           {t.introAfter}
         </p>
       </div>
-      <div className="mt-8 overflow-hidden">
+      <div className="mt-8 min-w-0 overflow-x-hidden">
         {reduceMotion ? (
           <div className="flex flex-wrap justify-center gap-3 px-4">
             {MARQUEE_TECH.map((item) => (
@@ -61,7 +63,7 @@ export function TechMarquee() {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col gap-4">
+          <div className="flex min-w-0 w-full flex-col gap-4">
             <Row />
             <Row reverse />
           </div>

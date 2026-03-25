@@ -75,15 +75,17 @@ export function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link
+                  href={siteConfig.resumePath}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-fg/15 bg-surface/70 text-fg transition hover:border-accent/50 hover:text-accent"
+                  download
+                  aria-label="Download resume PDF"
+                >
+                  <FileDown className="h-5 w-5" aria-hidden />
+                </Link>
+              </li>
             </ul>
-            <a
-              href={siteConfig.resumePath}
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:text-accent-violet"
-              download
-            >
-              <FileDown className="h-4 w-4" aria-hidden />
-              Download resume (PDF)
-            </a>
           </div>
         </div>
       </div>

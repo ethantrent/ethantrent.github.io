@@ -102,6 +102,59 @@ body.custom-cursor-active *:focus-visible {
   }
 }
 
+/* Home tech marquee: CSS-only loop (no third-party scrollports / Windows scrollbars). */
+.tech-marquee-row {
+  position: relative;
+  isolation: isolate;
+}
+
+.tech-marquee-row::before,
+.tech-marquee-row::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tech-marquee-row::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+
+.tech-marquee-row::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+
+@keyframes tech-marquee-seamless {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: tech-marquee-seamless 55s linear infinite;
+}
+
+.tech-marquee-track--reverse {
+  animation-direction: reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee-track,
+  .tech-marquee-track--reverse {
+    animation: none;
+  }
+}
+
 /* Skip link: visible on keyboard focus */
 .skip-link {
   position: absolute;

@@ -47,7 +47,7 @@ Main content lives in:
 
 The home **tech marquee** becomes a static flex row when the user prefers reduced motion.
 
-Replace `public/profile-mark.svg` (or use your photo path in `Hero` / `AboutSection`), `public/projects/*`, `public/experience/*`, and `public/resume.pdf` with real assets.
+Replace `public/profile-mark.svg` (or use your photo path in `Hero` / `AboutSection`), `public/projects/*`, `public/experience/*`, and your resume PDF in `public/` (keep `siteConfig.resumePath` in `src/data/site.ts` in sync, e.g. `Ethan_Trent_Resume.pdf`).
 
 ## GitHub Pages deployment
 

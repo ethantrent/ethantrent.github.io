@@ -16,14 +16,14 @@ export const siteConfig = {
     highlight2: "execution",
     after: ".",
   },
-  location: "Dallas, TX · Westlake, TX (Summer 2026)",
+  location: "Dallas, TX",
   email: "ethanjotrent@gmail.com",
   social: {
     linkedin: "https://www.linkedin.com/in/ethantrent",
     github: "https://github.com/ethantrent",
     twitter: "",
   },
-  resumePath: "/resume.pdf",
+  resumePath: "/Ethan_Trent_Resume.pdf",
   manifesto: {
     line1: "Shipping Products",
     line2: "Scaling Systems",
@@ -56,7 +56,6 @@ export const siteConfig = {
   },
   /** Short intros shown under page headings (no bracket placeholders). */
   pageIntros: {
-    whatIDo: "",
     featuredProjects: "The projects I'm most proud of — real systems, real users.",
     toolkit: "The stacks and rituals I use to go from clarity to shipped software without losing velocity.",
     contact:

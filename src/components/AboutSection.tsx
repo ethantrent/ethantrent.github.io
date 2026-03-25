@@ -11,6 +11,8 @@ type EduEntry = {
   dates: string;
   org: string;
   detail: string;
+  /** Optional second paragraph (e.g. track / concentrations under a prospective line). */
+  detailFollowUp?: string;
   logoSrc?: string;
   logoAlt?: string;
 };
@@ -50,13 +52,16 @@ const EDU_ENTRIES: EduEntry[] = [
     dates: "May – Aug 2026",
     org: "Cornell University",
     detail: "Machine Learning Certificate",
+    logoSrc: "/Cornell_University_seal.svg.png",
+    logoAlt: "Cornell University seal",
   },
   {
     mark: "CMU",
     dates: "Prospective · Fall 2030 – Spring 2032",
     org: "Carnegie Mellon University — Tepper School of Business",
-    detail:
-      "Prospective Accelerate Online Hybrid MBA. Targeting the Technology Strategy & Product Management track and concentrations in AI in Business, Business Technologies, Strategy, and Marketing.",
+    detail: "Accelerate Online Hybrid MBA.",
+    detailFollowUp:
+      "Targeting the Technology Strategy & Product Management track and concentrations in AI in Business, Business Technologies, Strategy, and Marketing.",
     logoSrc: "/tepper-logo.jpg",
     logoAlt: "Tepper School of Business logo",
   },
@@ -134,7 +139,7 @@ export function AboutSection() {
 
       <section aria-labelledby="edu-heading">
         <h2 id="edu-heading" className="font-display text-3xl font-bold text-fg">
-          Education & trajectory
+          Education & Trajectory
         </h2>
         <div className="relative mt-10">
           <div
@@ -176,6 +181,9 @@ export function AboutSection() {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">{e.dates}</p>
                   <p className="mt-1 font-display text-lg font-bold text-fg">{e.org}</p>
                   <p className="mt-1 text-sm leading-relaxed text-muted">{e.detail}</p>
+                  {e.detailFollowUp ? (
+                    <p className="mt-2 text-sm leading-relaxed text-muted">{e.detailFollowUp}</p>
+                  ) : null}
                 </div>
               </div>
             </li>

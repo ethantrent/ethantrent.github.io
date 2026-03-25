@@ -161,7 +161,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="mt-8 flex flex-wrap gap-4"
+          className="mt-8"
           initial={reduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.22 }}
@@ -172,13 +172,6 @@ export function Hero() {
           >
             View my work
           </a>
-          <Link
-            href={siteConfig.resumePath}
-            className="inline-flex items-center justify-center rounded-full border border-fg/15 bg-surface/60 px-6 py-3 text-sm font-semibold text-fg backdrop-blur transition hover:border-accent/40 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            download
-          >
-            Download resume
-          </Link>
         </motion.div>
       </div>
 

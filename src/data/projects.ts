@@ -17,7 +17,7 @@ export const projects: Project[] = [
     tags: ["AWS", "React", "TypeScript", "Product"],
     imageSrc: "/u2.png",
     imageAlt: "U2 Unified Property/Utility Billing SaaS logo",
-    href: "https://www.linkedin.com/in/ethantrent",
+    href: "https://u2qbo.tech",
     teaserCta: "Product story →",
     ctaLabel: "View overview",
     featured: true,
