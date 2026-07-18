@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Syne } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { AppChrome } from "@/components/AppChrome";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
-/** Readable body (Figtree) + strong display (Syne) — recruiter-friendly scan, not Inter/Space Grotesk. */
-const figtree = Figtree({
+/** Body / UI — Inter. */
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-figtree",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const syne = Syne({
+/** Display — Outfit (Geometric Modern pairing; H1/H2 via `.font-display`). */
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-syne",
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -23,7 +23,7 @@ const syne = Syne({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "http://localhost:3000";
 
 /**
- * Root layout: fonts, theme provider, global chrome, and default SEO metadata.
+ * Root layout: font, global chrome, and default SEO metadata. Dark-only theme.
  */
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,20 +39,26 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Ethan Trent — AI Product Manager",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f2eb" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d0d0d" },
-  ],
+  themeColor: "#08090b",
 };
 
 export default function RootLayout({
@@ -61,23 +67,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn(figtree.variable, syne.variable, "h-full")}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={cn(inter.variable, outfit.variable, "dark h-full")}>
       <body
         className={cn(
-          figtree.className,
+          inter.className,
           "flex min-h-full flex-col bg-bg text-fg antialiased",
         )}
       >
-        <ThemeProvider>
-          <a href="#main-content" className="skip-link">
-            Skip to content
-          </a>
-          <AppChrome>{children}</AppChrome>
-        </ThemeProvider>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+        <AppChrome>{children}</AppChrome>
       </body>
     </html>
   );

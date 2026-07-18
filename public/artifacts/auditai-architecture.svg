@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">AuditAI agent architecture</title>
+  <desc id="desc">Six narrow agents with handoffs into a human review gate and audit trail</desc>
+  <rect width="960" height="540" fill="#0f1011"/>
+  <rect x="24" y="24" width="912" height="492" rx="12" fill="#141516" stroke="#23252a"/>
+
+  <text x="48" y="64" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="13" font-weight="500">AuditAI - multi-agent orchestration</text>
+  <text x="48" y="96" fill="#f7f8f8" font-family="system-ui,sans-serif" font-size="22" font-weight="600">Six narrow agents - human review gates</text>
+
+  <rect x="48" y="140" width="140" height="72" rx="8" fill="#0f1011" stroke="#34343a"/>
+  <text x="118" y="172" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="12" font-weight="600">1 - Intake</text>
+  <text x="118" y="192" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="11">Capture &amp; normalize</text>
+
+  <rect x="220" y="140" width="140" height="72" rx="8" fill="#0f1011" stroke="#34343a"/>
+  <text x="290" y="172" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="12" font-weight="600">2 - Classify</text>
+  <text x="290" y="192" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="11">Route by workflow</text>
+
+  <rect x="392" y="140" width="140" height="72" rx="8" fill="#0f1011" stroke="#34343a"/>
+  <text x="462" y="172" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="12" font-weight="600">3 - Draft</text>
+  <text x="462" y="192" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="11">First-pass summary</text>
+
+  <rect x="564" y="140" width="140" height="72" rx="8" fill="#0f1011" stroke="#34343a"/>
+  <text x="634" y="172" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="12" font-weight="600">4 - Route</text>
+  <text x="634" y="192" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="11">Queue + context</text>
+
+  <rect x="736" y="120" width="176" height="48" rx="8" fill="#0f1011" stroke="#34343a"/>
+  <text x="824" y="149" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="12" font-weight="600">5 - Enrich</text>
+  <rect x="736" y="184" width="176" height="48" rx="8" fill="#0f1011" stroke="#34343a"/>
+  <text x="824" y="213" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="12" font-weight="600">6 - Escalate</text>
+
+  <path d="M188 176 H214" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M360 176 H386" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M532 176 H558" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M704 176 H730" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="280" width="560" height="88" rx="10" fill="#0f1011" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="480" y="316" text-anchor="middle" fill="#22d3ee" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Confidence &amp; policy gate</text>
+  <text x="480" y="340" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="12">Low confidence or policy-sensitive - hold for human - else continue with log</text>
+
+  <path d="M480 212 V274" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="412" width="260" height="72" rx="8" fill="#0f1011" stroke="#3b82f6"/>
+  <text x="330" y="444" text-anchor="middle" fill="#f7f8f8" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Human reviewer</text>
+  <text x="330" y="464" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="11">Judgment + approval</text>
+
+  <rect x="500" y="412" width="260" height="72" rx="8" fill="#0f1011" stroke="#34343a"/>
+  <text x="630" y="444" text-anchor="middle" fill="#f7f8f8" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Audit trail</text>
+  <text x="630" y="464" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="11">Logged actions - GC-ready</text>
+
+  <path d="M400 368 V406" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M560 368 V406" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#34343a"/>
+    </marker>
+  </defs>
+</svg>

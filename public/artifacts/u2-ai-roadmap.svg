@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">U2 AI analytics roadmap</title>
+  <desc id="desc">Six ML capabilities sequenced on the unified billing data model</desc>
+  <rect width="960" height="540" fill="#0f1011"/>
+  <rect x="24" y="24" width="912" height="492" rx="12" fill="#141516" stroke="#23252a"/>
+
+  <text x="48" y="64" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="13" font-weight="500">U2 - AI analytics roadmap</text>
+  <text x="48" y="96" fill="#f7f8f8" font-family="system-ui,sans-serif" font-size="22" font-weight="600">Unified billing data - six ML capabilities</text>
+
+  <rect x="48" y="140" width="864" height="72" rx="10" fill="#0f1011" stroke="#3b82f6"/>
+  <text x="480" y="172" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Unified property / utility billing data model (AWS)</text>
+  <text x="480" y="194" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="12">Prerequisite moat - every capability builds on one account record</text>
+
+  <g font-family="system-ui,sans-serif">
+    <rect x="48" y="260" width="270" height="88" rx="8" fill="#0f1011" stroke="#34343a"/>
+    <text x="183" y="298" text-anchor="middle" fill="#f7f8f8" font-size="13" font-weight="600">1 - Anomaly detection</text>
+    <text x="183" y="320" text-anchor="middle" fill="#8a8f98" font-size="11">Flag unusual usage spikes</text>
+
+    <rect x="345" y="260" width="270" height="88" rx="8" fill="#0f1011" stroke="#34343a"/>
+    <text x="480" y="298" text-anchor="middle" fill="#f7f8f8" font-size="13" font-weight="600">2 - Usage forecasting</text>
+    <text x="480" y="320" text-anchor="middle" fill="#8a8f98" font-size="11">Predict demand &amp; seasonal load</text>
+
+    <rect x="642" y="260" width="270" height="88" rx="8" fill="#0f1011" stroke="#34343a"/>
+    <text x="777" y="298" text-anchor="middle" fill="#f7f8f8" font-size="13" font-weight="600">3 - Equity heatmaps</text>
+    <text x="777" y="320" text-anchor="middle" fill="#8a8f98" font-size="11">Surface geographic imbalance</text>
+
+    <rect x="48" y="372" width="270" height="88" rx="8" fill="#0f1011" stroke="#34343a"/>
+    <text x="183" y="410" text-anchor="middle" fill="#f7f8f8" font-size="13" font-weight="600">4 - Predictive collections</text>
+    <text x="183" y="432" text-anchor="middle" fill="#8a8f98" font-size="11">Prioritize outreach risk</text>
+
+    <rect x="345" y="372" width="270" height="88" rx="8" fill="#0f1011" stroke="#34343a"/>
+    <text x="480" y="410" text-anchor="middle" fill="#f7f8f8" font-size="13" font-weight="600">5 - Invoice insights</text>
+    <text x="480" y="432" text-anchor="middle" fill="#8a8f98" font-size="11">Explain charges to tenants</text>
+
+    <rect x="642" y="372" width="270" height="88" rx="8" fill="#0f1011" stroke="#34343a"/>
+    <text x="777" y="410" text-anchor="middle" fill="#f7f8f8" font-size="13" font-weight="600">6 - Ops recommendations</text>
+    <text x="777" y="432" text-anchor="middle" fill="#8a8f98" font-size="11">Actionable operator next steps</text>
+  </g>
+
+  <path d="M480 212 V250" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#34343a"/>
+    </marker>
+  </defs>
+</svg>

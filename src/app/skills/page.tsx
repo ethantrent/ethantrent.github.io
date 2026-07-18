@@ -25,8 +25,10 @@ export default function SkillsPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-24 md:py-28">
       <header className="max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-widest text-accent">Skills & tools</p>
-        <h1 className="font-display mt-3 text-4xl font-bold text-fg md:text-5xl">Stack I ship with</h1>
+        <p className="text-[13px] font-medium tracking-[0.03em] text-muted">Skills & tools</p>
+        <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight text-fg md:text-5xl">
+          Stack I ship with
+        </h1>
         <p className="mt-4 text-pretty text-muted">{siteConfig.pageIntros.skills}</p>
       </header>
       <div className="mt-14">

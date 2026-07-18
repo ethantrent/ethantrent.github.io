@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
@@ -13,7 +14,7 @@ type Props = {
 };
 
 /**
- * Vertical timeline with electric-blue spine and alternating cards (Sugith-inspired).
+ * Vertical timeline with a hairline spine and blue nodes; alternating cards.
  * Each row expands for more detail.
  */
 export function ExperienceTimeline({ entries }: Props) {
@@ -23,7 +24,7 @@ export function ExperienceTimeline({ entries }: Props) {
   return (
     <div className="relative mx-auto max-w-5xl px-2 md:px-0">
       <div
-        className="absolute left-4 top-3 bottom-3 w-px bg-gradient-to-b from-accent via-accent/50 to-accent-violet md:left-1/2 md:-translate-x-px"
+        className="absolute left-4 top-3 bottom-3 w-px bg-hairline-strong md:left-1/2 md:-translate-x-px"
         aria-hidden
       />
 
@@ -41,14 +42,14 @@ export function ExperienceTimeline({ entries }: Props) {
                 )}
               >
                 <motion.div
-                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.45 }}
-                  className="ml-10 max-w-lg rounded-2xl border border-fg/10 bg-surface/80 p-6 text-left shadow-sm backdrop-blur md:ml-0"
+                  transition={{ duration: 0.4 }}
+                  className="ml-10 max-w-lg rounded-xl border border-hairline bg-surface p-6 text-left transition hover:border-hairline-strong md:ml-0"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-fg/10 bg-bg/50">
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-hairline bg-surface-2">
                       {entry.logoSrc ? (
                         <Image
                           src={publicPath(entry.logoSrc)}
@@ -57,34 +58,48 @@ export function ExperienceTimeline({ entries }: Props) {
                           className="object-contain p-1"
                         />
                       ) : (
-                        <span className="flex h-full w-full items-center justify-center font-display text-lg font-bold text-accent">
+                        <span className="flex h-full w-full items-center justify-center font-display text-lg font-semibold text-fg-muted">
                           {entry.company.slice(0, 1)}
                         </span>
                       )}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                      <p className="text-xs font-medium tracking-[0.03em] text-muted">
                         {entry.dateRange}
                       </p>
-                      <h3 className="font-display text-lg font-bold text-fg">{entry.role}</h3>
+                      <h3 className="font-display text-lg font-semibold text-fg">{entry.role}</h3>
                       <p className="text-sm text-muted">{entry.company}</p>
                     </div>
                   </div>
 
-                  <ul className="mt-4 space-y-2 text-sm text-fg/85">
+                  {entry.context && (
+                    <p className="mt-4 text-sm italic leading-relaxed text-muted">{entry.context}</p>
+                  )}
+
+                  <ul className="mt-4 space-y-2 text-sm text-fg-muted">
                     {entry.bullets.map((b) => (
                       <li key={b} className="flex gap-2">
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-violet" aria-hidden />
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted" aria-hidden />
                         <span>{b}</span>
                       </li>
                     ))}
                   </ul>
 
+                  {entry.featuredCaseStudy && (
+                    <Link
+                      href={entry.featuredCaseStudy.href}
+                      className="mt-4 flex w-fit items-center gap-1 text-sm font-medium text-accent-cyan transition hover:underline"
+                    >
+                      Featured project: {entry.featuredCaseStudy.label}
+                      <span aria-hidden>→</span>
+                    </Link>
+                  )}
+
                   {entry.detail && (
                     <>
                       <button
                         type="button"
-                        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent"
+                        className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent"
                         aria-expanded={expanded}
                         onClick={() => setOpenId(expanded ? null : entry.id)}
                       >
@@ -113,7 +128,7 @@ export function ExperienceTimeline({ entries }: Props) {
               </div>
 
               <span
-                className="absolute left-4 top-10 z-10 flex h-4 w-4 -translate-x-1/2 items-center justify-center rounded-full border-2 border-accent bg-bg shadow-[0_0_0_6px_rgba(59,130,246,0.15)] md:left-1/2 md:top-1/2 md:-translate-y-1/2 md:translate-x-0"
+                className="absolute left-4 top-10 z-10 flex h-4 w-4 -translate-x-1/2 items-center justify-center rounded-full border-2 border-accent bg-bg md:left-1/2 md:top-1/2 md:-translate-y-1/2 md:translate-x-0"
                 aria-hidden
               >
                 <span className="h-2 w-2 rounded-full bg-accent" />

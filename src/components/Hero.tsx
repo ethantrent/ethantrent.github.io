@@ -5,127 +5,127 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown, FileDown, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { useEffect, useState } from "react";
-import { ParticleBackground } from "@/components/ParticleBackground";
 import { ProfileAvatar } from "@/components/ProfileAvatar";
 import { siteConfig } from "@/data/site";
-import { cn } from "@/lib/utils";
+import { buttonPrimary, buttonSecondary } from "@/lib/ui";
 
-const ROLES = [
-  "Digital Product Manager · Charles Schwab (Conversational AI)",
-  "AI Fellow · Cornell Tech × Break Through Tech",
-  "B.S. Computer Science · BYU–Idaho",
-] as const;
+const CREDENTIAL_LINE =
+  "Digital Product Manager · Charles Schwab · AI Fellow · Cornell Tech";
 
 /**
- * Hero: split headline, avatar + intro, rotating role line, socials, CTAs, scroll cue pinned to viewport floor.
+ * Hero: sentence-case display headline, credential line, availability + dual CTAs first,
+ * then email/socials. Hire actions stay in the first mobile viewport.
  */
 export function Hero() {
   const reduceMotion = useReducedMotion();
-  const [roleIndex, setRoleIndex] = useState(0);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const id = window.setInterval(() => {
-      setRoleIndex((i) => (i + 1) % ROLES.length);
-    }, 3200);
-    return () => window.clearInterval(id);
-  }, [reduceMotion]);
-
-  const currentRole = ROLES[roleIndex];
 
   return (
     <section
-      className="relative isolate min-h-[calc(100dvh-4rem)] overflow-hidden px-4 pt-28 pb-24 md:pt-32 md:pb-28"
+      className="relative isolate px-4 pt-24 pb-10 md:pt-28 md:pb-14"
       aria-labelledby="hero-heading"
     >
-      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-accent/[0.03] via-transparent to-transparent dark:from-accent/[0.06]" />
-      <ParticleBackground />
-
       <div className="relative mx-auto w-full max-w-6xl">
-        {/* Top row: intro + location */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="relative">
-              <div
-                className="absolute -inset-1 rounded-full bg-gradient-to-tr from-accent/50 to-accent-violet/40 blur-md"
-                aria-hidden
-              />
-              <ProfileAvatar
-                size={56}
-                priority
-                className="relative h-14 w-14 rounded-full border-2 border-accent/60 object-cover"
-              />
-            </div>
-            <div className="relative">
-              <span className="inline-flex items-center rounded-full border border-fg/15 bg-surface/90 px-4 py-2 text-sm font-semibold text-fg shadow-sm backdrop-blur">
-                Hey, I&apos;m {siteConfig.name}
-              </span>
-              <span
-                className="absolute -bottom-1 left-4 h-2 w-2 rotate-45 border-b border-r border-fg/15 bg-surface/90"
-                aria-hidden
-              />
-            </div>
+            <ProfileAvatar
+              size={48}
+              priority
+              className="h-12 w-12 rounded-full border border-hairline-strong object-cover"
+            />
+            <span className="inline-flex items-center rounded-lg border border-hairline bg-surface px-3.5 py-2 text-sm font-medium text-fg">
+              Hey, I&apos;m {siteConfig.name}
+            </span>
           </div>
-          <p className="font-mono text-[11px] uppercase tracking-widest text-muted sm:max-w-[14rem] sm:text-right">
-            <span aria-hidden>{"// "}</span>
+          <p className="text-[13px] font-medium tracking-[0.03em] text-muted sm:max-w-[14rem] sm:text-right">
             {siteConfig.location}
           </p>
         </div>
 
+        <motion.p
+          className="mt-10 text-[13px] font-medium tracking-[0.03em] text-muted sm:mt-12 md:mt-14"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.02 }}
+        >
+          {siteConfig.hero.label}
+        </motion.p>
+
         <motion.h1
           id="hero-heading"
-          className="font-display relative z-0 mt-10 max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight sm:mt-12 md:mt-14 sm:text-5xl lg:text-6xl xl:text-7xl"
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          className="font-display mt-4 max-w-3xl text-balance text-4xl font-semibold leading-[1.1] tracking-[-0.03em] text-fg sm:text-5xl lg:text-6xl"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.05 }}
+          transition={{ duration: 0.45, delay: 0.05 }}
         >
-          <span className="block text-accent">AI PRODUCT</span>
-          <span className="block text-fg">MANAGER</span>
-          <span className="block text-accent-cyan">& BUILDER.</span>
+          {siteConfig.hero.headlineLines.join(" ")}
         </motion.h1>
 
         <motion.p
-          className="mt-6 min-h-[2.75rem] text-xl font-medium text-fg/90 sm:min-h-[3rem] sm:text-2xl"
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+          className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted sm:text-lg"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.12 }}
-          aria-live="polite"
+          transition={{ duration: 0.4, delay: 0.1 }}
         >
-          {reduceMotion ? (
-            ROLES[0]
-          ) : (
-            <motion.span
-              key={currentRole}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-            >
-              {currentRole}
-            </motion.span>
-          )}
+          {siteConfig.hero.positioning}
+        </motion.p>
+
+        <motion.p
+          className="mt-5 text-base font-medium text-fg-muted sm:text-lg"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.12 }}
+        >
+          {CREDENTIAL_LINE}
         </motion.p>
 
         <motion.div
-          className="mt-5"
+          className="mt-8 flex flex-wrap items-center gap-4"
           initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.16 }}
+          transition={{ duration: 0.4, delay: 0.16 }}
+        >
+          <span className="inline-flex items-center gap-2 rounded-lg border border-hairline bg-surface px-3.5 py-2 text-[13px] font-medium text-fg-muted">
+            <span className="inline-flex h-2 w-2 rounded-full bg-available" aria-hidden />
+            {siteConfig.hero.availability}
+          </span>
+        </motion.div>
+
+        <motion.div
+          className="mt-5 flex flex-wrap items-center gap-3"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+        >
+          <Link href={siteConfig.hero.primaryCta.href} className={buttonPrimary}>
+            {siteConfig.hero.primaryCta.label}
+            <span aria-hidden>→</span>
+          </Link>
+          <Link href={siteConfig.resumePath} download className={buttonSecondary}>
+            <FileDown className="h-4 w-4" aria-hidden />
+            {siteConfig.hero.secondaryCtaLabel}
+          </Link>
+        </motion.div>
+
+        <motion.div
+          className="mt-8"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.24 }}
         >
           <a
             href={`mailto:${siteConfig.email}`}
-            className="inline-flex items-center gap-2 rounded-full border border-fg/10 bg-surface/50 px-3 py-1.5 text-xs font-medium text-muted transition hover:border-accent/35 hover:text-accent sm:text-sm"
+            className="inline-flex items-center gap-2 text-sm font-medium text-muted transition hover:text-fg"
           >
-            <Mail className="h-3.5 w-3.5 text-accent sm:h-4 sm:w-4" aria-hidden />
+            <Mail className="h-4 w-4" aria-hidden />
             {siteConfig.email}
           </a>
         </motion.div>
 
         <motion.div
-          className="mt-6 flex flex-wrap items-center gap-3"
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+          className="mt-4 flex flex-wrap items-center gap-2"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.26 }}
           aria-label="Social links"
         >
           {[
@@ -140,50 +140,28 @@ export function Hero() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(
-                  "flex h-11 w-11 items-center justify-center rounded-full border border-fg/15 bg-surface/70 text-fg transition hover:border-accent/50 hover:text-accent",
-                )}
+                className="flex h-11 w-11 items-center justify-center rounded-lg border border-hairline bg-surface text-fg-muted transition hover:border-hairline-strong hover:text-fg"
                 aria-label={label}
               >
                 <Icon className="h-4 w-4" aria-hidden />
               </a>
             ))}
-          <Link
-            href={siteConfig.resumePath}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-fg/15 bg-surface/70 text-fg transition hover:border-accent/50 hover:text-accent"
-            download
-            aria-label="Download resume PDF"
-          >
-            <FileDown className="h-4 w-4" aria-hidden />
-          </Link>
         </motion.div>
 
-        <motion.div
-          className="mt-8"
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.22 }}
+        <motion.a
+          href="#impact"
+          className="mt-8 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-fg"
+          initial={reduceMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
         >
-          <a
-            href="#projects"
-            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-violet"
-          >
-            View my work
-          </a>
-        </motion.div>
+          Scroll for impact
+          <ChevronDown
+            className={reduceMotion ? "h-4 w-4" : "h-4 w-4 animate-bounce"}
+            aria-hidden
+          />
+        </motion.a>
       </div>
-
-      <motion.a
-        href="#projects"
-        className="absolute bottom-5 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1 text-xs font-medium text-muted"
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.45 }}
-        aria-label="Scroll to projects"
-      >
-        <span className="uppercase tracking-widest">Scroll</span>
-        <ChevronDown className="h-5 w-5 animate-bounce text-accent" aria-hidden />
-      </motion.a>
     </section>
   );
 }

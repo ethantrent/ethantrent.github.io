@@ -24,8 +24,10 @@ export default function ContactPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-24 md:py-28">
       <header className="max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-widest text-accent">Contact</p>
-        <h1 className="font-display mt-3 text-4xl font-bold text-fg md:text-5xl">Let&apos;s talk</h1>
+        <p className="text-[13px] font-medium tracking-[0.03em] text-muted">Contact</p>
+        <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight text-fg md:text-5xl">
+          Let&apos;s talk
+        </h1>
         <p className="mt-4 text-pretty text-muted">{siteConfig.pageIntros.contact}</p>
       </header>
       <div className="mt-14">

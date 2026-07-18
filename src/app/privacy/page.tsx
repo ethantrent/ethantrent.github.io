@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-24 md:py-28">
-      <h1 className="font-display text-4xl font-bold text-fg">Privacy</h1>
+      <h1 className="font-display text-4xl font-semibold tracking-tight text-fg">Privacy</h1>
       <p className="mt-6 text-sm leading-relaxed text-muted">
         This is a <strong>placeholder</strong> page. This static site does not run first-party analytics in the
         template as-shipped. If you add analytics, embeds, or change how contact submissions are processed, update

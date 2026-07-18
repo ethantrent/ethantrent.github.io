@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/data/site";
+import { buttonPrimary, buttonSecondary } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 
 const STEPS = [
@@ -78,9 +79,9 @@ export function ContactForm() {
     <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px]">
       <div>
         {!action && process.env.NODE_ENV === "development" ? (
-          <p className="mb-6 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-fg">
-            Dev only: set <code className="rounded bg-black/10 px-1 dark:bg-white/10">NEXT_PUBLIC_FORMSPREE_FORM_ID</code> in{" "}
-            <code className="rounded bg-black/10 px-1 dark:bg-white/10">.env.local</code> for Formspree. Production builds omit
+          <p className="mb-6 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-fg">
+            Dev only: set <code className="rounded bg-surface-2 px-1">NEXT_PUBLIC_FORMSPREE_FORM_ID</code> in{" "}
+            <code className="rounded bg-surface-2 px-1">.env.local</code> for Formspree. Production builds omit
             this note.
           </p>
         ) : null}
@@ -94,7 +95,7 @@ export function ContactForm() {
             return <input key={s.name} type="hidden" name={s.name} value={val} readOnly />;
           })}
 
-          <div className="h-1 w-full overflow-hidden rounded-full bg-fg/10" aria-hidden>
+          <div className="h-1 w-full overflow-hidden rounded-full bg-surface-3" aria-hidden>
             <motion.div
               className="h-full rounded-full bg-accent"
               initial={false}
@@ -111,8 +112,8 @@ export function ContactForm() {
               exit={reduceMotion ? undefined : { opacity: 0, x: -16 }}
               transition={{ duration: 0.22 }}
             >
-              <p className="text-xs font-semibold uppercase tracking-widest text-accent">{current.label}</p>
-              <label htmlFor={current.name} className="mt-2 block font-display text-2xl font-bold text-fg">
+              <p className="text-[13px] font-medium tracking-[0.03em] text-muted">{current.label}</p>
+              <label htmlFor={current.name} className="mt-2 block font-display text-2xl font-semibold tracking-tight text-fg">
                 {current.question}
               </label>
               {current.type === "textarea" ? (
@@ -123,7 +124,7 @@ export function ContactForm() {
                   rows={5}
                   value={values[current.name] ?? ""}
                   onChange={(e) => setValues((v) => ({ ...v, [current.name]: e.target.value }))}
-                  className="mt-4 w-full rounded-2xl border border-fg/15 bg-surface/80 px-4 py-3 text-fg placeholder:text-muted focus:border-accent focus:outline-none"
+                  className="mt-4 w-full rounded-lg border border-hairline bg-surface px-4 py-3 text-fg placeholder:text-muted focus:border-accent focus:outline-none"
                   placeholder="Role, timeline, team size, or anything else that helps me respond."
                   autoComplete={current.autoComplete}
                 />
@@ -135,7 +136,7 @@ export function ContactForm() {
                   required
                   value={values[current.name] ?? ""}
                   onChange={(e) => setValues((v) => ({ ...v, [current.name]: e.target.value }))}
-                  className="mt-4 w-full rounded-2xl border border-fg/15 bg-surface/80 px-4 py-3 text-fg placeholder:text-muted focus:border-accent focus:outline-none"
+                  className="mt-4 w-full rounded-lg border border-hairline bg-surface px-4 py-3 text-fg placeholder:text-muted focus:border-accent focus:outline-none"
                   placeholder="Your answer"
                   autoComplete={current.autoComplete}
                 />
@@ -145,11 +146,7 @@ export function ContactForm() {
 
           <div className="flex flex-wrap gap-3" aria-live="polite">
             {step > 0 && (
-              <button
-                type="button"
-                onClick={goBack}
-                className="rounded-full border border-fg/15 px-5 py-2.5 text-sm font-semibold text-fg hover:border-accent hover:text-accent"
-              >
+              <button type="button" onClick={goBack} className={buttonSecondary}>
                 Back
               </button>
             )}
@@ -157,55 +154,53 @@ export function ContactForm() {
               type="button"
               onClick={goNext}
               disabled={!canAdvance || status === "submitting"}
-              className={cn(
-                "rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-accent/25 transition hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50",
-              )}
+              className={cn(buttonPrimary, "disabled:cursor-not-allowed disabled:opacity-50")}
             >
               {isLast ? (status === "submitting" ? "Sending…" : "Submit") : "Continue"}
             </button>
           </div>
 
           {status === "success" && (
-            <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">Thanks — your message is on its way.</p>
+            <p className="text-sm font-medium text-emerald-400">Thanks — your message is on its way.</p>
           )}
           {status === "error" && (
-            <p className="text-sm font-medium text-red-600 dark:text-red-400">
+            <p className="text-sm font-medium text-red-400">
               Something went wrong. Double-check your Formspree ID or try again.
             </p>
           )}
         </form>
       </div>
 
-      <aside className="h-fit space-y-6 rounded-2xl border border-fg/10 bg-surface/70 p-6 backdrop-blur" aria-label="Contact details">
-        <h2 className="font-display text-lg font-bold text-fg">Direct lines</h2>
+      <aside className="h-fit space-y-6 rounded-xl border border-hairline bg-surface p-6" aria-label="Contact details">
+        <h2 className="font-display text-lg font-semibold text-fg">Direct lines</h2>
         <div className="space-y-3 text-sm text-muted">
           <p>
-            <span className="block text-xs font-semibold uppercase tracking-wider text-fg/70">Email</span>
+            <span className="block text-xs font-medium text-muted">Email</span>
             <a href={`mailto:${siteConfig.email}`} className="text-accent hover:underline">
               {siteConfig.email}
             </a>
           </p>
           <p>
-            <span className="block text-xs font-semibold uppercase tracking-wider text-fg/70">Location</span>
+            <span className="block text-xs font-medium text-muted">Location</span>
             {siteConfig.location}
           </p>
           <p>
-            <span className="block text-xs font-semibold uppercase tracking-wider text-fg/70">Resume</span>
+            <span className="block text-xs font-medium text-muted">Resume</span>
             <Link href={siteConfig.resumePath} className="text-accent hover:underline" download>
               Download PDF
             </Link>
           </p>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-fg/70">Social</p>
+          <p className="text-xs font-medium text-muted">Social</p>
           <div className="mt-2 flex flex-wrap gap-2">
             <a
               href={siteConfig.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#0A66C2]/35 bg-surface/50 px-3 py-2 text-xs font-semibold text-fg transition hover:border-[#0A66C2] hover:bg-[#0A66C2]/12 hover:text-[#0A66C2]"
+              className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-hairline bg-surface-2 px-4 text-sm font-medium text-fg-muted transition hover:border-hairline-strong hover:text-fg"
             >
-              <FaLinkedin className="h-4 w-4 shrink-0 text-[#0A66C2]" aria-hidden />
+              <FaLinkedin className="h-4 w-4 shrink-0" aria-hidden />
               LinkedIn
             </a>
             {siteConfig.social.github ? (
@@ -213,7 +208,7 @@ export function ContactForm() {
                 href={siteConfig.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-fg/15 bg-surface/50 px-3 py-2 text-xs font-semibold text-fg transition hover:border-fg/35 hover:bg-fg/10 dark:hover:bg-white/10"
+                className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-hairline bg-surface-2 px-4 text-sm font-medium text-fg-muted transition hover:border-hairline-strong hover:text-fg"
               >
                 <FaGithub className="h-4 w-4 shrink-0" aria-hidden />
                 GitHub

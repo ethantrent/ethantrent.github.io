@@ -30,7 +30,7 @@ export function VisitorCounter() {
 
   return (
     <p className="text-center text-xs text-muted">
-      <span className="font-mono text-fg/80">{count.toLocaleString()}</span> visits tracked
+      <span className="tabular-nums text-fg-muted">{count.toLocaleString()}</span> visits tracked
     </p>
   );
 }

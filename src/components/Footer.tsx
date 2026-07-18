@@ -3,24 +3,22 @@ import { FileDown } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { siteConfig } from "@/data/site";
-import { cn } from "@/lib/utils";
 
 const EXPLORE = [
   ["/about/", "About"],
   ["/experience/", "Experience"],
-  ["/projects/", "Projects"],
+  ["/projects/", "Case Studies"],
   ["/skills/", "Skills"],
   ["/writing/", "Writing"],
   ["/contact/", "Contact"],
 ] as const;
 
 /**
- * Footer: tagline, explore links, socials + resume, watermark.
+ * Dense caption-size footer on canvas: tagline, link grid, socials, meta line.
  */
 export function Footer() {
   const year = new Date().getFullYear();
   const ft = siteConfig.footerTagline;
-  const watermark = siteConfig.watermarkName || siteConfig.name;
   const followSocials = [
     { href: siteConfig.social.linkedin, label: "LinkedIn", Icon: FaLinkedin },
     { href: siteConfig.social.github, label: "GitHub", Icon: FaGithub },
@@ -28,23 +26,23 @@ export function Footer() {
   ].filter((item) => Boolean(item.href));
 
   return (
-    <footer className="relative mt-auto overflow-hidden border-t border-fg/10 bg-surface/50 backdrop-blur-sm">
-      <div className="relative z-10 mx-auto max-w-6xl px-4 py-14">
-        <p className="max-w-3xl font-display text-3xl font-semibold leading-tight text-fg sm:text-4xl md:text-5xl lg:text-6xl">
+    <footer className="mt-auto border-t border-hairline bg-bg">
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <p className="max-w-2xl font-display text-xl font-semibold leading-snug tracking-tight text-fg sm:text-2xl">
           {ft.before}
-          <span className="text-accent-violet">{ft.highlight1}</span>
+          <span className="text-fg">{ft.highlight1}</span>
           {ft.middle}
           <span className="text-accent">{ft.highlight2}</span>
           {ft.after}
         </p>
 
-        <div className="mt-12 grid gap-10 sm:grid-cols-2 sm:gap-x-16">
+        <div className="mt-10 grid gap-8 sm:grid-cols-2">
           <div>
-            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-muted">Explore</h2>
-            <ul className="mt-4 space-y-2 text-sm">
+            <h2 className="text-[13px] font-medium tracking-[0.03em] text-muted">Explore</h2>
+            <ul className="mt-3 grid grid-cols-2 gap-x-8 gap-y-2 text-[13px]">
               {EXPLORE.map(([href, label]) => (
                 <li key={href}>
-                  <Link href={href} className="text-fg/80 transition hover:text-accent">
+                  <Link href={href} className="text-fg-muted transition hover:text-fg">
                     {label}
                   </Link>
                 </li>
@@ -53,36 +51,29 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-muted">Follow me</h2>
-            <ul className="mt-4 flex flex-wrap items-center gap-3">
+            <h2 className="text-[13px] font-medium tracking-[0.03em] text-muted">Follow</h2>
+            <ul className="mt-3 flex flex-wrap items-center gap-2">
               {followSocials.map(({ href, label, Icon }) => (
                 <li key={label}>
                   <a
                     href={href}
-                    className={cn(
-                      "flex h-12 w-12 items-center justify-center rounded-full border bg-bg/40 transition",
-                      label === "LinkedIn" &&
-                        "border-[#0A66C2]/40 text-[#0A66C2] hover:border-[#0A66C2] hover:bg-[#0A66C2]/15",
-                      label === "GitHub" &&
-                        "border-fg/20 text-fg hover:border-fg/40 hover:bg-fg/10 dark:hover:bg-white/10",
-                      label === "X" && "border-fg/15 text-fg hover:border-accent/50 hover:text-accent",
-                    )}
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-hairline bg-surface text-fg-muted transition hover:border-hairline-strong hover:text-fg"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
                   >
-                    <Icon className="h-5 w-5" aria-hidden />
+                    <Icon className="h-4 w-4" aria-hidden />
                   </a>
                 </li>
               ))}
               <li>
                 <Link
                   href={siteConfig.resumePath}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-fg/15 bg-surface/70 text-fg transition hover:border-accent/50 hover:text-accent"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-hairline bg-surface text-fg-muted transition hover:border-hairline-strong hover:text-fg"
                   download
                   aria-label="Download resume PDF"
                 >
-                  <FileDown className="h-5 w-5" aria-hidden />
+                  <FileDown className="h-4 w-4" aria-hidden />
                 </Link>
               </li>
             </ul>
@@ -90,28 +81,20 @@ export function Footer() {
         </div>
       </div>
 
-      <div
-        className="pointer-events-none relative z-0 select-none border-t border-fg/5 py-6 text-center font-display font-bold uppercase leading-none text-fg/[0.07] dark:text-fg/[0.12]"
-        style={{ fontSize: "clamp(3rem, 14vw, 7.5rem)" }}
-        aria-hidden
-      >
-        {watermark}
-      </div>
-
-      <div className="relative z-10 border-t border-fg/10 bg-bg/40 px-4 py-5 dark:bg-black/30">
+      <div className="border-t border-hairline px-4 py-5">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 text-xs text-muted sm:flex-row">
           <p>
             {siteConfig.name} © {year}
-            <span className="mx-2 text-fg/20" aria-hidden>
+            <span className="mx-2 text-muted/50" aria-hidden>
               ·
             </span>
             {siteConfig.location}
-            <span className="mx-2 text-fg/20" aria-hidden>
+            <span className="mx-2 text-muted/50" aria-hidden>
               ·
             </span>
             Last updated {siteConfig.lastUpdated}
           </p>
-          <Link href="/privacy/" className="transition hover:text-accent">
+          <Link href="/privacy/" className="transition hover:text-fg">
             Privacy Policy
           </Link>
         </div>

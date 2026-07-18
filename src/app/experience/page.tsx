@@ -25,8 +25,10 @@ export default function ExperiencePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-24 md:py-28">
       <header className="mx-auto max-w-3xl text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-accent">Experience</p>
-        <h1 className="font-display mt-3 text-4xl font-bold text-fg md:text-5xl">Where I&apos;ve built</h1>
+        <p className="text-[13px] font-medium tracking-[0.03em] text-muted">Experience</p>
+        <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight text-fg md:text-5xl">
+          Where I&apos;ve built
+        </h1>
         <p className="mt-4 text-pretty text-muted">{siteConfig.pageIntros.experience}</p>
       </header>
       <div className="mt-16">
