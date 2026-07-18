@@ -8,7 +8,7 @@ HTTPS backend for the portfolio FAB. GitHub Pages cannot host API routes.
 
 ## Reply stack (free-first)
 
-1. **Workers AI** — `@cf/meta/llama-3.1-8b-instruct` via `[ai] binding` (Cloudflare free tier)
+1. **Workers AI** — `@cf/meta/llama-3.2-3b-instruct` via `[ai] binding` (Cloudflare free tier)
 2. **OpenAI** — only if `OPENAI_API_KEY` secret is set
 3. **Heuristics** — keyword fallback if models error or binding is missing
 

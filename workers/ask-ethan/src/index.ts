@@ -13,7 +13,10 @@ type ChatBody = { message?: string };
 type AiBinding = {
   run: (
     model: string,
-    input: { messages: { role: string; content: string }[] },
+    input: {
+      messages: { role: string; content: string }[];
+      max_tokens?: number;
+    },
   ) => Promise<{ response?: string } | string>;
 };
 
@@ -22,7 +25,8 @@ type Env = {
   OPENAI_API_KEY?: string;
 };
 
-const MODEL = "@cf/meta/llama-3.1-8b-instruct";
+// llama-3.1-8b-instruct was deprecated 2026-05-30 on Workers AI.
+const MODEL = "@cf/meta/llama-3.2-3b-instruct";
 
 const KNOWLEDGE = `
 Ethan Trent — AI Product Manager & builder (Dallas, TX).
@@ -84,6 +88,8 @@ async function workersAiReply(message: string, ai: AiBinding): Promise<string> {
       { role: "system", content: SYSTEM },
       { role: "user", content: message },
     ],
+    // Keep replies short for free-tier neuron budget.
+    max_tokens: 280,
   });
   const text =
     typeof result === "string"
@@ -91,7 +97,10 @@ async function workersAiReply(message: string, ai: AiBinding): Promise<string> {
       : typeof result?.response === "string"
         ? result.response.trim()
         : "";
-  if (!text) throw new Error("empty_workers_ai");
+  if (!text) {
+    console.error("workers_ai_empty", JSON.stringify(result));
+    throw new Error("empty_workers_ai");
+  }
   return text;
 }
 
@@ -147,7 +156,11 @@ export default {
         return json({ reply });
       }
       return json({ reply: heuristicReply(message) });
-    } catch {
+    } catch (err) {
+      console.error(
+        "ask_ethan_ai_failed",
+        err instanceof Error ? err.message : String(err),
+      );
       return json({ reply: heuristicReply(message) });
     }
   },
