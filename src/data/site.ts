@@ -31,14 +31,17 @@ export const siteConfig = {
    * Override at build time with `NEXT_PUBLIC_ASK_ETHAN_API_URL` if the endpoint moves.
    */
   askEthanApiUrl: "https://ask-ethan.neat-fang.workers.dev",
-  /** Hero copy — value-led headline with PM positioning; role title lives in the label, not the H1. */
+  /**
+   * Hero copy — brand name is the H1; value line is the supporting headline.
+   * First-viewport CTAs: Contact + Resume (case studies live in the next sections).
+   */
   hero: {
     label: "AI Product Manager & Builder",
     headlineLines: ["I help teams turn", "ambiguous AI problems", "into shipped products."] as const,
     positioning:
       "From discovery to production — I define what “good” looks like for probabilistic products, align stakeholders on constraints, and ship AI users can trust.",
-    availability: "Open to full-time PM roles · Dallas, TX / Remote",
-    primaryCta: { label: "See my case studies", href: "/projects/" },
+    availability: "Open to full-time PM roles · Dallas / Remote",
+    primaryCta: { label: "Get in touch", href: "/contact/" },
     secondaryCtaLabel: "Download resume",
   },
   /** Profile image in `/public`. Space in filename → use %20 in URL. On error, UI falls back to mark. */

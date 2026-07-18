@@ -42,5 +42,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Resume source at repo root; site serves public/resume.pdf
+# Resume / personal docs at repo root (site serves files from public/)
 /Ethan_Trent_Resume.pdf
+/Profile.pdf
+
+# Local Cursor agent skills (not site source); keep .cursor/mcp.json trackable
+.cursor/skills/

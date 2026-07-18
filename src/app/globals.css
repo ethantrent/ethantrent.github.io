@@ -80,3 +80,48 @@ body {
   font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
+
+/*
+  Home hero atmosphere — ink depth + soft blue wash + faint grid.
+  No particles, glass, or aurora. Artifact plane fades into the canvas.
+*/
+.hero-atmosphere {
+  background:
+    radial-gradient(ellipse 70% 55% at 85% 20%, rgb(59 130 246 / 0.09), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 5% 90%, rgb(59 130 246 / 0.04), transparent 50%),
+    linear-gradient(180deg, #0a0b0e 0%, var(--bg) 45%, var(--bg) 100%);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgb(35 37 42 / 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(35 37 42 / 0.45) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 75% 70% at 60% 40%, black 10%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 60% 40%, black 10%, transparent 72%);
+}
+
+/* Soft right-side light bleed — no photo/diagram; type stays the visual anchor */
+.hero-bleed {
+  background:
+    radial-gradient(ellipse 55% 70% at 88% 35%, rgb(59 130 246 / 0.14), transparent 62%),
+    radial-gradient(ellipse 40% 50% at 72% 75%, rgb(247 248 248 / 0.03), transparent 55%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 42%, black 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 42%, black 100%);
+}
+
+@media (max-width: 767px) {
+  .hero-bleed {
+    background:
+      radial-gradient(ellipse 90% 45% at 50% 0%, rgb(59 130 246 / 0.1), transparent 58%),
+      radial-gradient(ellipse 70% 40% at 80% 60%, rgb(59 130 246 / 0.06), transparent 55%);
+    mask-image: linear-gradient(180deg, black 0%, black 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, black 0%, black 55%, transparent 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe\:animate-bounce {
+    animation: none;
+  }
+}

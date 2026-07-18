@@ -4,6 +4,8 @@ Source of truth for UI work on this site. Tokens live in [`src/app/globals.css`]
 
 Hand-written (Python `ui-ux-pro-max` CLI not available on this machine). Update this file when tokens or type pairing change.
 
+Aligned with ui-ux-pro-max Portfolio/Personal guidance: storytelling-driven layout, dark Linear minimalism, restrained motion (no parallax stacks).
+
 ---
 
 ## Product context
@@ -52,7 +54,8 @@ Hand-written (Python `ui-ux-pro-max` CLI not available on this machine). Update 
 
 | Scale | Usage |
 |---|---|
-| Display hero | `text-4xl`–`text-5xl`, `font-semibold`, tracking tight |
+| Display hero brand | `text-5xl`–`text-7xl`, `.font-display`, `font-semibold` — name is the H1 |
+| Hero value line | `text-xl`–`text-2xl`, `.font-display`, muted foreground |
 | Section H2 | `text-2xl`–`text-4xl`, `.font-display` |
 | Body | `text-base` / `text-sm`, Inter, case-study body `leading-[1.75]` |
 | Eyebrow | `text-[13px] font-medium tracking-[0.03em] text-muted` |
@@ -71,6 +74,26 @@ Sentence case for UI labels. No Inter-as-display — Outfit carries expressive h
 
 ---
 
+## Home hero (first viewport)
+
+One composition — not a dashboard.
+
+| Element | Rule |
+|---|---|
+| Brand | `siteConfig.name` is the H1 (hero-level signal) |
+| Headline | One value line (Outfit, secondary to brand) |
+| Support | One short positioning sentence |
+| CTAs | Contact (primary) + Resume (secondary); ≥44px |
+| Visual | Atmosphere-only bleed (`.hero-atmosphere` + `.hero-grid` + `.hero-bleed`) — no photo or diagram in the hero |
+| Secondary | Email + socials in a quiet bottom row — not competing with CTAs |
+| Out | No cards, floating badges, stat strips, or avatar chips in the hero |
+
+Atmosphere classes live in [`src/app/globals.css`](../src/app/globals.css). Soft blue radial washes only — no aurora, glass, or particles.
+
+Impact snapshot follows immediately: **no card wrapper**; hairline top border; one job = quantified outcomes.
+
+---
+
 ## Components (shared)
 
 | Class | File | Notes |
@@ -80,7 +103,7 @@ Sentence case for UI labels. No Inter-as-display — Outfit carries expressive h
 | `eyebrow` | `src/lib/ui.ts` | Section labels |
 | `Callout` | `src/components/case-study/Callout.tsx` | Cyan left border; scroll reveal |
 | `ArtifactFrame` | `src/components/case-study/ArtifactFrame.tsx` | Prefer real `imageSrc` over placeholder |
-| `CaseStudyToc` + `ReadingProgress` | case-study/ | Desktop reading aids (AuditAI) |
+| `CaseStudyToc` + `ReadingProgress` | case-study/ | Desktop reading aids |
 
 ---
 
@@ -89,11 +112,13 @@ Sentence case for UI labels. No Inter-as-display — Outfit carries expressive h
 - Max 1–2 key scroll reveals per view (impact numbers, featured cards, Callouts).
 - Prefer opacity + `translateY` (~8–10px), 150–400ms, ease-out; `whileInView` once.
 - Always respect `prefers-reduced-motion` (`useReducedMotion` / CSS media query).
-- No parallax stacks, bounce, particles, or custom cursors.
+- No parallax stacks, bounce stacks, particles, or custom cursors. Scroll cue may use a single `motion-safe:animate-bounce` on the chevron only.
 
 ---
 
 ## Home storytelling sequence
+
+Matches [`src/app/page.tsx`](../src/app/page.tsx):
 
 1. Hero  
 2. Impact snapshot  
@@ -101,8 +126,8 @@ Sentence case for UI labels. No Inter-as-display — Outfit carries expressive h
 4. How I work / manifesto  
 5. Credentials strip  
 6. Testimonial (only if `siteConfig.testimonial.quote` is set)  
-7. CTA  
-8. Skills one-liner → `/skills/`  
+7. Skills one-liner → `/skills/`  
+8. CTA  
 
 Do not restore home skills grids or tech marquees.
 
@@ -110,9 +135,9 @@ Do not restore home skills grids or tech marquees.
 
 ## Content credibility
 
-- Case cards and “What We Built” use real artifacts under `/public/projects/`.
-- Do not invent metrics for `{/* TODO: add data */}` holes — leave until shareable.
-- Ask Ethan: visitor-facing empty state when API URL missing; no purple chrome.
+- Case cards and “What We Built” use real artifacts under [`/public/artifacts/`](../public/artifacts/).
+- Do not invent metrics or testimonials — leave slots empty until shareable.
+- Ask Ethan: visitor-facing empty state when API URL missing; no purple chrome; cyan not used for chat chrome.
 
 ---
 
