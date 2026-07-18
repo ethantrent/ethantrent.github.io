@@ -13,11 +13,12 @@ export const experience: ExperienceEntry[] = [
     context: "Currently on the Conversational AI team (Summer 2026 · Westlake, TX).",
     bullets: [
       "I own product work on conversational AI in a regulated fintech environment — product direction, stakeholder alignment, and shipping with compliance in the loop.",
+      "I partner with engineering, design, and risk/compliance stakeholders to define success criteria for probabilistic assistant experiences before release.",
     ],
     logoSrc: "/charles-schwab-corporation-logo.svg.png",
     logoAlt: "Charles Schwab logo",
     detail:
-      "Focus is conversational AI in a large enterprise context — projects, metrics, and outcomes to be added as the summer progresses.",
+      "Conversational AI product work inside a large regulated enterprise — emphasis on trust, clarity of “good,” and cross-functional shipping discipline.",
   },
   {
     id: "cornell-fellow",
@@ -27,12 +28,12 @@ export const experience: ExperienceEntry[] = [
     context: "12-month AI/ML fellowship pairing Cornell coursework with an industry AI Studio challenge.",
     bullets: [
       "I was selected from 3,500+ applicants → earning the Cornell University Machine Learning Certificate with Cornell faculty upon completion.",
-      "I'm partnering with an industry company through AI Studio on a real-world ML challenge → agentic workflows, evaluation, and shipping discipline in an academic–industry setting (scope TBD).",
+      "I'm partnering with an industry company through AI Studio on a real-world ML challenge — agentic workflows, evaluation harnesses, and shipping discipline in an academic–industry setting.",
     ],
     logoSrc: "/break_through_tech_logo.jpg",
     logoAlt: "Break Through Tech logo",
     detail:
-      "Program blends academic rigor with industry application — ideal for deepening end-to-end ML product skills alongside formal certification.",
+      "Program blends academic rigor with industry application — deepening end-to-end ML product skills alongside formal certification.",
   },
   {
     id: "ics-pm",

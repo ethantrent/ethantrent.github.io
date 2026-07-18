@@ -4,17 +4,15 @@ Personal portfolio for an AI Product Manager profile. **Deployed to GitHub Pages
 
 ## Live site
 
-**[https://ethantrent.github.io](https://ethantrent.github.io)** (user Pages repo [`ethantrent/ethantrent.github.io`](https://github.com/ethantrent/ethantrent.github.io))
-
-The former project URL `https://ethantrent.github.io/portfolio/` is **retired**; Pages was removed from the old `portfolio` repo so there is a single canonical link.
+**[https://ethantrent.github.io](https://ethantrent.github.io)** ([`ethantrent/ethantrent.github.io`](https://github.com/ethantrent/ethantrent.github.io))
 
 ## Stack
 
 - Next.js (App Router) with **static export** (`output: "export"`)
-- TypeScript, Tailwind CSS v4, Framer Motion, `next-themes`, Lucide + react-icons, `react-fast-marquee` (home tech strip)
-- Contact form via **Formspree** (no backend on Pages)
-- **Custom cursor** (fine pointer only, off when `prefers-reduced-motion`) — see `CustomCursor.tsx`
-- Routes: `/`, `/about`, `/experience`, `/projects`, `/skills`, `/contact`, `/privacy` (placeholder policy)
+- TypeScript, Tailwind CSS v4, Framer Motion
+- Contact form via **Formspree** (no Node backend on Pages)
+- Optional **Ask Ethan** chat via Cloudflare Worker (`workers/ask-ethan/`)
+- Routes: `/`, `/about`, `/experience`, `/projects`, `/skills`, `/writing`, `/contact`, `/privacy`
 
 ## Local development
 
@@ -25,57 +23,68 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Environment variables
+Copy `.env.example` to `.env.local` for local Formspree / Ask Ethan testing.
 
-Copy `.env.example` to `.env.local`:
+## Environment variables
 
 | Variable | Purpose |
 |----------|---------|
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL (no trailing slash). Local: `http://localhost:3000`. CI sets `https://ethantrent.github.io` automatically. |
-| `NEXT_PUBLIC_BASE_PATH` | Leave unset locally. Only used when simulating a **project** site build (`/repo-name`). |
-| `NEXT_PUBLIC_FORMSPREE_FORM_ID` | Formspree form id from `https://formspree.io/f/{id}` |
+| `NEXT_PUBLIC_BASE_PATH` | Leave unset locally. Only for simulating a **project** site (`/repo-name`). |
+| `NEXT_PUBLIC_FORMSPREE_FORM_ID` | Formspree form id from `https://formspree.io/f/{id}` (required for contact form POST). |
+| `NEXT_PUBLIC_ASK_ETHAN_API_URL` | Optional. HTTPS Worker URL that accepts `POST { "message" }` → `{ "reply" }`. |
+| `NEXT_PUBLIC_VISITOR_COUNTER_JSON` | Optional. JSON URL returning `{ "count": number }` with CORS. |
+
+## GitHub Actions secrets (production)
+
+Repo → **Settings → Secrets and variables → Actions** → **New repository secret**.
+
+| Secret name | Required | Notes |
+|-------------|----------|--------|
+| `NEXT_PUBLIC_FORMSPREE_FORM_ID` | **Yes** for working contact form | Only the form id (not the full URL). Already wired in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). |
+| `NEXT_PUBLIC_ASK_ETHAN_API_URL` | No | Set after deploying [`workers/ask-ethan`](workers/ask-ethan/README.md). Without it, the FAB still opens with email / LinkedIn / Contact fallbacks. |
+
+After adding or changing a secret, re-run **Actions → Deploy to GitHub Pages** (or push to `main`) so the static build inlines the new `NEXT_PUBLIC_*` values.
+
+### Formspree setup (first time)
+
+1. Create a form at [formspree.io](https://formspree.io) and copy the id from `https://formspree.io/f/{id}`.
+2. Add secret `NEXT_PUBLIC_FORMSPREE_FORM_ID` = `{id}`.
+3. Redeploy. Test a submission on `/contact/`.
+
+### Ask Ethan (optional)
+
+```bash
+cd workers/ask-ethan
+npm install
+npx wrangler login
+npx wrangler deploy
+# optional LLM answers:
+npx wrangler secret put OPENAI_API_KEY
+```
+
+Copy the Worker URL into Actions secret `NEXT_PUBLIC_ASK_ETHAN_API_URL`, then redeploy Pages. Details: [`workers/ask-ethan/README.md`](workers/ask-ethan/README.md).
 
 ## Customize content
 
-Main content lives in:
-
-- `src/data/site.ts` — name, email, socials, hero/manifesto/marquee/footer copy
-- `src/data/projects.ts` — project cards (includes `category` for home teasers)
+- `src/data/site.ts` — name, email, socials, hero, testimonial, SEO
+- `src/data/projects.ts` — case study cards
 - `src/data/experience.ts` — timeline
-- `src/data/skills.ts` — skill categories (`iconKey` maps in `src/lib/tech-icons.tsx` + `SkillsGrid`)
-
-The home **tech marquee** becomes a static flex row when the user prefers reduced motion.
-
-Replace `public/profile-mark.svg` (or use your photo path in `Hero` / `AboutSection`), `public/projects/*`, `public/experience/*`, and your resume PDF in `public/` (keep `siteConfig.resumePath` in `src/data/site.ts` in sync, e.g. `Ethan_Trent_Resume.pdf`).
+- `src/data/skills.ts` — skill categories
+- `src/data/writing.ts` — essays
+- `public/artifacts/` — case study diagrams
+- Resume PDF in `public/` (keep `siteConfig.resumePath` in sync)
 
 ## GitHub Pages deployment
 
-**Repository:** [`ethantrent/ethantrent.github.io`](https://github.com/ethantrent/ethantrent.github.io) — must be named **`username.github.io`** for **`https://ethantrent.github.io`**.
-
 1. **Settings → Pages → Source:** **GitHub Actions**
-2. Push **`main`** — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds with **no** `basePath` (workflow detects `*.github.io` repo name).
-3. **Actions → Deploy to GitHub Pages** — approve **`github-pages`** environment on first run if prompted, or use **Run workflow**.
-
-### Git remotes (this clone)
-
-- **`origin`** → `ethantrent.github.io` (primary; push here for deploy)
-- **`portfolio`** → legacy [`ethantrent/portfolio`](https://github.com/ethantrent/portfolio) (archived code mirror only; Pages disabled)
+2. Push **`main`** — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds with **no** `basePath` for `*.github.io` repos.
+3. **Actions → Deploy to GitHub Pages** — approve the `github-pages` environment on first run if prompted.
 
 ### If you see “404 — There isn’t a GitHub Pages site here”
 
-1. Confirm you’re opening **`https://ethantrent.github.io`** after a successful **Deploy** run.
+1. Open **`https://ethantrent.github.io`** after a successful Deploy run.
 2. **Settings → Pages** must use **GitHub Actions**, not “Deploy from a branch.”
-
-### Simulate a **project** site build locally (subpath)
-
-Only if you ever host from a non-`*.github.io` repo again:
-
-```bash
-set GITHUB_PAGES_BASE_PATH=/your-repo
-set NEXT_PUBLIC_BASE_PATH=/your-repo
-set NEXT_PUBLIC_SITE_URL=https://YOUR_USER.github.io/your-repo
-npm run build
-```
 
 ## Scripts
 

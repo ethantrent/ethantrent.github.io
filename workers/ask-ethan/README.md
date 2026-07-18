@@ -6,7 +6,16 @@ HTTPS backend for the portfolio FAB. GitHub Pages cannot host API routes.
 
 `POST` JSON `{ "message": "..." }` → `{ "reply": "..." }`
 
-## Deploy
+## Current preview deploy
+
+Temporary Worker (claim within ~60 minutes of first deploy or it may expire):
+
+- URL: `https://ask-ethan.neat-fang.workers.dev`
+- Claim: https://dash.cloudflare.com/claim-preview?claimToken=UvWyGCwKqm3ZdpXG8925hhsoh4V7d_lxxj__JgONe4Y
+
+After claiming, keep that URL (or redeploy under your account) and ensure Actions secret `NEXT_PUBLIC_ASK_ETHAN_API_URL` matches.
+
+## Deploy (your Cloudflare account)
 
 ```bash
 cd workers/ask-ethan
@@ -17,14 +26,12 @@ npx wrangler deploy
 npx wrangler secret put OPENAI_API_KEY
 ```
 
-Copy the worker URL (e.g. `https://ask-ethan.<account>.workers.dev`).
-
 ## Wire the static site
 
-Add a GitHub Actions / Pages build secret:
+Repo secret (wired in `.github/workflows/deploy.yml`):
 
 `NEXT_PUBLIC_ASK_ETHAN_API_URL=https://ask-ethan.<account>.workers.dev`
 
-Also add it to the Deploy workflow `env:` block next to Formspree (see `.github/workflows/deploy.yml`), then redeploy the site.
+Redeploy Pages after changing the secret so the static build inlines it.
 
 Without the secret, the FAB still opens with email / LinkedIn / Contact fallbacks.
