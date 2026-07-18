@@ -6,32 +6,35 @@ HTTPS backend for the portfolio FAB. GitHub Pages cannot host API routes.
 
 `POST` JSON `{ "message": "..." }` → `{ "reply": "..." }`
 
-## Current preview deploy
+## Reply stack (free-first)
 
-Temporary Worker (claim within ~60 minutes of first deploy or it may expire):
+1. **Workers AI** — `@cf/meta/llama-3.1-8b-instruct` via `[ai] binding` (Cloudflare free tier)
+2. **OpenAI** — only if `OPENAI_API_KEY` secret is set
+3. **Heuristics** — keyword fallback if models error or binding is missing
+
+## Production Worker
 
 - URL: `https://ask-ethan.neat-fang.workers.dev`
-- Claim: https://dash.cloudflare.com/claim-preview?claimToken=UvWyGCwKqm3ZdpXG8925hhsoh4V7d_lxxj__JgONe4Y
+- Wired into Pages via `siteConfig.askEthanApiUrl` and/or Actions secret `NEXT_PUBLIC_ASK_ETHAN_API_URL`
 
-After claiming, keep that URL (or redeploy under your account) and ensure Actions secret `NEXT_PUBLIC_ASK_ETHAN_API_URL` matches.
-
-## Deploy (your Cloudflare account)
+## Deploy
 
 ```bash
 cd workers/ask-ethan
 npm install
-npx wrangler login
+npx wrangler login   # once, if needed
 npx wrangler deploy
-# optional LLM answers:
+```
+
+Optional paid upgrade:
+
+```bash
 npx wrangler secret put OPENAI_API_KEY
 ```
 
-## Wire the static site
+## Local test (AI needs remote)
 
-Repo secret (wired in `.github/workflows/deploy.yml`):
-
-`NEXT_PUBLIC_ASK_ETHAN_API_URL=https://ask-ethan.<account>.workers.dev`
-
-Redeploy Pages after changing the secret so the static build inlines it.
-
-Without the secret, the FAB still opens with email / LinkedIn / Contact fallbacks.
+```bash
+npx wrangler dev --remote
+# then: POST http://127.0.0.1:8787  { "message": "Tell me about AuditAI" }
+```

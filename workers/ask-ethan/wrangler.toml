@@ -2,5 +2,8 @@ name = "ask-ethan"
 main = "src/index.ts"
 compatibility_date = "2026-07-01"
 
-# Optional: wrangler secret put OPENAI_API_KEY
-# Without it, the worker answers from the local knowledge base below.
+# Free-tier edge LLM (Llama). Binding available as env.AI.
+[ai]
+binding = "AI"
+
+# Optional paid upgrade: wrangler secret put OPENAI_API_KEY

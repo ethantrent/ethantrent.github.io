@@ -2,12 +2,27 @@
  * Ask Ethan — Cloudflare Worker for the portfolio chat FAB.
  * POST JSON { "message": "..." } → { "reply": "..." }
  *
- * Deploy: cd workers/ask-ethan && npm i && npx wrangler deploy
- * Then set NEXT_PUBLIC_ASK_ETHAN_API_URL to the worker URL at Pages build time
- * (GitHub Actions secret) so the static site can call it.
+ * Reply order:
+ * 1. Workers AI (free Llama on Cloudflare) when AI binding is available
+ * 2. OpenAI if OPENAI_API_KEY secret is set
+ * 3. Keyword heuristics (always works offline)
  */
 
 type ChatBody = { message?: string };
+
+type AiBinding = {
+  run: (
+    model: string,
+    input: { messages: { role: string; content: string }[] },
+  ) => Promise<{ response?: string } | string>;
+};
+
+type Env = {
+  AI?: AiBinding;
+  OPENAI_API_KEY?: string;
+};
+
+const MODEL = "@cf/meta/llama-3.1-8b-instruct";
 
 const KNOWLEDGE = `
 Ethan Trent — AI Product Manager & builder (Dallas, TX).
@@ -21,8 +36,14 @@ Case studies:
 - Coding Interviews club: grew 11 → 30+ members; 40% internship rate among active cohort.
 
 How he works: define “good” before the model; design escalation as first-class product behavior; treat evaluation as a product surface.
-Contact: ethanjotrent@gmail.com · LinkedIn linkedin.com/in/ethantrent · portfolio contact form.
+Contact: ethanjotrent@gmail.com · LinkedIn linkedin.com/in/ethantrent · portfolio contact form at ethantrent.github.io/contact/.
 `.trim();
+
+const SYSTEM = `You are Ethan Trent answering briefly (3–6 sentences) for recruiters on his portfolio site. Stay factual. First person. Use only this knowledge:
+
+${KNOWLEDGE}
+
+If unsure, point them to email or a case study URL on ethantrent.github.io. Do not invent metrics, employers, or titles.`;
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -57,6 +78,23 @@ function heuristicReply(message: string): string {
   return "I'm Ethan Trent — AI PM focused on turning ambiguous AI problems into shipped, trustworthy products (Schwab Conversational AI; AuditAI agents; campus RAG). Ask about a case study, how I work with stakeholders, or the best way to get in touch.";
 }
 
+async function workersAiReply(message: string, ai: AiBinding): Promise<string> {
+  const result = await ai.run(MODEL, {
+    messages: [
+      { role: "system", content: SYSTEM },
+      { role: "user", content: message },
+    ],
+  });
+  const text =
+    typeof result === "string"
+      ? result.trim()
+      : typeof result?.response === "string"
+        ? result.response.trim()
+        : "";
+  if (!text) throw new Error("empty_workers_ai");
+  return text;
+}
+
 async function openAiReply(message: string, apiKey: string): Promise<string> {
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -68,10 +106,7 @@ async function openAiReply(message: string, apiKey: string): Promise<string> {
       model: "gpt-4o-mini",
       temperature: 0.4,
       messages: [
-        {
-          role: "system",
-          content: `You are Ethan Trent answering briefly (3–6 sentences) for recruiters on his portfolio. Stay factual. Use only this knowledge:\n\n${KNOWLEDGE}\n\nIf unsure, point them to email or a case study URL. First person.`,
-        },
+        { role: "system", content: SYSTEM },
         { role: "user", content: message },
       ],
     }),
@@ -81,12 +116,12 @@ async function openAiReply(message: string, apiKey: string): Promise<string> {
     choices?: { message?: { content?: string } }[];
   };
   const text = data.choices?.[0]?.message?.content?.trim();
-  if (!text) throw new Error("empty");
+  if (!text) throw new Error("empty_openai");
   return text;
 }
 
 export default {
-  async fetch(request: Request, env: { OPENAI_API_KEY?: string }): Promise<Response> {
+  async fetch(request: Request, env: Env): Promise<Response> {
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: CORS });
     }
@@ -103,6 +138,10 @@ export default {
     if (!message) return json({ error: "message required" }, 400);
 
     try {
+      if (env.AI) {
+        const reply = await workersAiReply(message, env.AI);
+        return json({ reply });
+      }
       if (env.OPENAI_API_KEY) {
         const reply = await openAiReply(message, env.OPENAI_API_KEY);
         return json({ reply });
