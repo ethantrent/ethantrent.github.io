@@ -26,6 +26,11 @@ export const siteConfig = {
     twitter: "",
   },
   resumePath: "/Ethan_Trent_Resume.pdf",
+  /**
+   * Ask Ethan chat API (public Worker URL — not a secret).
+   * Override at build time with `NEXT_PUBLIC_ASK_ETHAN_API_URL` if the endpoint moves.
+   */
+  askEthanApiUrl: "https://ask-ethan.neat-fang.workers.dev",
   /** Hero copy — value-led headline with PM positioning; role title lives in the label, not the H1. */
   hero: {
     label: "AI Product Manager & Builder",

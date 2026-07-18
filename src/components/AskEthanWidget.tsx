@@ -12,7 +12,11 @@ import { siteConfig } from "@/data/site";
  * otherwise shows visitor-facing contact alternatives (never env setup copy).
  */
 export function AskEthanWidget() {
-  const apiUrl = process.env.NEXT_PUBLIC_ASK_ETHAN_API_URL?.replace(/\/$/, "") ?? "";
+  // Prefer build-time env; fall back to public siteConfig URL so local/dev and
+  // any missed CI secret still enable chat (Worker URL is not secret).
+  const fromEnv = process.env.NEXT_PUBLIC_ASK_ETHAN_API_URL;
+  const raw = (fromEnv && fromEnv.length > 0 ? fromEnv : siteConfig.askEthanApiUrl) || "";
+  const apiUrl = raw.replace(/\/$/, "");
   return <AskEthanShell apiUrl={apiUrl} />;
 }
 
