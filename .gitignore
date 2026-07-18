@@ -46,5 +46,7 @@ next-env.d.ts
 /Ethan_Trent_Resume.pdf
 /Profile.pdf
 
-# Local Cursor agent skills (not site source); keep .cursor/mcp.json trackable
-.cursor/skills/
+# Local Cursor agent skills (not site source); keep mcp + ui-ux-pro-max trackable
+.cursor/skills/*
+!.cursor/skills/ui-ux-pro-max/
+!.cursor/skills/ui-ux-pro-max/**
