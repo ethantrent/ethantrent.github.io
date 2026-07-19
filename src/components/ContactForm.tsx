@@ -1,51 +1,28 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
+import { CheckCircle2, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/data/site";
 import { buttonPrimary, buttonSecondary } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 
-const STEPS = [
-  { id: "name", label: "Step 01", question: "What's your name?", type: "text", name: "name", autoComplete: "name" },
-  { id: "email", label: "Step 02", question: "What's your email?", type: "email", name: "email", autoComplete: "email" },
-  { id: "company", label: "Step 03", question: "What company are you from?", type: "text", name: "company", autoComplete: "organization" },
-  { id: "message", label: "Step 04", question: "What would you like to discuss?", type: "textarea", name: "message", autoComplete: "off" },
-] as const;
-
-type FormState = Record<string, string>;
+const fieldClassName =
+  "mt-2 w-full min-h-11 rounded-lg border border-hairline bg-surface px-4 py-2.5 text-sm text-fg placeholder:text-muted transition duration-200 focus:border-accent focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 /**
- * Conversational multi-step contact flow; posts to Formspree when `NEXT_PUBLIC_FORMSPREE_FORM_ID` is set.
+ * Single-screen hire form; posts to Formspree when `NEXT_PUBLIC_FORMSPREE_FORM_ID` is set.
+ * Direct lines aside stays a one-click escape hatch for busy recruiters.
  */
 export function ContactForm() {
   const reduceMotion = useReducedMotion();
-  const formRef = useRef<HTMLFormElement>(null);
-  const [step, setStep] = useState(0);
-  const [values, setValues] = useState<FormState>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const formId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
   const action = formId ? `https://formspree.io/f/${formId}` : "";
-
-  const current = STEPS[step];
-  const isLast = step === STEPS.length - 1;
-  const progress = ((step + 1) / STEPS.length) * 100;
-
-  const canAdvance = (values[current.name] ?? "").trim().length > 0;
-
-  const goNext = () => {
-    if (!canAdvance) return;
-    if (isLast) {
-      formRef.current?.requestSubmit();
-      return;
-    }
-    setStep((s) => Math.min(s + 1, STEPS.length - 1));
-  };
-
-  const goBack = () => setStep((s) => Math.max(s - 1, 0));
+  const mailtoHref = `mailto:${siteConfig.email}?subject=${encodeURIComponent("Portfolio inquiry")}`;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -65,8 +42,6 @@ export function ContactForm() {
       if (res.ok) {
         setStatus("success");
         form.reset();
-        setValues({});
-        setStep(0);
       } else {
         setStatus("error");
       }
@@ -76,7 +51,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px]">
+    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-14 lg:items-start">
       <div>
         {!action && process.env.NODE_ENV === "development" ? (
           <p className="mb-6 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-fg">
@@ -86,119 +61,188 @@ export function ContactForm() {
           </p>
         ) : null}
 
-        <form ref={formRef} onSubmit={onSubmit} className="space-y-8" noValidate>
-          <input type="hidden" name="_subject" value={`Portfolio inquiry from ${siteConfig.name}`} />
-          {STEPS.map((s, i) => {
-            if (i === step) return null;
-            const val = values[s.name];
-            if (!val) return null;
-            return <input key={s.name} type="hidden" name={s.name} value={val} readOnly />;
-          })}
+        {status === "success" ? (
+          <motion.div
+            role="status"
+            aria-live="polite"
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="rounded-xl border border-hairline bg-surface px-6 py-8 md:px-8 md:py-10"
+          >
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-available" aria-hidden />
+              <div>
+                <h2 className="font-display text-xl font-semibold tracking-tight text-fg">
+                  Message sent
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  Thanks — I usually reply within a few business days. Prefer not to wait on the form? Email me
+                  directly or grab the resume from the side panel.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a href={mailtoHref} className={buttonPrimary}>
+                    <Mail className="h-4 w-4" aria-hidden />
+                    Email me
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setStatus("idle")}
+                    className={buttonSecondary}
+                  >
+                    Send another message
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ) : (
+          <form
+            action={action || undefined}
+            method="POST"
+            onSubmit={onSubmit}
+            className="space-y-5"
+            noValidate
+          >
+            <input type="hidden" name="_subject" value={`Portfolio inquiry from ${siteConfig.name}`} />
 
-          <div className="h-1 w-full overflow-hidden rounded-full bg-surface-3" aria-hidden>
-            <motion.div
-              className="h-full rounded-full bg-accent"
-              initial={false}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: reduceMotion ? 0 : 0.25 }}
-            />
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.id}
-              initial={reduceMotion ? false : { opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={reduceMotion ? undefined : { opacity: 0, x: -16 }}
-              transition={{ duration: 0.22 }}
-            >
-              <p className="text-[13px] font-medium tracking-[0.03em] text-muted">{current.label}</p>
-              <label htmlFor={current.name} className="mt-2 block font-display text-2xl font-semibold tracking-tight text-fg">
-                {current.question}
-              </label>
-              {current.type === "textarea" ? (
-                <textarea
-                  id={current.name}
-                  name={current.name}
-                  required
-                  rows={5}
-                  value={values[current.name] ?? ""}
-                  onChange={(e) => setValues((v) => ({ ...v, [current.name]: e.target.value }))}
-                  className="mt-4 w-full rounded-lg border border-hairline bg-surface px-4 py-3 text-fg placeholder:text-muted focus:border-accent focus:outline-none"
-                  placeholder="Role, timeline, team size, or anything else that helps me respond."
-                  autoComplete={current.autoComplete}
-                />
-              ) : (
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label htmlFor="name" className="block text-[13px] font-medium text-fg-muted">
+                  Name <span className="text-muted">(required)</span>
+                </label>
                 <input
-                  id={current.name}
-                  name={current.name}
-                  type={current.type}
+                  id="name"
+                  name="name"
+                  type="text"
                   required
-                  value={values[current.name] ?? ""}
-                  onChange={(e) => setValues((v) => ({ ...v, [current.name]: e.target.value }))}
-                  className="mt-4 w-full rounded-lg border border-hairline bg-surface px-4 py-3 text-fg placeholder:text-muted focus:border-accent focus:outline-none"
-                  placeholder="Your answer"
-                  autoComplete={current.autoComplete}
+                  autoComplete="name"
+                  className={fieldClassName}
+                  placeholder="Your name"
                 />
-              )}
-            </motion.div>
-          </AnimatePresence>
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-[13px] font-medium text-fg-muted">
+                  Email <span className="text-muted">(required)</span>
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  className={fieldClassName}
+                  placeholder="you@company.com"
+                />
+              </div>
+            </div>
 
-          <div className="flex flex-wrap gap-3" aria-live="polite">
-            {step > 0 && (
-              <button type="button" onClick={goBack} className={buttonSecondary}>
-                Back
+            <div>
+              <label htmlFor="company" className="block text-[13px] font-medium text-fg-muted">
+                Company <span className="text-muted">(optional)</span>
+              </label>
+              <input
+                id="company"
+                name="company"
+                type="text"
+                autoComplete="organization"
+                className={fieldClassName}
+                placeholder="Company or team"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-[13px] font-medium text-fg-muted">
+                Message <span className="text-muted">(required)</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={5}
+                autoComplete="off"
+                className={cn(fieldClassName, "min-h-[8.5rem] resize-y py-3")}
+                placeholder="Role, timeline, team size, or anything else that helps me respond."
+              />
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className={cn(buttonPrimary, "disabled:cursor-not-allowed disabled:opacity-50")}
+              >
+                {status === "submitting" ? "Sending…" : "Send message"}
               </button>
-            )}
-            <button
-              type="button"
-              onClick={goNext}
-              disabled={!canAdvance || status === "submitting"}
-              className={cn(buttonPrimary, "disabled:cursor-not-allowed disabled:opacity-50")}
-            >
-              {isLast ? (status === "submitting" ? "Sending…" : "Submit") : "Continue"}
-            </button>
-          </div>
+              <p className="text-xs text-muted">
+                Or{" "}
+                <a href={mailtoHref} className="cursor-pointer text-accent transition duration-200 hover:underline">
+                  email me directly
+                </a>
+                .
+              </p>
+            </div>
 
-          {status === "success" && (
-            <p className="text-sm font-medium text-emerald-400">Thanks — your message is on its way.</p>
-          )}
-          {status === "error" && (
-            <p className="text-sm font-medium text-red-400">
-              Something went wrong. Double-check your Formspree ID or try again.
-            </p>
-          )}
-        </form>
+            {status === "error" ? (
+              <div
+                role="alert"
+                className="rounded-lg border border-red-500/35 bg-red-500/10 px-4 py-3 text-sm text-fg"
+              >
+                <p className="font-medium text-red-300">Couldn’t send the form.</p>
+                <p className="mt-1 text-muted">
+                  Please try again, or reach me at{" "}
+                  <a href={mailtoHref} className="cursor-pointer font-medium text-accent hover:underline">
+                    {siteConfig.email}
+                  </a>
+                  .
+                </p>
+              </div>
+            ) : null}
+          </form>
+        )}
       </div>
 
-      <aside className="h-fit space-y-6 rounded-xl border border-hairline bg-surface p-6" aria-label="Contact details">
-        <h2 className="font-display text-lg font-semibold text-fg">Direct lines</h2>
-        <div className="space-y-3 text-sm text-muted">
+      <aside
+        className="h-fit space-y-6 border-t border-hairline pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8"
+        aria-label="Contact details"
+      >
+        <h2 className="font-display text-lg font-semibold tracking-tight text-fg">Direct lines</h2>
+        <p className="text-sm leading-relaxed text-muted">
+          Prefer a quick path? Email, LinkedIn, or resume — no form required.
+        </p>
+        <div className="space-y-4 text-sm">
           <p>
-            <span className="block text-xs font-medium text-muted">Email</span>
-            <a href={`mailto:${siteConfig.email}`} className="text-accent hover:underline">
+            <span className="block text-[13px] font-medium text-muted">Email</span>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="mt-1 inline-block cursor-pointer text-accent transition duration-200 hover:underline"
+            >
               {siteConfig.email}
             </a>
           </p>
           <p>
-            <span className="block text-xs font-medium text-muted">Location</span>
-            {siteConfig.location}
+            <span className="block text-[13px] font-medium text-muted">Location</span>
+            <span className="mt-1 block text-fg-muted">{siteConfig.location}</span>
           </p>
           <p>
-            <span className="block text-xs font-medium text-muted">Resume</span>
-            <Link href={siteConfig.resumePath} className="text-accent hover:underline" download>
+            <span className="block text-[13px] font-medium text-muted">Resume</span>
+            <Link
+              href={siteConfig.resumePath}
+              className="mt-1 inline-block cursor-pointer text-accent transition duration-200 hover:underline"
+              download
+            >
               Download PDF
             </Link>
           </p>
         </div>
         <div>
-          <p className="text-xs font-medium text-muted">Social</p>
+          <p className="text-[13px] font-medium text-muted">Social</p>
           <div className="mt-2 flex flex-wrap gap-2">
             <a
               href={siteConfig.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-hairline bg-surface-2 px-4 text-sm font-medium text-fg-muted transition hover:border-hairline-strong hover:text-fg"
+              className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-hairline bg-surface px-4 text-sm font-medium text-fg-muted transition duration-200 hover:border-hairline-strong hover:bg-surface-2 hover:text-fg"
             >
               <FaLinkedin className="h-4 w-4 shrink-0" aria-hidden />
               LinkedIn
@@ -208,7 +252,7 @@ export function ContactForm() {
                 href={siteConfig.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-hairline bg-surface-2 px-4 text-sm font-medium text-fg-muted transition hover:border-hairline-strong hover:text-fg"
+                className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-hairline bg-surface px-4 text-sm font-medium text-fg-muted transition duration-200 hover:border-hairline-strong hover:bg-surface-2 hover:text-fg"
               >
                 <FaGithub className="h-4 w-4 shrink-0" aria-hidden />
                 GitHub

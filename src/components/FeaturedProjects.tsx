@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Home case studies: AuditAI as full-width lead, remaining featured as a pair below.
+ * Visuals-first cards — problem → outcome hierarchy, minimal badge chrome.
  */
 export function FeaturedProjects() {
   const featured = projects.filter((p) => p.featured);
@@ -35,12 +36,12 @@ export function FeaturedProjects() {
           </Link>
         </div>
 
-        <div className="mt-12 space-y-8">
-          <ProjectTeaserCard project={lead} className="md:mx-auto md:max-w-4xl" />
+        <div className="mt-12 space-y-6 md:space-y-8">
+          <ProjectTeaserCard project={lead} variant="lead" />
           {rest.length > 0 ? (
             <div
               className={cn(
-                "grid gap-8",
+                "grid gap-6 md:gap-8",
                 rest.length === 1 ? "md:mx-auto md:max-w-xl" : "md:grid-cols-2",
               )}
             >

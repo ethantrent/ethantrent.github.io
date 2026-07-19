@@ -1,5 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import {
+  RecruiterSkimBanner,
+  type RecruiterSkim,
+} from "@/components/case-study/RecruiterSkimBanner";
 import { CaseStudyToc, type TocItem } from "@/components/case-study/CaseStudyToc";
 import { ReadingProgress } from "@/components/case-study/ReadingProgress";
 import { projectTagChipClassName } from "@/lib/projectChips";
@@ -19,13 +23,15 @@ type Props = {
   tags?: readonly string[];
   /** Sticky desktop TOC + reading progress when provided. */
   toc?: readonly TocItem[];
+  /** Recruiter 60-second takeaway with jump links. */
+  skim?: RecruiterSkim;
   children: ReactNode;
   /** Footer actions (links) rendered after the article body. */
   footer?: ReactNode;
 };
 
 /**
- * Shared case study shell: breadcrumb, H1, context line, summary card grid, body.
+ * Shared case study shell: breadcrumb, H1, skim banner, summary grid, body.
  */
 export function CaseStudyLayout({
   title,
@@ -33,6 +39,7 @@ export function CaseStudyLayout({
   summary,
   tags,
   toc,
+  skim,
   children,
   footer,
 }: Props) {
@@ -59,6 +66,8 @@ export function CaseStudyLayout({
               {title}
             </h1>
             <p className="mt-4 text-lg text-muted">{subtitle}</p>
+
+            {skim ? <RecruiterSkimBanner skim={skim} /> : null}
 
             <dl className="mt-10 grid gap-4 rounded-xl border border-hairline bg-surface p-6 text-sm sm:grid-cols-2">
               {summary.map((item) => (

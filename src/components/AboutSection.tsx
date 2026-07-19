@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ProfileAvatar } from "@/components/ProfileAvatar";
+import { workPrinciples } from "@/data/workPrinciples";
 import { publicPath } from "@/lib/publicPath";
 import { siteConfig } from "@/data/site";
 import { buttonPrimary } from "@/lib/ui";
@@ -26,7 +27,7 @@ const EDU_ENTRIES: EduEntry[] = [
     org: "Brigham Young University–Idaho",
     detail: "B.S. Computer Science · Full Stack Web Development.",
     detailFollowUp:
-      "Shipped while studying: the campus RAG chatbot prototype now in institutional beta for 20,000+ students, and the Coding Interviews club scaled 11 → 30+ members with a 40% internship rate.",
+      "Shipped while studying: the campus Support Agent prototype now in institutional beta for 20,000+ students, and the Coding Interviews club scaled 11 → 30+ members with a 40% internship rate.",
     logoSrc: "/byui-logo.jpg",
     logoAlt: "BYU–Idaho logo",
   },
@@ -51,26 +52,6 @@ const EDU_ENTRIES: EduEntry[] = [
     logoAlt: "Tepper School of Business logo",
   },
 ];
-
-/** PM operating principles — pulled from how the case studies were actually run. */
-const WORK_PRINCIPLES = [
-  {
-    title: "I define “good” before designing fallbacks",
-    body: "Evaluation criteria come before prompts or retrieval. If we can’t say what a successful output looks like, we’re not ready to automate the workflow — that ordering shaped both AuditAI and the campus chatbot.",
-  },
-  {
-    title: "I align stakeholders on constraints before solutions",
-    body: "On AuditAI, General Counsel’s release criteria were a design input, not a blocker. Agreeing on constraints first turns compliance reviews from a veto at the end into guardrails from the start.",
-  },
-  {
-    title: "Metrics only count when the denominator is agreed",
-    body: "The ~30% / ~50% AuditAI numbers hold up because audit leadership signed off on what we counted. I’d rather report a smaller, defensible number than a bigger one nobody trusts.",
-  },
-  {
-    title: "Human handoff is product, not a failure mode",
-    body: "Escalation paths get designed with the same care as the happy path. When confidence is low, handing off to a human should feel like the system working — because it is.",
-  },
-] as const;
 
 /** Signals intellectual curiosity — real programs and areas of active study. */
 const LEARNING_ITEMS = [
@@ -177,13 +158,22 @@ export function AboutSection() {
           How I work
         </h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
-          {WORK_PRINCIPLES.map((p) => (
+          {workPrinciples.map((p) => (
             <div
-              key={p.title}
+              key={p.id}
               className="rounded-xl border border-hairline bg-surface p-6 transition hover:border-hairline-strong"
             >
               <h3 className="font-display text-lg font-semibold text-fg">{p.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
+              <Link
+                href={p.caseHref}
+                className="mt-3 inline-flex text-sm font-medium text-accent transition hover:underline"
+              >
+                See it in {p.caseLabel}
+                <span className="ml-1" aria-hidden>
+                  →
+                </span>
+              </Link>
             </div>
           ))}
         </div>

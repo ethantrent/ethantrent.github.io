@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
-  <title id="title">BYU-I ChatBot RAG escalation flow</title>
+  <title id="title">BYU-I Support Agent RAG escalation flow</title>
   <desc id="desc">Intent routing, grounded retrieval, safety checks, answer with citations or handoff to staff</desc>
   <rect width="960" height="540" fill="#0f1011"/>
   <rect x="24" y="24" width="912" height="492" rx="12" fill="#141516" stroke="#23252a"/>
 
-  <text x="48" y="64" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="13" font-weight="500">BYU-I ChatBot - campus RAG</text>
+  <text x="48" y="64" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="13" font-weight="500">BYU-I Support Agent - campus RAG</text>
   <text x="48" y="96" fill="#f7f8f8" font-family="system-ui,sans-serif" font-size="22" font-weight="600">Intent - retrieve - check - answer or escalate</text>
 
   <rect x="48" y="160" width="150" height="80" rx="8" fill="#0f1011" stroke="#34343a"/>

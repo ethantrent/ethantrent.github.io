@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { Mail, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/data/site";
-import { buttonPrimary } from "@/lib/ui";
-import { Mail } from "lucide-react";
+import { openAskEthan } from "@/lib/askEthan";
+import { buttonPrimary, buttonSecondary } from "@/lib/ui";
 
 export function HomeCta() {
   const reduceMotion = useReducedMotion();
@@ -22,10 +23,27 @@ export function HomeCta() {
         >
           <h2 className="font-display text-3xl font-semibold tracking-tight text-fg md:text-4xl">{c.title}</h2>
           <p className="mt-4 text-pretty text-muted">{c.body}</p>
-          <Link href="/contact/" className={`mt-8 ${buttonPrimary}`}>
-            <Mail className="h-4 w-4" aria-hidden />
-            {c.buttonLabel}
-          </Link>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Link href="/contact/" className={buttonPrimary}>
+              <Mail className="h-4 w-4" aria-hidden />
+              {c.buttonLabel}
+            </Link>
+            <button
+              type="button"
+              onClick={() =>
+                openAskEthan({
+                  context: "hiring conversation",
+                })
+              }
+              className={buttonSecondary}
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden />
+              Ask Ethan first
+            </button>
+          </div>
+          <p className="mt-4 text-xs text-muted">
+            Prefer a quick question before emailing? The assistant knows my case studies and how I work.
+          </p>
         </motion.div>
       </div>
     </section>

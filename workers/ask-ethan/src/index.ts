@@ -36,7 +36,7 @@ Open to full-time PM roles.
 Case studies:
 - AuditAI (ICS): six internal AI agents for a global nonprofit audit org; ~30% automation / ~50% less manual labor on scoped workflows; human review gates + GC-aligned audit trail; 50,000+ auditors / 31,000+ units on modernized AWS platform.
 - U2 (KBXCOM): unified property/utility billing SaaS live on AWS (u2qbo.tech); $340M SOM; PRDs + AI analytics roadmap (six ML capabilities).
-- BYU–I ChatBot: campus RAG assistant in institutional beta for 20,000+ students (Financial Aid, Registration, Tech); intent design + escalation.
+- BYU–I Support Agent: campus RAG assistant in institutional beta for 20,000+ students (Financial Aid, Registration, Tech); intent design + escalation.
 - Coding Interviews club: grew 11 → 30+ members; 40% internship rate among active cohort.
 
 How he works: define “good” before the model; design escalation as first-class product behavior; treat evaluation as a product surface.
@@ -73,8 +73,8 @@ function heuristicReply(message: string): string {
   if (/u2|billing|kbx|saas/.test(q)) {
     return "U2 is a unified property/utility billing SaaS I co-built at KBXCOM — live on AWS at u2qbo.tech, targeting a $340M SOM, with PRDs and a six-capability AI analytics roadmap. Case study: ethantrent.github.io/projects/u2/";
   }
-  if (/byu|chatbot|rag|campus|student/.test(q)) {
-    return "I led the BYU–Idaho campus RAG chatbot from student prototype to institutional beta for 20,000+ students — intents, escalation, and evaluation criteria first. Case study: ethantrent.github.io/projects/byui-chatbot/";
+  if (/byu|chatbot|support.?agent|rag|campus|student/.test(q)) {
+    return "I led the BYU–Idaho Support Agent from student prototype to institutional beta for 20,000+ students — intents, escalation, and evaluation criteria first. Case study: ethantrent.github.io/projects/byui-chatbot/";
   }
   if (/contact|email|resume|linkedin/.test(q)) {
     return "Email ethanjotrent@gmail.com, LinkedIn linkedin.com/in/ethantrent, or use the contact form at ethantrent.github.io/contact/ — resume download is in the site nav.";

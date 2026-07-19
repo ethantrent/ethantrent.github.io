@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">U2 investor pillar prioritization</title>
+  <desc id="desc">Three investor pillars with ship-now vs cut-later tradeoffs justified by legacy benchmarking</desc>
+  <rect width="960" height="540" fill="#0f1011"/>
+  <rect x="24" y="24" width="912" height="492" rx="12" fill="#141516" stroke="#23252a"/>
+
+  <text x="48" y="64" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="13" font-weight="500">U2 - roadmap judgment</text>
+  <text x="48" y="96" fill="#f7f8f8" font-family="system-ui,sans-serif" font-size="22" font-weight="600">Investor pillars  ship now vs cut later</text>
+
+  <g font-family="system-ui,sans-serif">
+    <!-- Pillar 1 -->
+    <rect x="48" y="130" width="280" height="340" rx="10" fill="#0f1011" stroke="#3b82f6"/>
+    <text x="188" y="168" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="600">Pillar 1</text>
+    <text x="188" y="192" text-anchor="middle" fill="#f7f8f8" font-size="15" font-weight="600">Unified billing core</text>
+    <text x="72" y="230" fill="#22d3ee" font-size="12" font-weight="600">SHIPPED FIRST</text>
+    <text x="72" y="258" fill="#8a8f98" font-size="12">One account record for</text>
+    <text x="72" y="278" fill="#8a8f98" font-size="12">property + utility charges</text>
+    <text x="72" y="310" fill="#8a8f98" font-size="12">Why: legacy tools fail here</text>
+    <text x="72" y="330" fill="#8a8f98" font-size="12"> fragmentation is the pain</text>
+    <text x="72" y="362" fill="#8a8f98" font-size="12">Cut later: polish on</text>
+    <text x="72" y="382" fill="#8a8f98" font-size="12">secondary charge types</text>
+    <text x="72" y="414" fill="#f7f8f8" font-size="12" font-weight="600">Moat prerequisite</text>
+    <text x="72" y="434" fill="#8a8f98" font-size="12">AI roadmap needs this data</text>
+
+    <!-- Pillar 2 -->
+    <rect x="340" y="130" width="280" height="340" rx="10" fill="#0f1011" stroke="#34343a"/>
+    <text x="480" y="168" text-anchor="middle" fill="#8a8f98" font-size="14" font-weight="600">Pillar 2</text>
+    <text x="480" y="192" text-anchor="middle" fill="#f7f8f8" font-size="15" font-weight="600">Operator workflows</text>
+    <text x="364" y="230" fill="#3b82f6" font-size="12" font-weight="600">SEQUENCED NEXT</text>
+    <text x="364" y="258" fill="#8a8f98" font-size="12">Collections, disputes,</text>
+    <text x="364" y="278" fill="#8a8f98" font-size="12">tenant communication</text>
+    <text x="364" y="310" fill="#8a8f98" font-size="12">Why: proves product is</text>
+    <text x="364" y="330" fill="#8a8f98" font-size="12">usable day-to-day, not demo</text>
+    <text x="364" y="362" fill="#8a8f98" font-size="12">Cut later: advanced</text>
+    <text x="364" y="382" fill="#8a8f98" font-size="12">automation before core UX</text>
+    <text x="364" y="414" fill="#f7f8f8" font-size="12" font-weight="600">Evidence: benchmarking</text>
+    <text x="364" y="434" fill="#8a8f98" font-size="12">Incumbent workflow gaps</text>
+
+    <!-- Pillar 3 -->
+    <rect x="632" y="130" width="280" height="340" rx="10" fill="#0f1011" stroke="#34343a"/>
+    <text x="772" y="168" text-anchor="middle" fill="#8a8f98" font-size="14" font-weight="600">Pillar 3</text>
+    <text x="772" y="192" text-anchor="middle" fill="#f7f8f8" font-size="15" font-weight="600">AI analytics wedge</text>
+    <text x="656" y="230" fill="#8a8f98" font-size="12" font-weight="600">ROADMAPPED  NOT FIRST</text>
+    <text x="656" y="258" fill="#8a8f98" font-size="12">Six ML capabilities on</text>
+    <text x="656" y="278" fill="#8a8f98" font-size="12">unified data (designed)</text>
+    <text x="656" y="310" fill="#8a8f98" font-size="12">Why wait: analytics without</text>
+    <text x="656" y="330" fill="#8a8f98" font-size="12">owned billing = thin wedge</text>
+    <text x="656" y="362" fill="#8a8f98" font-size="12">Cut now: shipping ML before</text>
+    <text x="656" y="382" fill="#8a8f98" font-size="12">the data model is real</text>
+    <text x="656" y="414" fill="#f7f8f8" font-size="12" font-weight="600">Differentiation story</text>
+    <text x="656" y="434" fill="#8a8f98" font-size="12">Adopted after core ships</text>
+  </g>
+</svg>

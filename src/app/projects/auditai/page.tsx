@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArtifactFrame } from "@/components/case-study/ArtifactFrame";
+import { ArtifactWalkthrough } from "@/components/case-study/ArtifactWalkthrough";
 import { Callout } from "@/components/case-study/Callout";
+import { CaseStudyAskEntry } from "@/components/case-study/CaseStudyAskEntry";
 import { CaseStudyHireActions } from "@/components/case-study/CaseStudyHireActions";
 import { CaseStudyLayout } from "@/components/case-study/CaseStudyLayout";
 import { CaseStudySection } from "@/components/case-study/CaseStudySection";
+import { DecisionOptions } from "@/components/case-study/DecisionOptions";
 import { buttonSecondary } from "@/lib/ui";
 
 export const metadata: Metadata = {
@@ -30,6 +32,25 @@ const AUDITAI_TOC = [
   { id: "differently", label: "Differently" },
 ] as const;
 
+const AUDITAI_WALKTHROUGH = [
+  {
+    title: "Narrow agents",
+    body: "Six specialized steps — intake, classify, draft, route, enrich, escalate — each individually testable and loggable instead of one opaque assistant.",
+  },
+  {
+    title: "Confidence gate",
+    body: "Low confidence or policy-sensitive outputs hold for human review. Escalation is first-class product behavior, not a failure mode.",
+  },
+  {
+    title: "Human review",
+    body: "Reviewers get context from the agent chain so judgment-heavy work stays with auditors — agents prepare, humans decide.",
+  },
+  {
+    title: "Audit trail",
+    body: "Every agent action is logged so General Counsel and Auditing can defend the release under regulatory-grade scrutiny.",
+  },
+] as const;
+
 export default function AuditAiCaseStudyPage() {
   return (
     <CaseStudyLayout
@@ -37,6 +58,18 @@ export default function AuditAiCaseStudyPage() {
       subtitle="IT Project Manager (Jan–May 2026) · Information and Communication Services — global nonprofit · Riverton, UT"
       tags={["Multi-agent", "LangChain", "OpenAI", "Azure DevOps", "AWS", "Compliance"]}
       toc={AUDITAI_TOC}
+      skim={{
+        problem:
+          "Repeatable audit steps drained capacity meant for judgment — and any AI assist had to survive Auditing and General Counsel.",
+        decision: "Multi-agent orchestration with human review gates over a monolithic assistant or brittle RPA.",
+        outcome: "~30% automation of common processes · ~50% less manual labor on scoped tasks · 6 agents live",
+        role: "IT Project Manager — discovery, stakeholder alignment, and operational rollout",
+        jumps: [
+          { id: "options", label: "Options" },
+          { id: "built", label: "Architecture" },
+          { id: "results", label: "Results" },
+        ],
+      }}
       summary={[
         {
           term: "Scale context",
@@ -57,6 +90,10 @@ export default function AuditAiCaseStudyPage() {
       ]}
       footer={
         <CaseStudyHireActions>
+          <CaseStudyAskEntry
+            caseName="AuditAI"
+            prompt="What tradeoffs did you make on AuditAI, and why multi-agent with human review gates?"
+          />
           <Link href="/experience/" className={buttonSecondary}>
             View experience timeline
           </Link>
@@ -129,43 +166,43 @@ export default function AuditAiCaseStudyPage() {
       </CaseStudySection>
 
       <CaseStudySection id="options" title="Options Explored">
-        <p>We weighed three approaches before committing:</p>
-        <ul className="list-disc space-y-3 pl-5">
-          <li>
-            <strong className="text-fg">One monolithic AI assistant</strong> — a single prompt/agent covering all
-            workflows. Fastest to demo, but opaque: no clean audit trail per step, and one bad output contaminates
-            trust in everything.
-          </li>
-          <li>
-            <strong className="text-fg">Deterministic (RPA-style) automation</strong> — scripted rules over the same
-            workflows. Predictable and easy to govern, but brittle on unstructured inputs, which is where most of the
-            manual labor actually lived.
-          </li>
-          <li>
-            <strong className="text-fg">Multi-agent orchestration with human review gates (chosen)</strong> — narrow
-            agents per workflow step, explicit tool use and handoffs, humans reviewing at defined gates. Slower to
-            stand up, but each agent is individually testable, loggable, and defensible to General Counsel.
-          </li>
-        </ul>
-        <p>
-          We prioritized the multi-agent path because it matched the governance constraint: narrow scopes made each
-          agent’s behavior explainable, and review gates turned compliance from a blocker into a design input.
-        </p>
+        <DecisionOptions
+          intro="We weighed three approaches before committing:"
+          options={[
+            {
+              title: "One monolithic AI assistant",
+              body: "A single prompt/agent covering all workflows. Fastest to demo, but opaque: no clean audit trail per step, and one bad output contaminates trust in everything.",
+              status: "rejected",
+            },
+            {
+              title: "Deterministic (RPA-style) automation",
+              body: "Scripted rules over the same workflows. Predictable and easy to govern, but brittle on unstructured inputs — where most of the manual labor actually lived.",
+              status: "rejected",
+            },
+            {
+              title: "Multi-agent orchestration with human review gates",
+              body: "Narrow agents per workflow step, explicit tool use and handoffs, humans reviewing at defined gates. Slower to stand up, but each agent is individually testable, loggable, and defensible to General Counsel.",
+              status: "chosen",
+            },
+          ]}
+          closing="We prioritized the multi-agent path because it matched the governance constraint: narrow scopes made each agent’s behavior explainable, and review gates turned compliance from a blocker into a design input."
+        />
       </CaseStudySection>
 
       <CaseStudySection id="built" title="What We Built">
+        <ArtifactWalkthrough
+          label="Interactive architecture walkthrough"
+          imageSrc="/artifacts/auditai-architecture.svg"
+          imageAlt="AuditAI multi-agent architecture: six agents, confidence gate, human review, audit trail"
+          caption="No public demo — step through the production architecture instead."
+          steps={AUDITAI_WALKTHROUGH}
+        />
         <p>
           <strong className="text-fg">Six internal agents</strong> covered specialized steps — intake, classification,
           drafting support, routing, and similar — orchestrated so outputs fed human reviewers with context instead of
           replacing them. Tool use and handoffs were designed explicitly (multi-agent orchestration), not as a single
           monolithic prompt.
         </p>
-        <ArtifactFrame
-          label="Agent architecture diagram"
-          imageSrc="/artifacts/auditai-architecture.svg"
-          imageAlt="AuditAI multi-agent architecture: six agents, confidence gate, human review, audit trail"
-          caption="Six narrow agents with explicit handoffs, escalation on low confidence, and human review gates before policy-sensitive outputs."
-        />
         <p>
           <strong className="text-fg">Trust &amp; compliance:</strong> We coordinated with General Counsel on release
           criteria, logging, and parallel modernization tracks so AI capability shipped on the same 2-week cadence as

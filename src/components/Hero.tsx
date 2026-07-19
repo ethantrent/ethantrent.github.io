@@ -19,7 +19,7 @@ export function Hero() {
     reduceMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 8 },
+          initial: { opacity: 0, y: 10 },
           animate: { opacity: 1, y: 0 },
           transition: { duration: 0.4, delay, ease: "easeOut" as const },
         };
@@ -33,7 +33,7 @@ export function Hero() {
       <div className="hero-bleed pointer-events-none absolute inset-0" aria-hidden />
 
       <div className="relative mx-auto flex min-h-[min(100svh,52rem)] w-full max-w-6xl flex-col justify-between px-4 pt-24 pb-10 md:pt-28 md:pb-14">
-        <div className="max-w-xl pt-2 lg:max-w-2xl md:pt-6">
+        <div className="max-w-xl pt-2 lg:max-w-2xl md:pt-8">
           <motion.p
             className="text-[13px] font-medium tracking-[0.03em] text-muted"
             {...fade(0.02)}
@@ -43,34 +43,38 @@ export function Hero() {
 
           <motion.h1
             id="hero-heading"
-            className="font-display mt-3 text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-fg sm:text-6xl lg:text-7xl"
-            {...fade(0.05)}
+            className="font-display mt-4 text-5xl font-semibold leading-[1.02] tracking-[-0.035em] text-fg sm:text-6xl lg:text-7xl"
+            {...fade(0.06)}
           >
             {siteConfig.name}
           </motion.h1>
 
           <motion.p
-            className="font-display mt-6 max-w-xl text-balance text-xl font-semibold leading-snug tracking-[-0.02em] text-fg-muted sm:text-2xl lg:text-[1.75rem]"
-            {...fade(0.1)}
+            className="font-display mt-7 max-w-xl text-balance text-xl font-semibold leading-snug tracking-[-0.02em] text-fg-muted sm:text-2xl lg:text-[1.8rem]"
+            {...fade(0.11)}
           >
             {siteConfig.hero.headlineLines.join(" ")}
           </motion.p>
 
           <motion.p
             className="mt-5 max-w-lg text-pretty text-base leading-relaxed text-muted sm:text-[1.05rem]"
-            {...fade(0.14)}
+            {...fade(0.15)}
           >
             {siteConfig.hero.positioning}
           </motion.p>
 
-          <motion.div className="mt-8 flex flex-wrap items-center gap-3" {...fade(0.18)}>
-            <span className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-hairline bg-surface/80 px-3.5 py-2 text-[13px] font-medium text-fg-muted backdrop-blur-[2px]">
-              <span className="inline-flex h-2 w-2 shrink-0 rounded-full bg-available" aria-hidden />
-              {siteConfig.hero.availability}
-            </span>
-          </motion.div>
+          <motion.p
+            className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-fg-muted"
+            {...fade(0.18)}
+          >
+            <span
+              className="inline-flex h-2 w-2 shrink-0 rounded-full bg-available"
+              aria-hidden
+            />
+            {siteConfig.hero.availability}
+          </motion.p>
 
-          <motion.div className="mt-5 flex flex-wrap items-center gap-3" {...fade(0.22)}>
+          <motion.div className="mt-8 flex flex-wrap items-center gap-3" {...fade(0.22)}>
             <Link href={siteConfig.hero.primaryCta.href} className={buttonPrimary}>
               {siteConfig.hero.primaryCta.label}
               <span aria-hidden>→</span>
@@ -83,24 +87,21 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="mt-auto flex flex-col gap-6 pt-14 sm:flex-row sm:items-end sm:justify-between"
+          className="mt-auto flex flex-col gap-6 pt-16 sm:flex-row sm:items-end sm:justify-between"
           {...fade(0.28)}
         >
           <a
             href="#impact"
-            className="inline-flex min-h-11 items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-fg"
+            className="inline-flex min-h-11 cursor-pointer items-center gap-1.5 text-[13px] font-medium text-muted transition duration-200 hover:text-fg"
           >
             Scroll for impact
-            <ChevronDown
-              className={reduceMotion ? "h-4 w-4" : "h-4 w-4 motion-safe:animate-bounce"}
-              aria-hidden
-            />
+            <ChevronDown className="h-4 w-4" aria-hidden />
           </a>
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2" aria-label="Social links">
             <a
               href={`mailto:${siteConfig.email}`}
-              className="text-sm text-muted transition hover:text-fg"
+              className="cursor-pointer text-sm text-muted transition duration-200 hover:text-fg"
             >
               {siteConfig.email}
             </a>
@@ -118,7 +119,7 @@ export function Hero() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-lg text-muted transition hover:bg-surface-2 hover:text-fg"
+                    className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg text-muted transition duration-200 hover:bg-surface-2 hover:text-fg"
                     aria-label={label}
                   >
                     <Icon className="h-4 w-4" aria-hidden />

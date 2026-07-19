@@ -58,7 +58,7 @@ export const siteConfig = {
     { value: "50,000+", label: "Auditors served", context: "on modernized AWS audit platform" },
     { value: "6", label: "AI agents shipped", context: "operational in a regulated nonprofit" },
     { value: "~50%", label: "Manual labor cut", context: "on targeted audit task workflows" },
-    { value: "20,000+", label: "Students served", context: "by campus RAG assistant in beta" },
+    { value: "20,000+", label: "Students served", context: "by campus Support Agent in beta" },
     { value: "$340M", label: "Market targeted", context: "SOM for U2 unified billing SaaS" },
   ] as const,
   aiPmPhilosophy: {
@@ -105,7 +105,7 @@ export const siteConfig = {
     experience:
       "Experience: Digital Product Manager at Charles Schwab (Conversational AI), Cornell Tech AI Fellow, ICS IT Project Manager, and earlier product-engineering work at KBXCOM.",
     projects:
-      "PM case studies: AuditAI multi-agent automation, U2 billing SaaS, BYU–Idaho campus RAG chatbot, and program leadership — problem, discovery, decisions, and measured outcomes.",
+      "PM case studies: AuditAI multi-agent automation, U2 billing SaaS, BYU–Idaho Support Agent, and program leadership — problem, discovery, decisions, and measured outcomes.",
     skills:
       "Skills across product delivery, cloud & engineering, and applied AI — roadmapping, AWS, TypeScript, Python, LangChain, RAG, agentic systems, and stakeholder alignment.",
     contact:

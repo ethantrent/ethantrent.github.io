@@ -2,9 +2,11 @@
 
 Source of truth for UI work on this site. Tokens live in [`src/app/globals.css`](../src/app/globals.css); shared button/card classes in [`src/lib/ui.ts`](../src/lib/ui.ts). Dark-only — no light mode.
 
-Hand-written (Python `ui-ux-pro-max` CLI not available on this machine). Update this file when tokens or type pairing change.
+Generated/updated via ui-ux-pro-max CLI (`--design-system --persist`) on 2026-07-18, then **merged** with the established Linear-dark system. Keep site tokens below; do not adopt the CLI’s light-mode palette or Archivo/Space Grotesk pairing.
 
-Aligned with ui-ux-pro-max Portfolio/Personal guidance: storytelling-driven layout, dark Linear minimalism, restrained motion (no parallax stacks).
+When building a page, check [`pages/`](pages/) for overrides first; otherwise follow this file.
+
+Aligned with ui-ux-pro-max Portfolio/Personal: storytelling home, visuals-first case studies, restrained motion (no parallax stacks).
 
 ---
 
@@ -14,9 +16,11 @@ Aligned with ui-ux-pro-max Portfolio/Personal guidance: storytelling-driven layo
 |---|---|
 | Product type | Personal PM / AI portfolio (hiring) |
 | Visual direction | Linear-inspired dark system + storytelling home |
+| CLI pattern (adapted) | Portfolio Grid — visuals first; conversion via project cards + contact |
+| CLI style (adapted) | Motion-Driven — entrance + scroll reveals only; no parallax layers |
 | Primary accent | Blue `#3b82f6` (scarce) |
 | Insight accent | Cyan `#22d3ee` (Callouts only) |
-| Anti-patterns | Purple/indigo gradients, cream+serif+terracotta, glassmorphism/aurora, decorative particles |
+| Anti-patterns | Purple/indigo gradients, cream+serif+terracotta, glassmorphism/aurora, decorative particles, corporate/generic templates |
 
 ---
 
@@ -42,6 +46,7 @@ Aligned with ui-ux-pro-max Portfolio/Personal guidance: storytelling-driven layo
 - One chromatic accent (blue) for interactive chrome; cyan is reserved for mid-narrative insight blocks.
 - Prefer ink weight and surface steps over colored backgrounds for hierarchy.
 - Credentials / org logos: muted + grayscale by default; slight opacity lift on hover is fine.
+- Neutral canvas lets work shine — accent stays scarce.
 
 ---
 
@@ -71,6 +76,7 @@ Sentence case for UI labels. No Inter-as-display — Outfit carries expressive h
 - Radius: `rounded-lg` controls, `rounded-xl` panels/media.
 - Sticky nav: 56px (`h-14`); compensate with `scroll-mt-28` on in-page targets.
 - Touch targets: interactive controls ≥ `min-h-11` (44px); ≥8px gap between adjacent targets.
+- Interactive elements: `cursor-pointer`; hover transitions 150–300ms; visible focus rings.
 
 ---
 
@@ -92,6 +98,8 @@ Atmosphere classes live in [`src/app/globals.css`](../src/app/globals.css). Soft
 
 Impact snapshot follows immediately: **no card wrapper**; hairline top border; one job = quantified outcomes.
 
+Featured case studies: **visuals first** (artifact media), problem → outcome hierarchy, minimal badge chrome.
+
 ---
 
 ## Components (shared)
@@ -110,9 +118,11 @@ Impact snapshot follows immediately: **no card wrapper**; hairline top border; o
 ## Motion
 
 - Max 1–2 key scroll reveals per view (impact numbers, featured cards, Callouts).
-- Prefer opacity + `translateY` (~8–10px), 150–400ms, ease-out; `whileInView` once.
+- Prefer opacity + `translateY` (~8–10px), 150–400ms, **ease-out** for enter; `whileInView` once.
 - Always respect `prefers-reduced-motion` (`useReducedMotion` / CSS media query).
-- No parallax stacks, bounce stacks, particles, or custom cursors. Scroll cue may use a single `motion-safe:animate-bounce` on the chevron only.
+- No parallax stacks, bounce stacks, particles, or custom cursors.
+- Infinite/`animate-bounce` only for true loading indicators — not decorative scroll cues.
+- No layout-shifting hover scales on containers (media may use subtle `scale-[1.02]` inside overflow-hidden).
 
 ---
 
@@ -122,12 +132,14 @@ Matches [`src/app/page.tsx`](../src/app/page.tsx):
 
 1. Hero  
 2. Impact snapshot  
-3. Featured case studies (AuditAI lead)  
-4. How I work / manifesto  
-5. Credentials strip  
-6. Testimonial (only if `siteConfig.testimonial.quote` is set)  
-7. Skills one-liner → `/skills/`  
-8. CTA  
+3. Human cue (one-line origin → About)  
+4. Featured case studies (AuditAI lead)  
+5. How I work / manifesto  
+6. Operating principles (expand → case study)  
+7. Credentials strip  
+8. Testimonial (only if `siteConfig.testimonial.quote` is set)  
+9. Skills one-liner → `/skills/`  
+10. CTA (Contact + soft Ask Ethan entry)  
 
 Do not restore home skills grids or tech marquees.
 
@@ -141,6 +153,19 @@ Do not restore home skills grids or tech marquees.
 
 ---
 
+## Pre-delivery checklist (ui-ux-pro-max)
+
+- [ ] No emojis as icons (Lucide / react-icons)
+- [ ] `cursor-pointer` on clickable elements
+- [ ] Hover transitions 150–300ms
+- [ ] Focus states visible
+- [ ] `prefers-reduced-motion` respected
+- [ ] Responsive: 375 / 768 / 1024 / 1440
+- [ ] No content hidden behind sticky nav (`scroll-mt-28`)
+- [ ] No horizontal scroll on mobile
+
+---
+
 ## Out of scope
 
-Light mode, glassmorphism, aurora backgrounds, AI-purple accents, full magazine restyle of case studies.
+Light mode, glassmorphism, aurora backgrounds, AI-purple accents, full magazine restyle of case studies, CLI light palette (`#FAFAFA` canvas), Archivo / Space Grotesk swap.

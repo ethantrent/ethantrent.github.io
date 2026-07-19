@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Coding Interviews club learning loop</title>
+  <desc id="desc">Survey feedback, session design, peer practice, and outcome tracking as a product loop</desc>
+  <rect width="960" height="540" fill="#0f1011"/>
+  <rect x="24" y="24" width="912" height="492" rx="12" fill="#141516" stroke="#23252a"/>
+
+  <text x="48" y="64" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="13" font-weight="500">Coding Interviews club</text>
+  <text x="48" y="96" fill="#f7f8f8" font-family="system-ui,sans-serif" font-size="22" font-weight="600">Learning product loop</text>
+
+  <rect x="80" y="160" width="180" height="100" rx="10" fill="#0f1011" stroke="#34343a"/>
+  <text x="170" y="205" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="14" font-weight="600">1 · Survey</text>
+  <text x="170" y="230" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="12">Discover friction</text>
+
+  <path d="M270 210 H310" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="320" y="160" width="180" height="100" rx="10" fill="#0f1011" stroke="#34343a"/>
+  <text x="410" y="205" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="14" font-weight="600">2 · Design</text>
+  <text x="410" y="230" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="12">Iterate sessions</text>
+
+  <path d="M510 210 H550" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="560" y="160" width="180" height="100" rx="10" fill="#0f1011" stroke="#34343a"/>
+  <text x="650" y="205" text-anchor="middle" fill="#3b82f6" font-family="system-ui,sans-serif" font-size="14" font-weight="600">3 · Practice</text>
+  <text x="650" y="230" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="12">Peer accountability</text>
+
+  <path d="M750 210 H790" stroke="#34343a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="800" y="160" width="120" height="100" rx="10" fill="#0f1011" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="860" y="205" text-anchor="middle" fill="#22d3ee" font-family="system-ui,sans-serif" font-size="13" font-weight="600">4 · Track</text>
+  <text x="860" y="230" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="11">Outcomes</text>
+
+  <rect x="200" y="340" width="560" height="100" rx="10" fill="#0f1011" stroke="#34343a"/>
+  <text x="480" y="380" text-anchor="middle" fill="#f7f8f8" font-family="system-ui,sans-serif" font-size="16" font-weight="600">11 ’ 30+ members · 40% internship rate</text>
+  <text x="480" y="410" text-anchor="middle" fill="#8a8f98" font-family="system-ui,sans-serif" font-size="13">Retention followed accountability, not content volume</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6" fill="none" stroke="#34343a" stroke-width="1.5"/>
+    </marker>
+  </defs>
+</svg>
