@@ -1,26 +1,19 @@
 @import "tailwindcss";
 
-/*
-  Linear-style design tokens — dark-only.
-  Near-black canvas with a faint blue tint, a stepped surface ladder, hairline borders,
-  and a single chromatic accent (blue) with cyan reserved for insight moments.
-  Typography: Outfit (display) + Inter (body/UI).
-*/
 :root {
-  --bg: #08090b;
-  --fg: #f7f8f8;
-  --fg-muted: #d0d6e0;
-  --muted: #8a8f98;
-  --surface: #0f1011;
-  --surface-2: #141516;
-  --surface-3: #18191a;
-  --hairline: #23252a;
-  --hairline-strong: #34343a;
-  --accent: #3b82f6;
-  --accent-cyan: #22d3ee;
-  --available-green: #22c55e;
+  --bg: #f5f2ea;
+  --fg: #24251f;
+  --fg-muted: #44483e;
+  --muted: #62645b;
+  --surface: #eeebe2;
+  --surface-2: #e6e6da;
+  --surface-3: #d8dcca;
+  --hairline: #d8d4c9;
+  --hairline-strong: #8b9081;
+  --accent: #355847;
+  --accent-cyan: #355847;
+  --available-green: #355847;
 }
-
 @theme inline {
   --color-bg: var(--bg);
   --color-fg: var(--fg);
@@ -35,93 +28,151 @@
   --color-accent-cyan: var(--accent-cyan);
   --color-available: var(--available-green);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
-
 html {
   scroll-behavior: smooth;
-  background-color: var(--bg);
-  color-scheme: dark;
+  background: var(--bg);
+  color-scheme: light;
 }
-
+body {
+  background: var(--bg);
+  color: var(--fg);
+  overflow-wrap: anywhere;
+}
+::selection {
+  background: #d5dfcc;
+  color: var(--fg);
+}
+a,
+button,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+a,
+button {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+[id] {
+  scroll-margin-top: 5rem;
+}
+.font-display {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+.shell {
+  width: min(100% - 3rem, 1200px);
+  margin-inline: auto;
+}
+.page-head {
+  padding-block: 3rem 2rem;
+}
+.eyebrow {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.editorial-title {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 44px;
+  max-width: 100%;
+  color: var(--accent);
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-decoration-color: #a6b1a0;
+  text-underline-offset: 0.35em;
+}
+.text-link:hover {
+  text-decoration-color: var(--accent);
+}
+.prose-copy {
+  max-width: 68ch;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--fg-muted);
+}
+.prose-copy p + p {
+  margin-top: 1.35rem;
+}
+p a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.prose-copy a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.skip-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--accent);
+  color: white;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+.project-visual {
+  background: var(--surface);
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+}
+.project-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.editorial-dialog {
+  border: 1px solid var(--hairline);
+  background: var(--bg);
+  color: var(--fg);
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+}
+.editorial-dialog::backdrop {
+  background: rgb(36 37 31 / 0.3);
+}
+@media (max-width: 640px) {
+  .shell {
+    width: calc(100% - 2.5rem);
+  }
+  .page-head {
+    padding-block: 3rem 2rem;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--fg);
-}
-
-/* Skip link: visible on keyboard focus */
-.skip-link {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  z-index: 100;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 500;
-  transform: translateY(-200%);
-  transition: transform 0.2s ease;
-}
-.skip-link:focus {
-  transform: translateY(0);
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Display face for H1/H2 — Outfit; body stays Inter via layout. */
-.font-display {
-  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: -0.02em;
-}
-
-/*
-  Home hero atmosphere — ink depth + soft blue wash + faint grid.
-  No particles, glass, or aurora. Type stays the visual anchor.
-*/
-.hero-atmosphere {
-  background:
-    radial-gradient(ellipse 65% 50% at 88% 12%, rgb(59 130 246 / 0.12), transparent 58%),
-    radial-gradient(ellipse 45% 38% at 8% 88%, rgb(59 130 246 / 0.05), transparent 52%),
-    linear-gradient(180deg, #090a0d 0%, var(--bg) 42%, var(--bg) 100%);
-}
-
-.hero-grid {
-  background-image:
-    linear-gradient(rgb(35 37 42 / 0.55) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(35 37 42 / 0.55) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 70% 65% at 70% 35%, black 8%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 70% 35%, black 8%, transparent 70%);
-  opacity: 0.9;
-}
-
-/* Soft right-side light bleed — no photo/diagram */
-.hero-bleed {
-  background:
-    radial-gradient(ellipse 50% 65% at 92% 30%, rgb(59 130 246 / 0.18), transparent 60%),
-    radial-gradient(ellipse 35% 45% at 75% 70%, rgb(247 248 248 / 0.035), transparent 55%);
-  mask-image: linear-gradient(90deg, transparent 8%, black 48%, black 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 8%, black 48%, black 100%);
-}
-
-@media (max-width: 767px) {
-  .hero-bleed {
-    background:
-      radial-gradient(ellipse 95% 48% at 50% 0%, rgb(59 130 246 / 0.12), transparent 60%),
-      radial-gradient(ellipse 70% 40% at 85% 55%, rgb(59 130 246 / 0.07), transparent 55%);
-    mask-image: linear-gradient(180deg, black 0%, black 50%, transparent 100%);
-    -webkit-mask-image: linear-gradient(180deg, black 0%, black 50%, transparent 100%);
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
+}
 
-  .hero-grid {
-    mask-image: radial-gradient(ellipse 90% 55% at 50% 20%, black 5%, transparent 68%);
-    -webkit-mask-image: radial-gradient(ellipse 90% 55% at 50% 20%, black 5%, transparent 68%);
-  }
+html:has(dialog[open]) {
+  overflow: hidden;
 }

@@ -1,54 +1,48 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { formatPostDate, readTimeMinutes, writingPosts } from "@/data/writing";
+import { writingPosts, formatPostDate } from "@/data/writing";
 import { siteConfig } from "@/data/site";
-
 export const metadata: Metadata = {
-  title: "Writing",
+  title: "Notes",
   description: siteConfig.seoPages.writing,
-  openGraph: { title: "Writing", description: siteConfig.seoPages.writing },
+  alternates: { canonical: "/writing/" },
+  openGraph: { url: "/writing/", images: ["/og.png"] },
 };
-
-export default function WritingIndexPage() {
-  const sorted = [...writingPosts].sort((a, b) => (a.date < b.date ? 1 : -1));
-
+export default function NotesPage() {
+  const posts = [...writingPosts].sort((a, b) => b.date.localeCompare(a.date));
   return (
-    <div className="mx-auto max-w-3xl px-4 py-24 md:py-28">
-      <header>
-        <p className="text-[13px] font-medium tracking-[0.03em] text-muted">Writing</p>
-        <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight text-fg md:text-5xl">
-          Notes on AI PM craft
-        </h1>
-        <p className="mt-4 text-pretty text-muted">{siteConfig.pageIntros.writing}</p>
+    <div className="shell pb-14">
+      <header className="page-head">
+        <h1 className="editorial-title">Notes</h1>
+        <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+          {siteConfig.pageIntros.writing}
+        </p>
       </header>
-      <ul className="mt-14 space-y-6">
-        {sorted.map((post) => (
-          <li
+      <div>
+        {posts.map((post) => (
+          <article
             key={post.slug}
-            className="group rounded-xl border border-hairline bg-surface p-6 transition hover:border-hairline-strong hover:bg-surface-2 md:p-7"
+            className="grid gap-4 border-t border-hairline py-7 md:grid-cols-[240px_minmax(0,1fr)]"
           >
-            <p className="flex flex-wrap items-center gap-2 text-xs font-medium text-muted">
-              <span>{formatPostDate(post.date)}</span>
-              <span className="text-muted/50" aria-hidden>
-                ·
-              </span>
-              <span>{readTimeMinutes(post)} min read</span>
-            </p>
-            <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-fg">
-              <Link href={`/writing/${post.slug}/`} className="transition group-hover:text-accent">
-                {post.title}
-              </Link>
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{post.excerpt}</p>
-            <Link
-              href={`/writing/${post.slug}/`}
-              className="mt-4 inline-flex text-sm font-medium text-accent transition hover:underline"
-            >
-              Read post →
-            </Link>
-          </li>
+            <time dateTime={post.date} className="text-sm text-muted">
+              {formatPostDate(post.date)}
+            </time>
+            <div>
+              <h2 className="text-2xl leading-snug">
+                <Link
+                  className="underline decoration-hairline-strong underline-offset-4 hover:text-accent"
+                  href={`/writing/${post.slug}/`}
+                >
+                  {post.title}
+                </Link>
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-muted">
+                {post.excerpt}
+              </p>
+            </div>
+          </article>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

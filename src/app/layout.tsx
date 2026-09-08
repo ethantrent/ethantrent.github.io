@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppChrome } from "@/components/AppChrome";
 import { siteConfig } from "@/data/site";
@@ -12,18 +12,13 @@ const inter = Inter({
   display: "swap",
 });
 
-/** Display — Outfit (Geometric Modern pairing; H1/H2 via `.font-display`). */
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
-
 /** Set `NEXT_PUBLIC_SITE_URL` in `.env.local` to your live GitHub Pages URL for correct OG URLs. */
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "http://localhost:3000";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  "https://ethantrent.github.io";
 
 /**
- * Root layout: font, global chrome, and default SEO metadata. Dark-only theme.
+ * Root layout: font, global chrome, and default SEO metadata. Warm editorial theme.
  */
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -44,7 +39,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Ethan Trent — AI Product Manager",
+        alt: "Ethan Trent — Product management",
       },
     ],
   },
@@ -55,10 +50,11 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   robots: { index: true, follow: true },
+  icons: { icon: "/icon.svg" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#08090b",
+  themeColor: "#F5F2EA",
 };
 
 export default function RootLayout({
@@ -67,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(inter.variable, outfit.variable, "dark h-full")}>
+    <html lang="en" className={cn(inter.variable, "h-full")}>
       <body
         className={cn(
           inter.className,

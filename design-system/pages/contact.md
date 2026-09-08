@@ -1,49 +1,7 @@
-# Contact Page Overrides
+# Contact behavior
 
-> **PROJECT:** Ethan Trent Portfolio  
-> Overrides [`../MASTER.md`](../MASTER.md) for `/contact/` only.
+Follow [DESIGN.md](../../DESIGN.md). Use a direct invitation, the existing form, email, LinkedIn, and the dated résumé download.
 
----
+Use 14px form labels and 16px editable field text. Allow long direct-contact addresses to wrap, including with enlarged text and user spacing overrides.
 
-## Goal
-
-Low-friction hire conversion. One screen, not a multi-step wizard.
-
-## Layout
-
-- **Max width:** `max-w-6xl` with header capped ~`max-w-2xl`
-- **Composition:** Form (primary) + Direct lines aside (parallel path)
-- **Aside:** Hairline separator (left on desktop, top on mobile) — not a heavy card panel
-
-## Form rules
-
-| Field | Required | Notes |
-|---|---|---|
-| Name | Yes | Single line |
-| Email | Yes | `type="email"` |
-| Company | No | Optional for recruiters |
-| Message | Yes | Textarea; role / timeline / context |
-
-- Primary CTA: **Send message** (`buttonPrimary`, `min-h-11`)
-- Inline escape: mailto under the submit row
-- Keep Formspree `fetch` + `NEXT_PUBLIC_FORMSPREE_FORM_ID`
-- Hidden `_subject` for inbox clarity
-
-## Success / error
-
-- **Success:** Replace the form with a confirmation block (check icon + short copy + Email me / Send another)
-- **Error:** Alert with mailto fallback — never leave recruiters stranded
-- Motion: opacity + `translateY` on success only; respect `prefers-reduced-motion`
-
-## Out
-
-- Multi-step / conversational wizards
-- Progress bars for 4 fields
-- Purple chrome, glass panels, inventing testimonials on this page
-
-## Checklist
-
-- [ ] All fields visible without paging
-- [ ] Focus rings visible; `cursor-pointer` on links/buttons
-- [ ] Transitions 150–300ms
-- [ ] Privacy link present
+Preserve native required/email validation, visible focus, a disabled submitting state, and announced success/error messages. Preserve the entered message on failure and offer direct email. Use mocked requests during validation; never send test inquiries to the real service.

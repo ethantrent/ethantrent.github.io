@@ -1,256 +1,116 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
 import { ProfileAvatar } from "@/components/ProfileAvatar";
-import { workPrinciples } from "@/data/workPrinciples";
-import { publicPath } from "@/lib/publicPath";
+import { publicProfile } from "@/data/public-profile";
 import { siteConfig } from "@/data/site";
-import { buttonPrimary } from "@/lib/ui";
-import { cn } from "@/lib/utils";
-
-type EduEntry = {
-  mark: string;
-  dates: string;
-  org: string;
-  detail: string;
-  /** Optional second paragraph (e.g. track / concentrations under a prospective line). */
-  detailFollowUp?: string;
-  logoSrc?: string;
-  logoAlt?: string;
-};
-
-const EDU_ENTRIES: EduEntry[] = [
-  {
-    mark: "BYU–I",
-    dates: "Sep 2023 – Jul 2026",
-    org: "Brigham Young University–Idaho",
-    detail: "B.S. Computer Science · Full Stack Web Development.",
-    detailFollowUp:
-      "Shipped while studying: the campus Support Agent prototype now in institutional beta for 20,000+ students, and the Coding Interviews club scaled 11 → 30+ members with a 40% internship rate.",
-    logoSrc: "/byui-logo.jpg",
-    logoAlt: "BYU–Idaho logo",
-  },
-  {
-    mark: "CU",
-    dates: "May – Aug 2026",
-    org: "Cornell University",
-    detail: "Machine Learning Certificate.",
-    detailFollowUp:
-      "Selected from 3,500+ applicants for the Break Through Tech AI fellowship; partnering with an industry company through AI Studio on a real-world ML challenge.",
-    logoSrc: "/Cornell_University_seal.svg.png",
-    logoAlt: "Cornell University seal",
-  },
-  {
-    mark: "CMU",
-    dates: "Prospective · Fall 2030 – Spring 2032",
-    org: "Carnegie Mellon University — Tepper School of Business",
-    detail: "Accelerate Online Hybrid MBA.",
-    detailFollowUp:
-      "Targeting the Technology Strategy & Product Management track and concentrations in AI in Business, Business Technologies, Strategy, and Marketing.",
-    logoSrc: "/tepper-logo.jpg",
-    logoAlt: "Tepper School of Business logo",
-  },
-];
-
-/** Signals intellectual curiosity — real programs and areas of active study. */
-const LEARNING_ITEMS = [
-  {
-    title: "Applied machine learning",
-    body: "Cornell University Machine Learning Certificate (in progress) through the Break Through Tech AI fellowship — including a year-long industry AI Studio challenge.",
-  },
-  {
-    title: "Agent evaluation & observability",
-    body: "Golden sets, regression harnesses, and operator playbooks — the product surface around AI that AuditAI taught me to prioritize earlier.",
-  },
-  {
-    title: "Conversational AI in regulated fintech",
-    body: "Living it daily on Charles Schwab’s Conversational AI team: trust, disclosure, and escalation patterns when the user’s money is on the line.",
-  },
-  {
-    title: "Product strategy at business scale",
-    body: "Targeting Carnegie Mellon’s Tepper MBA (Technology Strategy & Product Management track) to pair shipped-product instincts with formal strategy training.",
-  },
-] as const;
-
-/**
- * About page: PM philosophy opener, bio narrative, working principles, education path, current learning.
- */
 export function AboutSection() {
-  const reduceMotion = useReducedMotion();
-  const phil = siteConfig.aiPmPhilosophy;
-  const t = siteConfig.testimonial;
-  const showTestimonial = Boolean(t.quote?.trim());
-
   return (
-    <div className="mx-auto max-w-6xl space-y-20 px-4 py-12 md:py-16">
-      <section className="grid items-center gap-12 lg:grid-cols-2" aria-labelledby="about-intro">
-        <div>
-          <p className="text-[13px] font-medium tracking-[0.03em] text-muted">About</p>
-          <h1 id="about-intro" className="font-display mt-3 text-4xl font-semibold tracking-tight text-fg md:text-5xl">
-            Product-minded builder at the intersection of AI, cloud, and delivery.
-          </h1>
-          <p className="mt-6 text-pretty text-lg font-medium leading-relaxed text-fg-muted">
-            Great AI products are judged by their worst output, not their best demo. So I start where trust is decided:
-            defining “good” before building, treating escalation as first-class behavior, and measuring only what domain
-            owners agree to count. Shipping the model is easy — shipping confidence is the job.
-          </p>
-          <p className="mt-6 text-pretty text-base leading-relaxed text-muted">
-            Growing up, technology pulled me from gaming rigs to building my own PC — then into how software shapes real
-            decisions. Shifting from pre-med to CS, I traded studying the human body for systems that still fail the same
-            way when the <span className="font-medium text-fg">feedback loop between user and product</span> breaks.
-            That lens — outcomes, trust, iteration — is why I do product work rather than pure engineering.
-          </p>
-          <p className="mt-4 text-pretty text-base leading-relaxed text-muted">
-            I’m a Computer Science student at BYU–Idaho with hands-on experience across nonprofit and startup
-            environments: modernizing financial audit infrastructure on AWS, utility billing and property management SaaS,
-            standing up internal agentic AI programs, and prototyping a RAG-based campus support agent with clear
-            escalation and evaluation criteria.
-          </p>
-          <p className="mt-4 text-pretty text-base leading-relaxed text-muted">
-            I am currently a Digital Product Manager on Charles Schwab’s Conversational AI team and an AI Fellow with
-            Cornell Tech × Break Through Tech, building fluency in applied ML and product leadership.
-          </p>
-
-          <section className="mt-10 rounded-xl border border-hairline bg-surface p-6" aria-labelledby="philosophy-heading">
-            <h2 id="philosophy-heading" className="font-display text-lg font-semibold text-fg">
-              {phil.title}
-            </h2>
-            <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted">
-              {phil.paragraphs.map((para) => (
-                <p key={para}>{para}</p>
-              ))}
-            </div>
-          </section>
-
-          {showTestimonial ? (
-            <figure className="mt-10 rounded-xl border border-hairline bg-surface p-6">
-              <blockquote className="text-pretty text-base italic leading-relaxed text-fg-muted">&ldquo;{t.quote}&rdquo;</blockquote>
-              <figcaption className="mt-4 text-sm text-muted">
-                <span className="font-semibold text-fg">{t.author}</span>
-                {t.role ? <span className="block text-xs">{t.role}</span> : null}
-              </figcaption>
-            </figure>
-          ) : null}
-
-          <Link href="/contact/" className={cn("mt-8", buttonPrimary)}>
-            Work with me
-          </Link>
+    <div className="shell pb-14">
+      <header className="page-head">
+        <h1 className="editorial-title">About me</h1>
+        <div className="mt-4 flex flex-wrap gap-x-7">
+          <a href={siteConfig.social.linkedin} className="text-link">
+            LinkedIn
+          </a>
+          <a href={siteConfig.resumePath} download className="text-link">
+            {siteConfig.resumeLabel}
+          </a>
         </div>
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative mx-auto max-w-sm lg:mx-0 lg:justify-self-end"
-        >
-          <div className="relative rounded-xl border border-hairline bg-surface p-2">
-            <ProfileAvatar
-              size={400}
-              className="h-auto w-full max-w-sm rounded-lg border border-hairline object-cover"
-            />
-            <p className="mt-2 text-center text-xs text-muted">Ethan Trent</p>
-          </div>
-        </motion.div>
-      </section>
-
-      <section aria-labelledby="how-i-work-heading">
-        <h2 id="how-i-work-heading" className="font-display text-3xl font-semibold tracking-tight text-fg">
-          How I work
-        </h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
-          {workPrinciples.map((p) => (
-            <div
-              key={p.id}
-              className="rounded-xl border border-hairline bg-surface p-6 transition hover:border-hairline-strong"
-            >
-              <h3 className="font-display text-lg font-semibold text-fg">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
-              <Link
-                href={p.caseHref}
-                className="mt-3 inline-flex text-sm font-medium text-accent transition hover:underline"
-              >
-                See it in {p.caseLabel}
-                <span className="ml-1" aria-hidden>
-                  →
-                </span>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section aria-labelledby="edu-heading">
-        <h2 id="edu-heading" className="font-display text-3xl font-semibold tracking-tight text-fg">
-          Education & trajectory
-        </h2>
-        <div className="relative mt-10">
-          <div
-            className="absolute left-[15px] top-4 bottom-4 w-px bg-hairline-strong md:left-[19px]"
-            aria-hidden
+      </header>
+      <div className="grid items-start gap-8 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-16">
+        <aside className="max-w-[240px]">
+          <ProfileAvatar
+            size={300}
+            priority
+            className="aspect-[4/5] w-full object-cover object-top"
           />
-          <ol className="space-y-0">
-            {EDU_ENTRIES.map((e) => (
-              <li
-                key={e.org}
-                className="relative border-b border-hairline py-6 pl-10 last:border-b-0 md:pl-14"
-              >
-                <span
-                  className="absolute left-[9px] top-[2.35rem] flex h-3 w-3 rounded-full border-2 border-accent bg-bg shadow-[0_0_0_4px_var(--color-bg)] md:left-[13px] md:top-[2.5rem]"
-                  aria-hidden
-                />
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
-                  <div
-                    className={cn(
-                      "flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-hairline bg-surface-2",
-                      !e.logoSrc && "font-display text-xs font-semibold text-fg-muted",
-                    )}
-                    {...(e.logoSrc ? {} : { "aria-hidden": true })}
-                  >
-                    {e.logoSrc ? (
-                      // eslint-disable-next-line @next/next/no-img-element -- /public logos on static export
-                      <img
-                        src={publicPath(e.logoSrc)}
-                        alt={e.logoAlt ?? ""}
-                        className="h-full w-full object-contain p-1"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    ) : (
-                      e.mark
-                    )}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs font-medium tracking-[0.03em] text-muted">{e.dates}</p>
-                    <p className="mt-1 font-display text-lg font-semibold text-fg">{e.org}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted">{e.detail}</p>
-                    {e.detailFollowUp ? (
-                      <p className="mt-2 text-sm leading-relaxed text-muted">{e.detailFollowUp}</p>
-                    ) : null}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <p className="mt-4 text-sm leading-relaxed text-muted">
+            Ethan Trent
+            <br />
+            Dallas, Texas
+            <br />
+            BYU–Idaho graduate
+          </p>
+        </aside>
+        <div className="prose-copy">
+          <h2 className="mb-4 text-2xl font-medium text-fg">
+            How I got here
+          </h2>
+          <p>
+            I grew up playing games on a Nintendo DS and Wii, then Xbox and
+            PlayStation. Eventually I built my own gaming PC. I enjoyed
+            streaming, too, and for a while I wanted to do that for a living. I
+            liked spending time with technology long before I knew what kind of
+            work I wanted to do.
+          </p>
+          <p>
+            My interest in fitness, exercise, and nutrition took me toward
+            physical therapy. An introductory programming class changed that. I
+            enjoyed it enough to switch to computer science, then started
+            learning about software engineering. Over time, I became interested
+            in deciding what to build as well as writing the code. That interest
+            led me toward product management.
+          </p>
+          <p>
+            Outside work, I’m interested in gaming and fitness, and I enjoy
+            learning by building with software.
+          </p>
+          <h2 className="mb-4 mt-8 text-2xl font-medium text-fg">
+            Building and explaining software
+          </h2>
+          <p>
+            I was U2’s sole developer and handled product requirements, working
+            directly with MadisonTek’s founder. My paid internship ran
+            from July through December 2025, and I continued working on U2 into
+            2026.
+          </p>
+          <p>
+            I was the sole developer of the BYU–I Support Agent prototype and
+            authored its requirements, intent categories, conversation flows,
+            and escalation logic. The university adapted my prototype, refined
+            it, and connected it to the byui.edu site. Institutional integration
+            and operation involved others. At ICS, I worked with the Audit team
+            on discovery and rollout for six internal AI agents.
+          </p>
+          <p>
+            I also founded an interview-prep club at BYU–Idaho, organizing
+            workshops and changing the curriculum using member feedback.
+            Teaching remains part of my work: the financial-information
+            assistant pairs implementation and evaluation with setup guides,
+            demonstrations, and workshop materials for other builders.
+          </p>
+          <h2 className="mb-4 mt-8 text-2xl font-medium text-fg">
+            What I’m learning now
+          </h2>
+          <p>
+            I’m interested in how people judge an assistant’s answers, where
+            human support belongs, and what helps a developer understand a new
+            tool. The financial-information project connects those interests:
+            defining useful support, building the assistant, evaluating its
+            behavior, and explaining how to work with it. My earlier notes
+            preserve the questions I was asking before that work.
+          </p>
+          <p>
+            My employment history through September 2026 includes my role as
+            {" "}{publicProfile.role} on Assistants &amp; Search at Charles Schwab,
+            which I started in August 2026. The independent project uses public
+            material and is separate from my employer’s internal work.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-x-7">
+            <Link className="text-link" href="/projects/">
+              Work
+            </Link>
+            <Link className="text-link" href="/experience/">
+              Experience
+            </Link>
+            <Link className="text-link" href="/skills/">
+              Capabilities
+            </Link>
+            <Link className="text-link" href="/contact/">
+              Contact
+            </Link>
+          </div>
         </div>
-        <p className="mt-6 text-sm text-muted">Currently based in Dallas, TX.</p>
-      </section>
-
-      <section aria-labelledby="learning-heading">
-        <h2 id="learning-heading" className="font-display text-3xl font-semibold tracking-tight text-fg">
-          Currently learning & interested in
-        </h2>
-        <ul className="mt-8 grid gap-5 sm:grid-cols-2">
-          {LEARNING_ITEMS.map((item) => (
-            <li
-              key={item.title}
-              className="rounded-xl border border-hairline bg-surface p-6 transition hover:border-hairline-strong"
-            >
-              <p className="font-display text-lg font-semibold text-fg">{item.title}</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      </div>
     </div>
   );
 }

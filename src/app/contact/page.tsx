@@ -5,12 +5,21 @@ import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
+  alternates: { canonical: "/contact/" },
   description: siteConfig.seoPages.contact,
-  openGraph: { title: "Contact", description: siteConfig.seoPages.contact },
+  openGraph: {
+    url: "/contact/",
+    images: ["/og.png"],
+    title: "Contact",
+    description: siteConfig.seoPages.contact,
+  },
 };
 
 const ContactForm = dynamic(
-  () => import("@/components/ContactForm").then((m) => ({ default: m.ContactForm })),
+  () =>
+    import("@/components/ContactForm").then((m) => ({
+      default: m.ContactForm,
+    })),
   {
     ssr: true,
     loading: () => (
@@ -23,15 +32,23 @@ const ContactForm = dynamic(
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-24 md:py-28">
+    <div className="shell py-10 md:py-12">
       <header className="max-w-2xl border-b border-hairline pb-10">
-        <p className="text-[13px] font-medium tracking-[0.03em] text-muted">Contact</p>
-        <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight text-fg md:text-5xl">
-          Let&apos;s talk
-        </h1>
+        <h1 className="editorial-title mt-5">Contact</h1>
         <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted">
           {siteConfig.pageIntros.contact}
         </p>
+        <nav
+          className="mt-4 flex flex-wrap gap-x-7"
+          aria-label="Direct contact"
+        >
+          <a href={`mailto:${siteConfig.email}`} className="text-link">
+            {siteConfig.email}
+          </a>
+          <a href={siteConfig.social.linkedin} className="text-link">
+            LinkedIn
+          </a>
+        </nav>
       </header>
 
       <div className="mt-10 md:mt-12">
@@ -40,7 +57,10 @@ export default function ContactPage() {
 
       <p className="mt-12 text-xs text-muted">
         Submissions are handled per the{" "}
-        <Link href="/privacy/" className="cursor-pointer text-accent transition duration-200 hover:underline">
+        <Link
+          href="/privacy/"
+          className="cursor-pointer text-accent transition duration-200 hover:underline"
+        >
           privacy notice
         </Link>
         .

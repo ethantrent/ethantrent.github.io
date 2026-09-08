@@ -1,0 +1,134 @@
+import { test, expect } from "@playwright/test";
+import worker, { heuristicReply } from "../workers/ask-ethan/src/index";
+import { projects } from "../src/data/projects";
+
+test("Worker contract and conservative offline answers", async () => {
+  const request = (body: string) =>
+    new Request("https://local.test", { method: "POST", body });
+  for (const body of [
+    "invalid",
+    "null",
+    "{}",
+    '{"message":42}',
+    '{"message":" "}',
+  ]) {
+    expect((await worker.fetch(request(body), {})).status).toBe(400);
+  }
+  expect(
+    (await worker.fetch(new Request("https://local.test"), {})).status,
+  ).toBe(405);
+  expect(
+    (
+      await worker.fetch(
+        new Request("https://local.test", { method: "OPTIONS" }),
+        {},
+      )
+    ).status,
+  ).toBe(204);
+  const response = await worker.fetch(
+    request('{"message":"current role"}'),
+    {},
+  );
+  expect(response.status).toBe(200);
+  expect(response.headers.get("Access-Control-Allow-Origin")).toBe("*");
+  expect((await response.json()).reply).toContain(
+    "Specialist, Digital Product Management at Charles Schwab",
+  );
+  for (const [query, id] of [
+    ["AuditAI", "auditai-ics"],
+    ["campus Support Agent", "byui-chatbot"],
+    ["U2", "u2-madisontek"],
+    ["interview club", "coding-interviews"],
+  ]) {
+    const project = projects.find((p) => p.id === id)!;
+    expect(heuristicReply(query)).toContain(
+      project.contribution.replace(/^I /, "Ethan "),
+    );
+    expect(heuristicReply(query)).toContain(project.outcome);
+  }
+  expect(heuristicReply("How did Ethan get into product?")).toContain(
+    "physical therapy",
+  );
+  expect(heuristicReply("résumé")).toContain("through summer 2026");
+  const u2Reply = heuristicReply("Was Ethan the U2 developer?");
+  expect(u2Reply).toContain("Ethan was U2’s sole developer");
+  expect(u2Reply).toContain("Paid internship: July–December 2025");
+  expect(u2Reply).toContain("Project work continued into 2026");
+  expect(u2Reply).not.toMatch(/co-built|AWS|six-capability/);
+  const campusReply = heuristicReply("Who developed the BYU-I prototype?");
+  expect(campusReply).toContain("Ethan was the sole developer of the prototype");
+  expect(campusReply).toContain(
+    "The university adapted the prototype, refined it, and connected it to the byui.edu site.",
+  );
+  expect(campusReply).toContain("Usage is not reported here.");
+  expect(campusReply).not.toMatch(/(?:^|\s)(I|my)\b|fine.tun|students served/);
+});
+
+test("Worker shares facts with model and falls back on provider failure", async () => {
+  const request = () =>
+    new Request("https://local.test", {
+      method: "POST",
+      body: '{"message":"current role"}',
+    });
+  let prompt = "";
+  const result = await worker.fetch(request(), {
+    AI: {
+      run: async (_model, input) => {
+        prompt = input.messages[0].content;
+        return { response: "A mocked answer." };
+      },
+    },
+  });
+  expect(await result.json()).toEqual({ reply: "A mocked answer." });
+  expect(prompt).toContain("not Ethan himself");
+  expect(prompt).toContain("prototype cycles");
+  expect(prompt.toLowerCase()).toContain("usage is not reported");
+  expect(prompt).toContain("U2 (2025–2026)");
+  expect(prompt).toContain("Paid internship: July–December 2025");
+  expect(prompt).toContain("Project work continued into 2026");
+  expect(prompt).toContain("Sole prototype developer and requirements author");
+  expect(prompt).toContain("refined it, and connected it to the byui.edu site");
+  expect(prompt).toContain("Editorial provenance: assumed-complete");
+  expect(prompt).toContain("they are not independently verified accomplishments");
+  expect(prompt).toContain("AI systems and developer platforms");
+  expect(prompt).toContain("I built the citation-first assistant, defined its conversation flows");
+  expect(prompt).not.toContain("For technical AI product roles:");
+  const fallback = await worker.fetch(request(), {
+    AI: {
+      run: async () => {
+        throw new Error("mock provider unavailable");
+      },
+    },
+  });
+  expect((await fallback.json()).reply).toBe(heuristicReply("current role"));
+});
+
+test("assistant attributes new accounts and retains missing-result limits", async () => {
+  for (const [question, id] of [
+    ["Tell me about the citation-first assistant", "financial-literacy-rag"],
+    ["How does Ethan approach evaluation and teaching?", "eval-launch-readiness"],
+    ["What analytics did Ethan work on?", "financial-literacy-discovery"],
+  ]) {
+    const project = projects.find(p => p.id === id)!;
+    const reply = heuristicReply(question);
+    expect(reply).toContain("The portfolio describes this work:");
+    expect(reply).toContain(project.outcome);
+    expect(reply).toContain(project.href);
+    expect(reply).not.toMatch(/\d+%|2031|2036|MSAI/);
+  }
+  const capabilitiesReply = heuristicReply("What are Ethan’s capabilities?");
+  expect(capabilitiesReply).toContain("https://ethantrent.github.io/skills/");
+  expect(capabilitiesReply).toContain("one independent project");
+  expect(capabilitiesReply).toContain("measured enterprise adoption is not reported");
+  expect(heuristicReply("Did Ethan actually complete the RAG assistant?")).toContain("I cannot verify it from available evidence");
+});
+
+test("new project questions fall back on mocked provider failure", async () => {
+  const message = "Tell me about evaluation and guardrails";
+  const response = await worker.fetch(new Request("https://local.test", {
+    method: "POST", body: JSON.stringify({ message }),
+  }), {
+    AI: { run: async () => { throw new Error("mock provider unavailable"); } },
+  });
+  expect(await response.json()).toEqual({ reply: heuristicReply(message) });
+});

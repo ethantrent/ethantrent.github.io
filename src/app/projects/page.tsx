@@ -1,37 +1,34 @@
 import type { Metadata } from "next";
-import { projects } from "@/data/projects";
-import { ProjectCard } from "@/components/ProjectCard";
+import Link from "next/link";
+import { earlierProjects } from "@/data/projects";
+import { ProjectFeature } from "@/components/ProjectFeature";
+import { AssistantFeature } from "@/components/AssistantFeature";
 import { siteConfig } from "@/data/site";
-
 export const metadata: Metadata = {
-  title: "Case Studies",
+  openGraph: { url: "/projects/", images: ["/og.png"] },
+  title: "Work",
   description: siteConfig.seoPages.projects,
-  openGraph: { title: "Case Studies", description: siteConfig.seoPages.projects },
+  alternates: { canonical: "/projects/" },
 };
-
 export default function ProjectsPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-24 md:py-28">
-      <header className="max-w-3xl">
-        <p className="text-[13px] font-medium tracking-[0.03em] text-muted">Case studies</p>
-        <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight text-fg md:text-5xl">
-          Shipped & in flight
-        </h1>
-        <p className="mt-4 text-pretty text-muted">{siteConfig.pageIntros.projects}</p>
+    <div className="shell pb-16">
+      <header className="page-head">
+        <h1 className="editorial-title">Work</h1>
+        <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+          {siteConfig.pageIntros.projects}
+        </p>
+        <Link href="/skills/" className="text-link mt-4">
+          Capabilities with examples
+        </Link>
       </header>
-      <div className="mt-14 grid gap-10 md:grid-cols-2">
-        {projects.map((p, i) => (
-          <ProjectCard
-            key={p.id}
-            project={p}
-            className={
-              projects.length % 2 === 1 && i === projects.length - 1
-                ? "md:col-span-2 md:mx-auto md:w-full md:max-w-3xl"
-                : undefined
-            }
-          />
+      <AssistantFeature heading="h2" />
+      <section className="mt-8" aria-labelledby="earlier-work-heading">
+        <h2 id="earlier-work-heading" className="mb-5 text-2xl font-medium">Earlier work</h2>
+        {earlierProjects.map((project) => (
+          <ProjectFeature heading="h3" key={project.id} project={project} />
         ))}
-      </div>
+      </section>
     </div>
   );
 }

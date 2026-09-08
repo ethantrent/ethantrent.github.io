@@ -1,47 +1,11 @@
-# Home Page Overrides
+# Homepage behavior
 
-> **PROJECT:** Ethan Trent Portfolio  
-> Overrides [`../MASTER.md`](../MASTER.md) for `/` only.
+Follow [DESIGN.md](../../DESIGN.md).
 
----
+1. “I’m Ethan Trent.” with Dallas, the existing portrait, the current Assistants & Search role, and the short physical-therapy-to-programming history. Explore my work, About me, and Contact links wrap and retain 44px targets.
+2. A financial-information assistant, BYU–I Support Agent, and U2. The assistant appears once with Building it / Evaluating it / Defining useful support chapter links. Use 14px My contribution and Outcome labels; keep qualifications beside results.
+3. BYU–I uses the existing institutional-beta screenshot and campus-login caption; U2 uses its existing logo. Mobile order is title/problem, contribution, image, outcome, links.
+4. More work links to AuditAI and Coding Interviews club, followed by existing dated Notes. Do not duplicate the personal-history excerpt here.
+5. Email and contact details. The assistant remains in the footer.
 
-## Layout
-
-- **Max width:** `max-w-6xl` marketing strips (not the CLI’s 800px narrow landing).
-- **Pattern:** Storytelling sequence — not masonry-only portfolio grid.
-- **Density:** Spacious first viewport; proof and work follow immediately.
-
-## Section order (canonical)
-
-1. Hero (name / role / one value line / Contact + Resume)
-2. Impact snapshot (quantified outcomes, no card chrome)
-3. Human cue (one-line origin → About)
-4. Featured case studies (AuditAI lead + pair) — visuals first
-5. Manifesto / how I work
-6. Operating principles (expand → case study)
-7. Credentials
-8. Testimonial (only if quote set)
-9. Skills one-liner → `/skills/`
-10. Home CTA → contact (+ soft Ask Ethan entry)
-
-## Hero
-
-- Atmosphere-only bleed; brand is H1.
-- Availability is a quiet status line — not a floating promo badge or card cluster.
-- Scroll cue: static or opacity pulse only — no `animate-bounce`.
-
-## Impact
-
-- One job: outcomes. Hairline separators; no dashboard panel / card grid.
-
-## Featured work
-
-- Conversion: artifact media first → problem → outcome → case study link.
-- Avoid overlay “Featured” / year chips on media; put year in the meta row if needed.
-- Lead card may be full-width; secondary pair in two columns.
-- Hover: border/surface lift 150–300ms; no layout-shifting scale on the card shell.
-
-## Color / motion
-
-- Neutral dark canvas; scarce blue accent.
-- Entrance + `whileInView` reveals only; respect reduced motion.
+At 1440×900, the first project’s title and full contribution fit without scrolling. Preserve the desktop grid, typography, colors, and meaningful existing imagery. Local copy keeps the user's completed-work assumption without visible scenario badges; internal provenance remains in content data and review notes.

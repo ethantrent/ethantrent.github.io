@@ -1,17 +1,23 @@
 /**
  * Shared TypeScript shapes for portfolio content (projects, jobs, skills).
- * Replace bracketed placeholder strings in `src/data/*` with your real copy.
  */
 
 export type Project = {
+  /** Editorial provenance, retained internally even when drafting in completed-work language. */
+  contentStatus: "verified" | "assumed-complete";
   id: string;
   name: string;
   year: string;
-  /** Shown on home teaser cards, e.g. “Platform & AI”. */
+  /** Distinguishes project involvement from the formal employment period. */
+  timeline?: string;
+  /** Project category shown beside the year. */
   category?: string;
   /** One-line problem statement — leads the card (business context, not stack). */
   problem: string;
-  /** Key outcome metric, bolded on cards (e.g. “~50% less manual labor on targeted tasks”). */
+  decision: string;
+  contribution: string;
+  status: string;
+  /** Scoped result shared by project features, case summaries, and the assistant. */
   outcome: string;
   /** My role + org, shown under the outcome (e.g. “IT Project Manager · ICS”). */
   role: string;
@@ -19,19 +25,17 @@ export type Project = {
   description: string[];
   /** Tech/stack tags — shown inside case studies, not on cards. */
   tags: string[];
-  imageSrc: string;
-  imageAlt: string;
-  /** When set, card media renders a labeled abstract artifact placeholder instead of the image. */
-  artifactLabel?: string;
+  presentation:
+    | { kind: "text" }
+    | {
+        kind: "screenshot" | "logo";
+        src: string;
+        alt: string;
+        caption: string;
+      };
   /** Primary action: internal case study path (e.g. `/projects/auditai/`). */
   href: string;
   featured?: boolean;
-  /** Home teaser link line (e.g. “How I shipped it →”). */
-  teaserCta?: string;
-  /** Full card primary button label. */
-  ctaLabel?: string;
-  /** One-line outcomes for teasers / cards (e.g. “~30% automation”). */
-  metrics?: string[];
   /** Optional second button for external demo when case study is internal. */
   externalHref?: string;
   externalCtaLabel?: string;

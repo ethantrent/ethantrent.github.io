@@ -1,104 +1,114 @@
-import type { Project } from "@/types";
+import type { Project } from "../types";
+import { roadmapProjects } from "./roadmap-projects";
 
-/**
- * Case study cards — resume-backed. Cards lead with problem → outcome → role;
- * `description` and `tags` feed the long-form case study pages, not the cards.
- */
-export const projects: Project[] = [
+/** Approved public facts. The assistant quotes contributions as Ethan's own description. */
+export const earlierProjects: Project[] = [
   {
     id: "auditai-ics",
-    name: "AuditAI — Multi-agent automation (ICS)",
+    contentStatus: "verified",
+    name: "AuditAI",
     year: "2026",
-    category: "AI PM · Agentic systems",
+    category: "Internal AI tools",
     problem:
-      "Manual steps in repeatable audit workflows drained capacity meant for judgment-heavy review — and any AI assist had to survive scrutiny from Auditing and General Counsel.",
-    outcome: "~50% less manual labor on targeted tasks · 6 agents shipped",
-    role: "IT Project Manager · ICS (global nonprofit)",
-    description: [
-      "Led discovery and operational rollout of six internal AI agents for a global nonprofit audit organization — multi-agent orchestration over manual review, classification, and routing workflows.",
-      "Partnered with Auditing, engineering, and General Counsel on compliant releases: human-in-the-loop handoffs, escalation when model confidence was low, and audit trails suitable for regulatory scrutiny.",
-      "Measured impact on representative workflows: ~30% automation of common audit processes and ~50% reduction in manual labor time on targeted tasks (definitions agreed with audit leadership).",
-    ],
-    tags: ["Multi-agent", "LangChain", "OpenAI", "Compliance", "PM"],
-    imageSrc: "/artifacts/auditai-architecture.svg",
-    imageAlt: "AuditAI multi-agent architecture: six agents, confidence gate, human review, audit trail",
+      "AI assistance for repetitive tasks in a nonprofit Audit department.",
+    decision:
+      "Use agents for repeatable tasks while keeping people responsible for review.",
+    contribution:
+      "I helped take six internal AI agents from discovery into operational use, coordinating with the Audit team and supporting rollout.",
+    outcome:
+      "The project reported about 30% automation of common workflows and 50% less manual labor on scoped tasks.",
+    role: "Project management intern · ICS",
+    status: "Internal operational use",
+    presentation: { kind: "text" },
     href: "/projects/auditai/",
-    metrics: ["6 agents", "~30% automation", "~50% labor reduction", "50,000+ auditors on platform"],
-    teaserCta: "Read case study →",
-    ctaLabel: "Read case study",
-    featured: true,
-  },
-  {
-    id: "u2-kbxcom",
-    name: "U2 — Unified Property/Utility Billing SaaS",
-    year: "2025",
-    category: "Full-stack product",
-    problem:
-      "Property managers and utility providers run billing across fragmented legacy tools — rework, billing errors, and no unified view of a tenant’s account.",
-    outcome: "Live AWS product · weeks→days PRD cycle · 6-capability AI roadmap",
-    role: "Developer intern with product ownership · KBXCOM",
-    description: [
-      "Co-built U2 for the Unified Property/Utility Billing SaaS, targeting a $340M serviceable market.",
-      "Wrote PRDs, prioritized across three investor pillars, and used legacy benchmarking to justify the roadmap.",
-      "Designed an AI analytics roadmap (six ML capabilities) and deployed on AWS; accelerated build with AI-assisted dev tools.",
-    ],
-    tags: ["AWS", "React", "TypeScript", "Product"],
-    imageSrc: "/u2.png",
-    imageAlt: "U2 logo — unified property and utility billing",
-    href: "/projects/u2/",
-    metrics: ["Live on AWS", "Weeks → days PRD cycle", "6 ML capabilities roadmapped", "$340M SOM context"],
-    teaserCta: "Read case study →",
-    ctaLabel: "Read case study",
-    externalHref: "https://u2qbo.tech",
-    externalCtaLabel: "Visit live product",
-    featured: true,
+    featured: false,
+    tags: ["Discovery", "AI workflows", "Delivery"],
+    description: ["Six internal agents in a nonprofit Audit department."],
   },
   {
     id: "byui-chatbot",
+    contentStatus: "verified",
     name: "BYU–I Support Agent",
     year: "2025",
-    category: "RAG · campus AI",
+    category: "Campus support",
     problem:
-      "20,000+ students bounced between Financial Aid, Registration, and Tech support for routine answers — automation had to protect trust, not just deflect tickets.",
-    outcome: "Institutional beta · 3 domains · eval + escalation shipped",
-    role: "Product lead, prototype → institutional beta · BYU–Idaho",
-    description: [
-      "Prototyped the campus Support Agent, now live in beta at supportagent.byui.edu for 20,000+ students across Financial Aid, Registration, and Tech support.",
-      "Defined intent categories, conversational flows, and escalation logic; authored requirements and PRD for a prototype adopted into institutional deployment.",
-      "Designed evaluation criteria for answer quality and fallback paths when retrieval or safety checks failed — balancing automation with responsible handoff to human staff.",
-    ],
-    tags: ["Python", "LangChain", "OpenAI", "RAG", "Agentic UX"],
-    imageSrc: "/projects/byui-chatbot-icon.svg",
-    imageAlt: "BYU–Idaho Support Agent — blue Lucide bot mark as shown in the campus product hero",
+      "A support assistant for Financial Aid, Registration, and Tech questions at BYU–Idaho.",
+    decision:
+      "Define supported questions and a path to a person alongside the assistant's answers.",
+    contribution:
+      "I was the sole developer of the prototype and authored its requirements, intent categories, conversation flows, and escalation logic.",
+    outcome:
+      "The university adapted the prototype, refined it, and connected it to the byui.edu site. Usage is not reported here.",
+    role: "Sole prototype developer and requirements author · BYU–Idaho",
+    status: "Institutional beta · Campus login required",
+    presentation: {
+      kind: "screenshot",
+      src: "/artifacts/byui-support-agent-ui.png",
+      alt: "BYU–Idaho Support Agent with suggested questions and a live representative option",
+      caption:
+        "The institutional beta interface. The live service requires a campus login.",
+    },
     href: "/projects/byui-chatbot/",
-    metrics: ["3 domains in beta", "20,000+ students in scope", "PRD → institutional deploy"],
-    teaserCta: "Read case study →",
-    ctaLabel: "Read case study",
+    featured: false,
+    tags: ["RAG", "Python", "Conversation design"],
+    description: ["A prototype adopted into an institutional beta."],
     externalHref: "https://supportagent.byui.edu/",
-    externalCtaLabel: "Campus Support Agent (login required)",
-    featured: true,
+    externalCtaLabel: "Open campus beta (login required)",
+  },
+  {
+    id: "u2-madisontek",
+    contentStatus: "verified",
+    name: "U2",
+    year: "2025–2026",
+    category: "Billing software",
+    problem: "The product brings property management and utility billing into one system.",
+    decision:
+      "Use working prototypes to make product requirements concrete.",
+    contribution:
+      "I was U2’s sole developer and handled product requirements, working directly with MadisonTek’s founder.",
+    outcome:
+      "AI-assisted development shortened prototype cycles from weeks to days; this describes prototyping, not every feature’s delivery time.",
+    role: "Sole developer and product requirements · MadisonTek",
+    timeline:
+      "Paid internship: July–December 2025. Project work continued into 2026.",
+    status: "Development work through 2026",
+    presentation: {
+      kind: "logo",
+      src: "/u2.png",
+      alt: "U2 logo",
+      caption: "Product work at MadisonTek.",
+    },
+    href: "/projects/u2/",
+    featured: false,
+    tags: ["React", "TypeScript", "Prototyping", "Requirements"],
+    description: ["A unified property-management and utility-billing product."],
+    externalHref: "https://u2qbo.tech",
+    externalCtaLabel: "Visit U2",
   },
   {
     id: "coding-interviews",
+    contentStatus: "verified",
     name: "Coding Interviews club",
     year: "2025",
-    category: "Program leadership",
-    problem:
-      "CS students were failing technical interviews for lack of deliberate practice — and the club meant to help had 11 members and no outcome tracking.",
-    outcome: "11 → 30+ members · 40% internship rate (active cohort)",
-    role: "Program lead · BYU–Idaho",
-    description: [
-      "Owned a technical interview prep program end to end: curriculum, weekly workshops, and feedback loops — treating the club like a lightweight learning product.",
-      "Scaled active membership from 11 to 30+ in two semesters using surveys, iteration on session design, and peer-led accountability.",
-      "Tracked outcomes like PM metrics: 40% of active members landed internships after participation.",
-    ],
-    tags: ["Leadership", "Community", "Interview prep"],
-    imageSrc: "/projects/coding-club-icon.svg",
-    imageAlt: "Network icon for peer technical community program",
+    category: "Student leadership",
+    problem: "A peer-led technical interview practice group at BYU–Idaho.",
+    decision: "Adjust the workshops and curriculum using member feedback.",
+    contribution:
+      "I founded the club, organized workshops, and revised the curriculum with participants over two semesters.",
+    outcome:
+      "Membership grew from 11 to 30+ active members. 40% reported landing internships; this does not establish that the club caused those placements.",
+    role: "Founder and president · BYU–Idaho",
+    status: "Two-semester program",
+    presentation: { kind: "text" },
     href: "/projects/coding-interviews/",
-    metrics: ["11 → 30+ members", "40% internship rate (active cohort)"],
-    teaserCta: "Read case study →",
-    ctaLabel: "Read case study",
     featured: false,
+    tags: ["Workshops", "Peer learning"],
+    description: ["Peer interview preparation and member-led feedback."],
   },
 ];
+export const projects: Project[] = [...roadmapProjects, ...earlierProjects];
+export function getProject(id: string): Project {
+  const project = projects.find((p) => p.id === id);
+  if (!project) throw new Error(`Unknown project: ${id}`);
+  return project;
+}

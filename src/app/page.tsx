@@ -1,29 +1,17 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 import { Hero } from "@/components/Hero";
-import { ImpactStrip } from "@/components/ImpactStrip";
-import { HumanCue } from "@/components/HumanCue";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
-import { ManifestoBlock } from "@/components/ManifestoBlock";
-import { HowIWorkPrinciples } from "@/components/HowIWorkPrinciples";
-import { CredentialsStrip } from "@/components/CredentialsStrip";
-import { TestimonialHook } from "@/components/TestimonialHook";
-import { SkillsHomeLink } from "@/components/SkillsHomeLink";
+import { SelectedNotes } from "@/components/SelectedNotes";
 import { HomeCta } from "@/components/HomeCta";
-
-/**
- * Home storytelling sequence: hero → proof → human cue → case studies → how I work → credentials → skills → CTA.
- */
+import { EarlierWork } from "@/components/EarlierWork";
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <ImpactStrip />
-      <HumanCue />
       <FeaturedProjects />
-      <ManifestoBlock />
-      <HowIWorkPrinciples />
-      <CredentialsStrip />
-      <TestimonialHook />
-      <SkillsHomeLink />
+      <EarlierWork />
+      <SelectedNotes />
       <HomeCta />
     </>
   );

@@ -1,102 +1,123 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
-import {
-  RecruiterSkimBanner,
-  type RecruiterSkim,
-} from "@/components/case-study/RecruiterSkimBanner";
-import { CaseStudyToc, type TocItem } from "@/components/case-study/CaseStudyToc";
-import { ReadingProgress } from "@/components/case-study/ReadingProgress";
-import { projectTagChipClassName } from "@/lib/projectChips";
+import type { Project } from "@/types";
+import type { CaseSection } from "@/data/case-studies";
+import { CaseStudyArtifact } from "./CaseStudyArtifact";
+import { CaseStudyContents } from "./CaseStudyContents";
+import { roadmapProjects } from "@/data/roadmap-projects";
 
-export type CaseStudySummaryItem = {
-  term: string;
-  detail: string;
-};
-
-type Props = {
-  title: string;
-  /** Role · timeline · org line under the H1. */
-  subtitle: string;
-  /** 4-box summary grid (Scale / What shipped / Governance / Impact style). */
-  summary: CaseStudySummaryItem[];
-  /** Stack & tools chips — tech details live here, not on listing cards. */
-  tags?: readonly string[];
-  /** Sticky desktop TOC + reading progress when provided. */
-  toc?: readonly TocItem[];
-  /** Recruiter 60-second takeaway with jump links. */
-  skim?: RecruiterSkim;
-  children: ReactNode;
-  /** Footer actions (links) rendered after the article body. */
-  footer?: ReactNode;
-};
-
-/**
- * Shared case study shell: breadcrumb, H1, skim banner, summary grid, body.
- */
 export function CaseStudyLayout({
-  title,
-  subtitle,
-  summary,
-  tags,
-  toc,
-  skim,
-  children,
-  footer,
-}: Props) {
-  const hasToc = Boolean(toc?.length);
-
+  project,
+  sections,
+}: {
+  project: Project;
+  sections: CaseSection[];
+}) {
   return (
-    <>
-      {hasToc ? <ReadingProgress /> : null}
-      <div className="mx-auto max-w-6xl px-4 py-24 md:py-28">
-        <div className={hasToc ? "lg:flex lg:items-start lg:gap-12" : undefined}>
-          {hasToc && toc ? <CaseStudyToc items={toc} /> : null}
-
-          <div className={hasToc ? "min-w-0 flex-1 lg:max-w-3xl" : "mx-auto max-w-3xl"}>
-            <p className="text-[13px] font-medium tracking-[0.03em] text-muted">
-              <Link href="/projects/" className="text-accent hover:underline">
-                Case Studies
-              </Link>
-              <span className="mx-2 text-muted/50" aria-hidden>
-                /
-              </span>
-              Case study
-            </p>
-            <h1 className="font-display mt-4 text-4xl font-semibold leading-tight tracking-tight text-fg md:text-5xl">
-              {title}
-            </h1>
-            <p className="mt-4 text-lg text-muted">{subtitle}</p>
-
-            {skim ? <RecruiterSkimBanner skim={skim} /> : null}
-
-            <dl className="mt-10 grid gap-4 rounded-xl border border-hairline bg-surface p-6 text-sm sm:grid-cols-2">
-              {summary.map((item) => (
-                <div key={item.term}>
-                  <dt className="font-medium text-fg">{item.term}</dt>
-                  <dd className="mt-1 text-muted">{item.detail}</dd>
+    <div className="shell pb-14">
+      <header className="page-head border-b border-hairline">
+        <Link href="/projects/" className="text-link">
+          All work
+        </Link>
+        <p className="eyebrow mt-6">
+          {project.category} · {project.year}
+        </p>
+        <h1 className="editorial-title mt-4">{project.name}</h1>
+        <p className="mt-5 max-w-3xl text-xl leading-relaxed text-fg-muted">
+          {project.problem}
+        </p>
+        <dl className="mt-9 grid gap-x-10 gap-y-6 text-sm md:grid-cols-2">
+          <div>
+            <dt className="eyebrow">My role</dt>
+            <dd className="mt-2 leading-relaxed">{project.role}</dd>
+          </div>
+          <div>
+            <dt className="eyebrow">Project status</dt>
+            <dd className="mt-2 leading-relaxed">{project.status}</dd>
+          </div>
+          <div>
+            <dt className="eyebrow">Central decision</dt>
+            <dd className="mt-2 leading-relaxed text-fg-muted">
+              {project.decision}
+            </dd>
+          </div>
+          <div>
+            <dt className="eyebrow">Result</dt>
+            <dd className="mt-2 leading-relaxed text-fg-muted">
+              {project.outcome}
+            </dd>
+          </div>
+        </dl>
+      </header>
+      <div className="relative grid gap-10 pt-10 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16">
+        <CaseStudyContents sections={sections} />
+        <article className="min-w-0">
+          {sections.map((s) => (
+            <section
+              key={s.id}
+              id={s.id}
+              className="relative mb-9 border-b border-hairline pb-9 last:border-b-0"
+              aria-labelledby={`${s.id}-title`}
+            >
+              {s.aliases.map((alias) => (
+                <span
+                  key={alias}
+                  id={alias}
+                  className="absolute top-0"
+                  aria-hidden="true"
+                />
+              ))}
+              <h2
+                id={`${s.id}-title`}
+                className="font-display mb-5 text-2xl md:text-[28px]"
+              >
+                {s.title}
+              </h2>
+              <div className="prose-copy">
+                {s.paragraphs.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </div>
+              {s.groups?.map((group) => (
+                <div key={group.title} className="mt-7">
+                  <h3 className="mb-4 text-xl font-medium">{group.title}</h3>
+                  <div className="prose-copy">
+                    {group.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                  </div>
                 </div>
               ))}
-            </dl>
-
-            {tags && tags.length > 0 ? (
-              <div className="mt-6">
-                <p className="text-[13px] font-medium tracking-[0.03em] text-muted">Stack & tools</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {tags.map((tag, ti) => (
-                    <span key={tag} className={projectTagChipClassName(ti)}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            <article>{children}</article>
-
-            {footer ? <div className="mt-14 flex flex-wrap gap-4">{footer}</div> : null}
-          </div>
-        </div>
+              {s.materialsNote ? (
+                <p className="mt-5 max-w-[68ch] text-sm leading-relaxed text-muted" data-materials-note>
+                  {s.materialsNote}
+                </p>
+              ) : null}
+              {s.artifacts?.map((a) => (
+                <CaseStudyArtifact key={a.src} artifact={a} />
+              ))}
+              {s.id === "results" && project.externalHref ? (
+                <a href={project.externalHref} className="text-link mt-5">
+                  {project.externalCtaLabel}
+                </a>
+              ) : null}
+            </section>
+          ))}
+          {project.contentStatus === "assumed-complete" ? (
+            <nav aria-label="Other perspectives on this project" className="mb-8">
+              <h2 className="mb-3 text-xl font-medium">Other perspectives on this project</h2>
+              {roadmapProjects.filter((p) => p.id !== project.id).map((p) => (
+                <Link key={p.id} href={p.href} className="text-link mr-6">{p.name}</Link>
+              ))}
+            </nav>
+          ) : null}
+          <footer className="flex flex-wrap gap-x-8 border-t border-hairline pt-7">
+            <Link href="/projects/" className="text-link">
+              All work
+            </Link>
+            <Link href="/contact/" className="text-link">
+              Contact me
+            </Link>
+          </footer>
+        </article>
       </div>
-    </>
+    </div>
   );
 }

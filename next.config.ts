@@ -10,6 +10,10 @@ const basePath = raw === "/" ? "" : raw;
 
 const nextConfig: NextConfig = {
   output: "export",
+  // Keep browser acceptance checks separate from an existing local preview.
+  ...(process.env.PORTFOLIO_TEST === "1"
+    ? { distDir: ".next-review", devIndicators: false }
+    : {}),
   // GitHub Pages serves /about/ from about/index.html, not from about.html at /about.
   trailingSlash: true,
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),

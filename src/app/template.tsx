@@ -1,20 +1,5 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
-
-/**
- * Per-route enter animation (App Router `template` remounts on navigation).
- */
-export default function Template({ children }: { children: React.ReactNode }) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: reduceMotion ? 0 : 0.28 }}
-    >
-      {children}
-    </motion.div>
-  );
+import type { ReactNode } from "react";
+/** Keep document content visible immediately, including before hydration. */
+export default function Template({ children }: { children: ReactNode }) {
+  return children;
 }

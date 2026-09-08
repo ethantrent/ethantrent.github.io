@@ -1,0 +1,11 @@
+import type { MetadataRoute } from "next";
+export const dynamic = "force-static";
+export default function robots(): MetadataRoute.Robots {
+  const root = (
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ethantrent.github.io"
+  ).replace(/\/$/, "");
+  return {
+    rules: { userAgent: "*", allow: "/" },
+    sitemap: root + "/sitemap.xml",
+  };
+}

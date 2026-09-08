@@ -1,39 +1,48 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-import { skillCategories } from "@/data/skills";
+import Link from "next/link";
 import { siteConfig } from "@/data/site";
-
+import { capabilities } from "@/data/capabilities";
 export const metadata: Metadata = {
-  title: "Skills",
+  openGraph: { url: "/skills/", images: ["/og.png"] },
+  title: "Capabilities",
   description: siteConfig.seoPages.skills,
-  openGraph: { title: "Skills", description: siteConfig.seoPages.skills },
+  alternates: { canonical: "/skills/" },
 };
-
-const SkillsGrid = dynamic(
-  () => import("@/components/SkillsGrid").then((m) => ({ default: m.SkillsGrid })),
-  {
-    ssr: true,
-    loading: () => (
-      <div className="py-12 text-center text-sm text-muted" aria-busy="true">
-        Loading skills…
-      </div>
-    ),
-  },
-);
-
 export default function SkillsPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-24 md:py-28">
-      <header className="max-w-3xl">
-        <p className="text-[13px] font-medium tracking-[0.03em] text-muted">Skills & tools</p>
-        <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight text-fg md:text-5xl">
-          Stack I ship with
-        </h1>
-        <p className="mt-4 text-pretty text-muted">{siteConfig.pageIntros.skills}</p>
+    <div className="shell pb-14">
+      <header className="page-head">
+        <h1 className="editorial-title mt-5">Capabilities</h1>
+        <p className="mt-5 max-w-xl text-lg text-muted">
+          What I’ve worked on, with examples from the assistant and earlier projects.
+        </p>
       </header>
-      <div className="mt-14">
-        <SkillsGrid categories={skillCategories} />
-      </div>
+      {capabilities.map((c) => (
+        <section
+          key={c.title}
+          className="grid gap-5 border-t border-hairline py-9 md:grid-cols-[1fr_1.5fr]"
+        >
+          <div>
+            <h2 className="font-display text-2xl">{c.title}</h2>
+          </div>
+          <div>
+            <p className="max-w-2xl text-base leading-relaxed text-fg-muted">
+              {c.body}
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-muted">{c.tools}</p>
+            <Link href={c.href} className="text-link mt-4">
+              {c.example}
+            </Link>
+            <div className="mt-5">
+              <p className="eyebrow mb-3">Earlier work</p>
+              <p className="text-sm leading-relaxed text-muted">{c.foundation}</p>
+              <div className="mt-2 flex flex-wrap gap-x-6">
+                {c.earlier.map((link) => <Link key={link.href} href={link.href} className="text-link">{link.label}</Link>)}
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

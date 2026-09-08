@@ -6,8 +6,8 @@ export function projectCategoryChipClassName() {
   );
 }
 
-/** One neutral chip style — Linear-style restraint, no color rotation. */
-export function projectTagChipClassName(_index?: number) {
+/** One neutral chip style — editorial restraint, no color rotation. */
+export function projectTagChipClassName() {
   return cn(
     "inline-flex items-center gap-1.5 rounded-md border border-hairline bg-surface-2 px-2.5 py-1 text-xs font-medium text-fg-muted",
   );
