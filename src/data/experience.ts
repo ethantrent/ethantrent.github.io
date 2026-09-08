@@ -6,7 +6,7 @@ export const experience: ExperienceEntry[] = [
     id: "schwab-pm",
     role: publicProfile.role,
     company: publicProfile.company,
-    dateRange: "August 2026 — Present · Westlake, TX",
+    dateRange: `${publicProfile.currentSince} — Present · Westlake, TX`,
     context:
       "I work on the Assistants & Search team. Details of my current employer’s internal work are not included in this portfolio.",
     bullets: [],

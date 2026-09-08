@@ -92,7 +92,7 @@ export function AboutSection() {
           <p>
             My employment history through September 2026 includes my role as
             {" "}{publicProfile.role} on Assistants &amp; Search at Charles Schwab,
-            which I started in August 2026. The independent project uses public
+            which I started in {publicProfile.currentSince}. The independent project uses public
             material and is separate from my employer’s internal work.
           </p>
           <div className="mt-7 flex flex-wrap gap-x-7">

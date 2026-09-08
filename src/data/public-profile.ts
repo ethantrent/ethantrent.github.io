@@ -4,7 +4,7 @@ export const publicProfile = {
   role: "Specialist, Digital Product Management",
   company: "Charles Schwab",
   team: "Assistants & Search",
-  currentSince: "August 2026",
+  currentSince: "June 2026",
   location: "Dallas, TX",
   availability:
     "Currently at Schwab and open to relevant professional conversations.",
