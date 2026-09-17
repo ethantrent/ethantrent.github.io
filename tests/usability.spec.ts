@@ -76,9 +76,9 @@ test("320px enlarged text preserves navigation and contact access", async ({ pag
   await keyboardReachable(dialog.getByRole("button", { name: "Close menu" }));
   await page.keyboard.press("Escape");
   await expect(menu).toBeFocused();
-  const chapters = page.locator('[data-project="financial-literacy-rag"] [data-project-links] a');
-  await expect(chapters).toHaveCount(3);
-  for (const chapter of await chapters.all()) await keyboardReachable(chapter);
+  const projectLinks = page.locator('[data-project="auditai-ics"] [data-project-links] a');
+  await expect(projectLinks).toHaveCount(1);
+  for (const link of await projectLinks.all()) await keyboardReachable(link);
   const introContact = page.locator('section[aria-labelledby="home-title"]').getByRole("link", { name: "Contact", exact: true });
   await keyboardReachable(introContact);
   await page.keyboard.press("Enter");
@@ -133,18 +133,21 @@ test("enlarged case contents and image viewer remain operable", async ({ page })
   await noPageOverflow(page);
 });
 
-test("new project descriptions and capability links reflow with enlarged text", async ({ page }) => {
+test("project descriptions and public code links reflow with enlarged text", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 600 });
   for (const path of [
     "/projects/", "/about/", "/skills/",
-    "/projects/financial-literacy-rag/", "/projects/eval-launch-readiness/",
-    "/projects/financial-literacy-discovery/",
+    "/projects/auditai/", "/projects/u2/", "/projects/coding-interviews/",
+    "/projects/financial-literacy-rag/",
   ]) {
     await page.goto(path);
     await enlargeText(page);
     await noPageOverflow(page);
     if (path === "/projects/") {
       await keyboardReachable(page.getByRole("link", { name: "Capabilities with examples" }));
+      for (const link of await page.locator("#public-code a").all()) await keyboardReachable(link);
+    } else if (path === "/projects/financial-literacy-rag/") {
+      await keyboardReachable(page.locator("main").getByRole("link", { name: "Explore my work" }));
     } else if (path.includes("/projects/")) {
       const summary = page.locator("main summary");
       await summary.focus();
@@ -153,10 +156,7 @@ test("new project descriptions and capability links reflow with enlarged text", 
       await keyboardReachable(link);
       await page.keyboard.press("Enter");
       await expect(page).toHaveURL(/#decisions$/);
-      await expect(page.locator("[data-materials-note]")).toHaveCount(1);
-      for (const slot of await page.locator("[data-materials-note]").all()) {
-        expect(await slot.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
-      }
+      await expect(page.locator("main article > section")).toHaveCount(5);
     }
   }
 });

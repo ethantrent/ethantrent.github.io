@@ -73,10 +73,10 @@ export function AboutSection() {
           </p>
           <p>
             I also founded an interview-prep club at BYU–Idaho, organizing
-            workshops and changing the curriculum using member feedback.
-            Teaching remains part of my work: the financial-information
-            assistant pairs implementation and evaluation with setup guides,
-            demonstrations, and workshop materials for other builders.
+            workshops and changing the curriculum using member feedback over
+            two semesters. That work gave me practice organizing technical
+            learning around the people taking part and revising a plan with
+            their input.
           </p>
           <h2 className="mb-4 mt-8 text-2xl font-medium text-fg">
             What I’m learning now
@@ -84,16 +84,24 @@ export function AboutSection() {
           <p>
             I’m interested in how people judge an assistant’s answers, where
             human support belongs, and what helps a developer understand a new
-            tool. The financial-information project connects those interests:
-            defining useful support, building the assistant, evaluating its
-            behavior, and explaining how to work with it. My earlier notes
-            preserve the questions I was asking before that work.
+            tool. I’m an AI Fellow with Cornell Tech × Break Through Tech and
+            have received the Machine Learning Foundations certificate. My
+            public learning repositories contain exercises and reference
+            material, with that context kept alongside the work.
+          </p>
+          <p>
+            I recently finished <em>Inspired</em> and <em>The Mom Test</em>.
+            I’m thinking about shared product goals and discovery: whether a
+            problem is worth solving, whether people can use the solution,
+            whether a team can build and support it, and whether it fits the
+            organization’s needs. I want to keep developing that judgment
+            alongside my technical skills.
           </p>
           <p>
             My employment history through September 2026 includes my role as
             {" "}{publicProfile.role} on Assistants &amp; Search at Charles Schwab,
-            which I started in {publicProfile.currentSince}. The independent project uses public
-            material and is separate from my employer’s internal work.
+            which I started in {publicProfile.currentSince}. Details of my
+            current employer’s internal work are not included here.
           </p>
           <div className="mt-7 flex flex-wrap gap-x-7">
             <Link className="text-link" href="/projects/">

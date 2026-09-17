@@ -1,5 +1,3 @@
-import { roadmapCases } from "./roadmap-projects";
-
 export type CaseSection = {
   id: string;
   title: string;
@@ -19,7 +17,6 @@ export type CaseSection = {
   }[];
 };
 export const caseStudies: Record<string, CaseSection[]> = {
-  ...roadmapCases,
   "auditai-ics": [
     {
       id: "problem",

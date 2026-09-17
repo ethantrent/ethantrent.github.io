@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { earlierProjects } from "@/data/projects";
+import { projects } from "@/data/projects";
 import { ProjectFeature } from "@/components/ProjectFeature";
-import { AssistantFeature } from "@/components/AssistantFeature";
 
-const homepageProjects = ["byui-chatbot", "u2-madisontek"].map(
-  (id) => earlierProjects.find((project) => project.id === id)!,
+const homepageProjects = ["auditai-ics", "byui-chatbot", "u2-madisontek"].map(
+  (id) => projects.find((project) => project.id === id)!,
 );
 export function FeaturedProjects() {
   return (
@@ -21,7 +20,6 @@ export function FeaturedProjects() {
           All work
         </Link>
       </div>
-      <AssistantFeature />
       {homepageProjects.map((p) => (
         <ProjectFeature key={p.id} project={p} />
       ))}

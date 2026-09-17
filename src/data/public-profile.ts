@@ -21,4 +21,6 @@ export const publicProfile = {
     "A BYU–Idaho graduate whose interest in gaming and streaming led to building a PC. An interest in fitness, exercise, and nutrition led toward physical therapy, before an introductory programming class opened a path to software engineering and then product management.",
   interests:
     "AI assistants, search, evaluation, and how people work with software; gaming, fitness, and learning by building.",
+  learning:
+    "AI Fellow with Cornell Tech × Break Through Tech; received the Machine Learning Foundations certificate. Completed reading Inspired and The Mom Test. Interested in product discovery, shared product goals, and understanding value, usability, feasibility, and business viability.",
 } as const;

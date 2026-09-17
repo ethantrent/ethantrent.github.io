@@ -3,7 +3,6 @@ import type { Project } from "@/types";
 import type { CaseSection } from "@/data/case-studies";
 import { CaseStudyArtifact } from "./CaseStudyArtifact";
 import { CaseStudyContents } from "./CaseStudyContents";
-import { roadmapProjects } from "@/data/roadmap-projects";
 
 export function CaseStudyLayout({
   project,
@@ -100,14 +99,6 @@ export function CaseStudyLayout({
               ) : null}
             </section>
           ))}
-          {project.contentStatus === "assumed-complete" ? (
-            <nav aria-label="Other perspectives on this project" className="mb-8">
-              <h2 className="mb-3 text-xl font-medium">Other perspectives on this project</h2>
-              {roadmapProjects.filter((p) => p.id !== project.id).map((p) => (
-                <Link key={p.id} href={p.href} className="text-link mr-6">{p.name}</Link>
-              ))}
-            </nav>
-          ) : null}
           <footer className="flex flex-wrap gap-x-8 border-t border-hairline pt-7">
             <Link href="/projects/" className="text-link">
               All work

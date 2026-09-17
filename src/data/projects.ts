@@ -1,5 +1,4 @@
 import type { Project } from "../types";
-import { roadmapProjects } from "./roadmap-projects";
 
 /** Approved public facts. The assistant quotes contributions as Ethan's own description. */
 export const earlierProjects: Project[] = [
@@ -106,7 +105,10 @@ export const earlierProjects: Project[] = [
     description: ["Peer interview preparation and member-led feedback."],
   },
 ];
-export const projects: Project[] = [...roadmapProjects, ...earlierProjects];
+// Only confirmed project accounts belong in public pages, metadata and assistant context.
+export const projects: Project[] = earlierProjects.filter(
+  (project) => project.contentStatus === "verified",
+);
 export function getProject(id: string): Project {
   const project = projects.find((p) => p.id === id);
   if (!project) throw new Error(`Unknown project: ${id}`);

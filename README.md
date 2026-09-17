@@ -1,6 +1,6 @@
 # Ethan Trent’s portfolio
 
-Ethan Trent’s project work, background, and notes. The current local draft uses completed-work language for roadmap projects at the user's request. Their internal `contentStatus: "assumed-complete"` records drafting provenance; earlier work remains `verified`. Supporting artifacts and measurements have not been supplied for the new accounts. Publishing requires a separate explicit request and a review of actual evidence.
+Ethan Trent’s confirmed project work, background, and notes. Home features AuditAI, the BYU–I Support Agent prototype, and U2. Contributions and reported outcomes retain their ownership and measurement limits. Unfinished roadmap accounts are excluded from the application and assistant; the original local drafts remain in the ignored review archive and Git history. Publishing requires a separate explicit request.
 
 Live destination: [ethantrent.github.io](https://ethantrent.github.io). Next.js App Router, TypeScript, Tailwind CSS, and static export to GitHub Pages remain the architecture. Contact uses Formspree; the optional AI portfolio assistant uses a separate [Cloudflare Worker](workers/ask-ethan/README.md).
 
@@ -19,18 +19,23 @@ The test suite uses Playwright with an installed Google Chrome (`channel: chrome
 
 `npm run build` writes `out/`. To review the export, serve that directory using any local static file server; `next start` is not a static-export server.
 
+The September 17, 2026 content pass passed lint, TypeScript, static export, and all 46 browser/Worker checks. After final copy refinements, the build and all 12 targeted content/Worker checks passed again. The export had 742 checked local references with no missing files or anchors. Form/model requests were mocked or blocked.
+
+Review covered responsive layouts, keyboard access, legacy anchors, image-viewer behavior, and 320px text enlargement. Native browser zoom was not repeated in this pass. Screenshot archives and detailed validation remain in ignored `review/`; this was implementation review, not recruiter research.
+
 ## Content and design
 
-Home introduces Ethan and features one financial-information assistant with three chapter links, followed by BYU–I and U2. Work also retains full AuditAI and Coding Interviews summaries. Missing case materials are summarized beside the outcomes; the detailed inventory is in ignored `review/evidence-needed.md`.
+Home introduces Ethan through his background and three confirmed projects, followed by links to Coding Interviews and public code. Work includes the four full case summaries and links to Cravyr, ProfScore, and the Swytch team starter workspace. Public code is distinguished from private case-study repositories. No new adoption, runtime-verification, or team modeling results are claimed.
 
 - [Public profile](src/data/public-profile.ts): current role, background, contact, and conservative availability wording; also used by the Worker.
 - [Projects](src/data/projects.ts): shared summaries, contributions, decisions, status, captions, and scoped outcomes.
+- [Public code](src/data/public-code.ts): repository links, scope, and evidence limitations shared with the assistant.
 - [Case studies](src/data/case-studies.ts): five-section narratives and artifact references.
 - [Notes](src/data/writing.ts): reflective essays; original dates preserved, revisions dated separately.
 - [Experience](src/data/experience.ts): brief professional and educational context.
 - [Design system](DESIGN.md): warm palette, Inter typography, project treatments, copy, and interaction guidance.
 
-Navigation labels Work and Notes retain `/projects/` and `/writing/`. All seven project URLs and three article URLs remain. Experience and Capabilities are secondary pages. The existing résumé PDF is unchanged and labeled “Résumé — through summer 2026.” Do not add confidential employer material or unbuilt roadmap projects to this public repo.
+Navigation labels Work and Notes retain `/projects/` and `/writing/`. Four project cases and three article URLs remain published. The three former local roadmap URLs retain an unavailable message and Work link, use `noindex`, and are absent from the sitemap. Experience and Capabilities are secondary pages. The existing résumé PDF is unchanged and labeled “Résumé — through summer 2026.” Do not add confidential employer material or unbuilt roadmap projects to this public repo.
 
 ## Configuration
 

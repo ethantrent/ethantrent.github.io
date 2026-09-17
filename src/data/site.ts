@@ -2,7 +2,7 @@ import { publicProfile } from "./public-profile";
 
 export const siteConfig = {
   ...publicProfile,
-  title: "Ethan Trent — AI product and developer tools",
+  title: "Ethan Trent — Product work, software, and AI",
   description:
     "Ethan Trent works on Assistants & Search at Charles Schwab. Explore his software and product work, technical teaching, and path into product management.",
   lastUpdated: "September 2026",
@@ -24,7 +24,7 @@ export const siteConfig = {
     experience:
       "Ethan Trent’s experience at Charles Schwab, Cornell Tech × Break Through Tech, ICS, and MadisonTek.",
     projects:
-      "An independent financial-information assistant across discovery, implementation, and evaluation, plus earlier product and community work.",
+      "AuditAI, the BYU–I Support Agent prototype, U2, and Coding Interviews: individual contributions and qualified outcomes, plus public code to explore.",
     skills:
       "AI product judgment, developer platforms, evaluation and security, and technical teaching, with examples to explore.",
     contact:
@@ -38,7 +38,7 @@ export const siteConfig = {
     contact:
       "I’m open to conversations about AI product work, developer platforms, and technical teaching. Send me a message here or email me directly.",
     projects:
-      "An independent financial-information assistant, a campus support prototype, product work with a founder, and internal AI tools. Each account explains my contribution and the limits of its results.",
+      "Internal AI tools, a campus support prototype, product work with a founder, and a peer-learning community. Each account explains my contribution and the limits of its results.",
     writing:
       "Short notes on assistant requirements, handoff, and evaluation, drawing on the projects here.",
   },

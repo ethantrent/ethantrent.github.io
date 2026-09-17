@@ -14,7 +14,7 @@ export default function SkillsPage() {
       <header className="page-head">
         <h1 className="editorial-title mt-5">Capabilities</h1>
         <p className="mt-5 max-w-xl text-lg text-muted">
-          What I’ve worked on, with examples from the assistant and earlier projects.
+          Contributions from my project work, with examples to explore and areas I’m continuing to learn.
         </p>
       </header>
       {capabilities.map((c) => (
@@ -34,7 +34,6 @@ export default function SkillsPage() {
               {c.example}
             </Link>
             <div className="mt-5">
-              <p className="eyebrow mb-3">Earlier work</p>
               <p className="text-sm leading-relaxed text-muted">{c.foundation}</p>
               <div className="mt-2 flex flex-wrap gap-x-6">
                 {c.earlier.map((link) => <Link key={link.href} href={link.href} className="text-link">{link.label}</Link>)}

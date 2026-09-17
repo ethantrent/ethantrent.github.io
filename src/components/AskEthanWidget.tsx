@@ -8,8 +8,8 @@ import { ASK_ETHAN_OPEN_EVENT, type AskEthanOpenDetail } from "@/lib/askEthan";
 
 type Message = { role: "user" | "assistant"; text: string };
 const prompts = [
-  "Tell me about the citation-first assistant",
-  "How does Ethan approach evaluation and teaching?",
+  "What did Ethan build for the BYU–I Support Agent?",
+  "Where can I explore Ethan’s public code?",
   "How did Ethan get into product?",
 ];
 

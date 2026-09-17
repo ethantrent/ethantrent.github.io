@@ -88,10 +88,13 @@ test("Worker shares facts with model and falls back on provider failure", async 
   expect(prompt).toContain("Project work continued into 2026");
   expect(prompt).toContain("Sole prototype developer and requirements author");
   expect(prompt).toContain("refined it, and connected it to the byui.edu site");
-  expect(prompt).toContain("Editorial provenance: assumed-complete");
-  expect(prompt).toContain("they are not independently verified accomplishments");
+  expect(prompt).not.toContain("Editorial provenance: assumed-complete");
+  expect(prompt).toContain("Do not present roadmap plans, archived drafts");
   expect(prompt).toContain("AI systems and developer platforms");
-  expect(prompt).toContain("I built the citation-first assistant, defined its conversation flows");
+  expect(prompt).not.toContain("I built the citation-first assistant");
+  expect(prompt).toContain("since June 2026");
+  expect(prompt).toContain("Machine Learning Foundations certificate");
+  expect(prompt).toContain("public starter materials");
   expect(prompt).not.toContain("For technical AI product roles:");
   const fallback = await worker.fetch(request(), {
     AI: {
@@ -103,24 +106,26 @@ test("Worker shares facts with model and falls back on provider failure", async 
   expect((await fallback.json()).reply).toBe(heuristicReply("current role"));
 });
 
-test("assistant attributes new accounts and retains missing-result limits", async () => {
-  for (const [question, id] of [
-    ["Tell me about the citation-first assistant", "financial-literacy-rag"],
-    ["How does Ethan approach evaluation and teaching?", "eval-launch-readiness"],
-    ["What analytics did Ethan work on?", "financial-literacy-discovery"],
+test("assistant excludes archived accomplishments and describes available evidence", async () => {
+  for (const question of [
+    "Tell me about the citation-first assistant",
+    "Did Ethan actually complete the financial-information project?",
+    "What MCP workshops did Ethan deliver?",
+    "What was the result of the red-team review?",
   ]) {
-    const project = projects.find(p => p.id === id)!;
     const reply = heuristicReply(question);
-    expect(reply).toContain("The portfolio describes this work:");
-    expect(reply).toContain(project.outcome);
-    expect(reply).toContain(project.href);
-    expect(reply).not.toMatch(/\d+%|2031|2036|MSAI/);
+    expect(reply).toContain("No completed-project evidence for that work is published here");
+    expect(reply).not.toMatch(/financial-literacy-rag|eval-launch-readiness|financial-literacy-discovery/);
   }
   const capabilitiesReply = heuristicReply("What are Ethan’s capabilities?");
   expect(capabilitiesReply).toContain("https://ethantrent.github.io/skills/");
-  expect(capabilitiesReply).toContain("one independent project");
-  expect(capabilitiesReply).toContain("measured enterprise adoption is not reported");
-  expect(heuristicReply("Did Ethan actually complete the RAG assistant?")).toContain("I cannot verify it from available evidence");
+  expect(capabilitiesReply).toContain("sole development and requirements for U2");
+  expect(heuristicReply("What analytics did Ethan work on?")).toContain("developing his evaluation and security knowledge");
+  expect(heuristicReply("Tell me about Cravyr")).toContain("https://github.com/ethantrent/cravyr");
+  expect(heuristicReply("Tell me about ProfScore")).toContain("not a verified compatibility guarantee");
+  expect(heuristicReply("Tell me about Swytch")).toContain("results are not yet documented");
+  expect(heuristicReply("Where can I explore Ethan’s public code?")).toContain("their source repositories are not public");
+  expect(heuristicReply("What has Ethan been reading?")).toContain("Completed reading Inspired and The Mom Test");
 });
 
 test("new project questions fall back on mocked provider failure", async () => {

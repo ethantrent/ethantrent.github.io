@@ -2,11 +2,13 @@
 
 This is the source of truth for the portfolio’s identity, copy, and presentation. The site introduces Ethan to recruiters, hiring managers, and professional connections through work and personal history. Its focus connects AI product, developer platforms, evaluation and security, and technical teaching. Employment history is retained through September 2026.
 
-## Local drafting context — September 7, 2026
+## Publication content — September 17, 2026
 
-The user requested replacing the local presentation with the roadmap's assumed completed work, then explicitly removed visible future-state/scenario labels. Use completed-work language on the site. Internal `contentStatus` distinguishes `verified` earlier work from `assumed-complete` roadmap accounts; this is editorial provenance, not a public badge. These drafting assumptions do not change roadmap progress records or establish actual completion.
+The public presentation now uses confirmed project contributions. The previous assumed-complete roadmap accounts are preserved in local `review/before-verified-work-pass-2026-09-17/source/` and Git history, but are not imported by the application or Worker. Roadmap planning and completion records are unchanged. This supersedes the September 7 completion-assumption instructions.
 
-Do not invent dates, later jobs, degrees, customers, participant feedback, measurements, or proof files. Missing supporting materials are summarized in one plain-text availability note per case; the complete checklist lives in review/evidence-needed.md. No missing asset gets a download/demo action. Outcomes state the described output and retain missing-measurement qualifications. The assistant attributes assumed accounts to the portfolio and explains the evidence limitation when asked to verify them. All work remains local and uncommitted until explicitly authorized otherwise.
+Only projects with `contentStatus: "verified"` enter the shared project collection. This status records supplied project history, not independent validation of every outcome: retain all scoped, reported, and unavailable-measurement qualifications. The three former local draft routes retain a concise unavailable message with a Work link and `noindex`; omit them from navigation and the sitemap. Do not put public future-state badges or unsupported accomplishment claims on the site.
+
+Do not invent dates, later jobs, degrees, customers, participant feedback, measurements, or proof files. Public repository links describe inspectable code and its limits, not adoption or independently tested release status. Swytch currently exposes a team challenge and starter workspace; no personal modeling contribution or result has been supplied. The assistant shares these distinctions. Changes stay local until publication is explicitly requested.
 
 ## Identity and typography
 
@@ -25,7 +27,7 @@ Use the plain name **Ethan Trent** without a decorative period. Use a typographi
 
 Keep ivory `#F5F2EA`, ink `#24251F`, body `#44483E`, muted `#62645B`, dividers `#D8D4C9`, surfaces `#EEEBE2`, and forest green `#355847`. Green is for links, controls, and visible focus, not emphasized words or decorative callouts. Original product imagery retains its own colors.
 
-Use the 1,200px shell with 20px mobile gutters and at least 24px elsewhere. Favor 32–56px section spacing, thin dividers, and unframed text. No artificial texture, background grids, decorative motion, or fabricated product mockups. At 1440×900, the citation-first assistant case title and full contribution must be visible without scrolling.
+Use the 1,200px shell with 20px mobile gutters and at least 24px elsewhere. Favor 32–56px section spacing, thin dividers, and unframed text. No artificial texture, background grids, decorative motion, or fabricated product mockups. At 1440×900, the AuditAI case title and full contribution must be visible without scrolling.
 
 The introduction uses “I’m Ethan Trent.” with Dallas as supporting text. The lead says “I work on Assistants & Search at Charles Schwab. I came to product management through programming and software engineering.” Follow it with “I originally thought I’d go into physical therapy. An introductory programming class changed my plans.” Place the existing portrait beside the introduction: 64×80px on mobile and 144×180px from 768px. Serve responsive WebP derivatives while preserving the original photograph. Do not repeat the personal-history excerpt lower on the homepage. About retains its larger portrait and leads with personal history.
 
@@ -33,9 +35,9 @@ Below the introduction, show Explore my work, About me, and Contact in that orde
 
 ## Project treatments
 
-Feature A financial-information assistant → BYU–I Support Agent → U2. The assistant is one text feature with Building it / Evaluating it / Defining useful support chapter links to the three existing cases. Reuse this feature on Work; keep homepage selection independent of the Work collection. Each case keeps five sections and related-case links. Use content-specific subdivisions: Answer boundaries and implementation / Helping another developer get started; Failure analysis / Tool permissions and residual risks / Release criteria and workshops; Defining useful support / Measures and product priorities. Vary paragraph counts according to existing material.
+Feature AuditAI → BYU–I Support Agent → U2. Keep the existing summary treatments, contribution/outcome labels, qualifications, and mobile reading order. Follow the features with compact More work links to Coding Interviews and public code on Work.
 
-Follow homepage features with compact More work links to AuditAI and Coding Interviews club. Work follows the unified assistant feature with full earlier summaries in this order: AuditAI → BYU–I Support Agent → U2 → Coding Interviews club. The available material determines their treatment:
+Work contains the four complete case summaries in this order: AuditAI → BYU–I Support Agent → U2 → Coding Interviews club. Explain that their repositories are not public. A separate “Explore the code” section links Cravyr, ProfScore, and the Swytch team workspace with repository-specific limitations. Do not create case studies or personal-contribution stories for these repositories without supporting information. The available material determines the treatment:
 
 - AuditAI: text feature, individual contribution, and a scoped project-reported result. No homepage diagram.
 - BYU–I: real institutional interface screenshot at a readable size. Label campus authentication and avoid equating audience with usage.
@@ -61,15 +63,15 @@ Contact-form labels use 14px text; editable form fields and the assistant questi
 
 ## Voice and accuracy
 
-Write direct first-person descriptions of Ethan’s contribution. Use plain labels such as About me, Notes, and Contact. Apart from the approved homepage headline, avoid additional taglines, rhetorical questions, ornamental phrases, and commentary about a previous rewrite. Draft the new accounts only from the agreed roadmap scope; do not invent anecdotes, quotations, results, or specific implementation decisions.
+Write direct first-person descriptions of Ethan’s contribution. Use plain labels such as About me, Notes, and Contact. Apart from the approved homepage headline, avoid additional taglines, rhetorical questions, ornamental phrases, and commentary about a previous rewrite. Use confirmed project history; do not turn roadmap scope into completed contributions or invent anecdotes, quotations, results, or specific implementation decisions.
 
 Keep the personal history: gaming and streaming, building a PC, fitness/nutrition and physical therapy interests, introductory programming, software engineering, then product management. About remains approximately 350–500 words. Use BYU–Idaho graduate without choosing between conflicting degree labels.
 
 Favor the existing personal history and learning interests over repeated project summaries on About. In U2, separate responsibilities, prototype-based requirements discussions, and the qualified prototyping improvement. Do not invent decision stories or add hypothetical project examples to fill gaps. Keep institutional-prototype ownership consistent across cases, About, Capabilities, Notes, and the shared assistant facts.
 
-Keep results qualified beside the relevant claim, including team ownership, scoped audit metrics, campus audience versus usage, prototype-cycle speed, and missing measurements. The résumé stays labeled “Résumé — through summer 2026.” Only the approved independent public-data project scope is adapted from the roadmap; private academic records, employer material, company wish lists, and career-planning dates do not belong here.
+Keep results qualified beside the relevant claim, including team ownership, scoped audit metrics, campus audience versus usage, prototype-cycle speed, and missing measurements. The résumé stays labeled “Résumé — through summer 2026.” Private academic records, employer material, company wish lists, unfinished projects, and career-planning dates do not belong here.
 
-Capabilities retains AI product judgment, AI systems and developer platforms, evaluation and security, and technical teaching and adoption. Each category uses concrete contributions, tools, linked cases, and a concise earlier-work example. Let those examples explain relevance; omit separate “For … roles” paragraphs and retain nearby outcome limitations. Retain existing Notes unchanged until actual new tutorial or workshop content is supplied.
+Capabilities retains AI product judgment, AI systems and developer platforms, evaluation and security, and technical teaching and adoption. Each category uses concrete contributions, tools, linked published cases, and relevant limitations. Evaluation/security and developer-platform interests must be distinguished from completed specialist work. Let those examples explain relevance; omit separate “For … roles” paragraphs and retain nearby outcome limitations. Retain existing Notes unchanged until actual new tutorial or workshop content is supplied. About can include the confirmed Machine Learning Foundations certificate and completed Inspired/The Mom Test reading, without inventing personal reflections or research findings.
 
 The assistant speaks in third person and identifies itself as AI. It shares public facts with the site and opens only from the footer. No request is sent merely by opening it.
 

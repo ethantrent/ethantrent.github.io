@@ -17,7 +17,7 @@ export const experience: ExperienceEntry[] = [
     company: "Cornell Tech × Break Through Tech",
     dateRange: "May 2026 — April 2027 · Remote",
     context:
-      "A fellowship combining machine-learning coursework and an industry AI Studio challenge. Completed the Cornell Machine Learning Foundations Certificate in August 2026.",
+      "A fellowship combining machine-learning coursework and an industry AI Studio challenge. Received the Machine Learning Foundations certificate.",
     bullets: [],
   },
   {

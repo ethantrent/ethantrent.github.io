@@ -132,12 +132,12 @@ test("homepage introduces Ethan and reaches varied selected work", async ({
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
   const firstContribution = page.locator(
-    '[data-project="financial-literacy-rag"] [data-contribution]',
+    '[data-project="auditai-ics"] [data-contribution]',
   );
   await page.evaluate(() => document.fonts.ready);
   const bounds = await firstContribution.boundingBox();
   expect(bounds && bounds.y + bounds.height <= 900).toBe(true);
-  const titleBounds = await page.locator('[data-project="financial-literacy-rag"] h3').boundingBox();
+  const titleBounds = await page.locator('[data-project="auditai-ics"] h3').boundingBox();
   expect(titleBounds && titleBounds.y + titleBounds.height <= 900).toBe(true);
   await expect(
     page.locator('#selected-work img[src$="auditai-architecture.svg"]'),
@@ -151,10 +151,10 @@ test("homepage introduces Ethan and reaches varied selected work", async ({
   await expect(page).toHaveURL(/#selected-work$/);
   const names = await page.locator("#selected-work h3").allTextContents();
   expect(names).toEqual([
-    "A financial-information assistant", "BYU–I Support Agent", "U2",
+    "AuditAI", "BYU–I Support Agent", "U2",
   ]);
   await expect(page.getByRole("region", { name: "More work" }).getByRole("link")).toHaveText([
-    "AuditAI", "Coding Interviews club",
+    "Coding Interviews club", "Explore public code",
   ]);
   await expect(
     page.getByRole("button", { name: "Ask Ethan · AI assistant", exact: true }),
